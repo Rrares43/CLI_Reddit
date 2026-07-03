@@ -18,6 +18,7 @@ public class Main {
       System.out.println("Enter Email: ");
       String email = sc.nextLine();
       System.out.println("Enter Password: ");
+      System.out.println("Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character.");
       String password = sc.nextLine();
       Account account = new Account(username, email, password);
       saveAccount(account);
@@ -46,13 +47,14 @@ public class Main {
   }
 
 
-  public static void saveAccount(Account account){
-    try (FileWriter add_account = new FileWriter("accounts.txt", true)){
-      add_account.write(account.getUsername() + " " + account.getEmail() + " " +  account.getPassword() + "\n");
-      System.out.println("Account Saved");
-    }
-    catch (IOException e){
-      System.out.println("Error");
+  public static void saveAccount(Account account) {
+    if (account.verifyPassword(account.getPassword()) && !verifyAccount(account)) {
+      try (FileWriter add_account = new FileWriter("accounts.txt", true)) {
+        add_account.write(account.getUsername() + " " + account.getEmail() + " " + account.getPassword() + "\n");
+        System.out.println("Account Saved");
+      } catch (IOException e) {
+        System.out.println("Error");
+      }
     }
   }
 

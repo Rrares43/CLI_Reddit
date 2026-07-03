@@ -32,4 +32,41 @@ public class Account {
     public void setPassword(String password){
         this.password = password;
     }
+
+    public boolean verifyPassword(String password){
+        boolean correct_length = false;
+        boolean has_letter = false;
+        boolean has_number = false;
+        boolean has_uppercase = false;
+        boolean has_lowercase = false;
+        boolean has_special_char = false;
+
+        if(password.length() > 8 && password.length() < 20){
+            correct_length = true;
+        }
+        for(int i = 0; i < password.length();i++){
+            if(Character.isDigit(password.charAt(i))){
+                has_number = true;
+            }
+            if(Character.isAlphabetic(password.charAt(i))){
+                has_letter = true;
+            }
+            if(Character.isUpperCase(password.charAt(i))){
+                has_uppercase = true;
+            }
+            if(Character.isLowerCase(password.charAt(i))){
+                has_lowercase = true;
+            }
+            if(!Character.isLetterOrDigit(password.charAt(i)) && !Character.isWhitespace(password.charAt(i))){
+                has_special_char = true;
+            }
+        }
+        if(correct_length && has_letter && has_number && has_uppercase && has_lowercase && has_special_char){
+            return true;
+        }
+        else{
+            System.out.println("Password condition not respected");
+            return false;
+        }
+    }
 }
