@@ -8,8 +8,12 @@ import java.io.FileWriter;
 public class AccountOperations {
     private static final String FILE_NAME = "accounts.txt";
 
+    // saves account into the text file and checks if the account already exists or if any fields are empty
     public static void saveAccount(Account account) {
-        if (account.verifyPassword(account.getPassword()) && !verifyAccount(account) && account.verifyEmail(account.getEmail())) {
+        if(account.getUsername().isBlank() || account.getEmail().isBlank() || account.getPassword().isBlank()){
+            System.out.println("Please fill in all fields");
+        }
+        else if (account.verifyPassword(account.getPassword()) && !verifyAccount(account) && account.verifyEmail(account.getEmail())) {
             try (FileWriter addAccount = new FileWriter(FILE_NAME, true)) {
                 addAccount.write(account.getUsername() + "," + account.getEmail() + "," + account.getPassword() + "\n");
                 System.out.println("Account Saved");
@@ -22,6 +26,7 @@ public class AccountOperations {
         }
     }
 
+    // used for checking if the account already exists
     public static boolean verifyAccount(Account account){
         File accountFile = new File(FILE_NAME);
 
@@ -41,6 +46,7 @@ public class AccountOperations {
         return false;
     }
 
+    // used for changing the password
     public static void changePassword(String username, String newPassword){
         File accountFile = new File(FILE_NAME);
         List<String> newLines = new ArrayList<>();
@@ -80,6 +86,7 @@ public class AccountOperations {
         }
     }
 
+    // used for checking if the email already exists
     public static boolean checkEmail(String email){
         File accountFile = new File(FILE_NAME);
         try(Scanner fileReader = new Scanner(accountFile)){

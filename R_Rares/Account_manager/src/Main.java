@@ -8,7 +8,7 @@ public class Main {
       System.out.println("Input 1 for account creation, 2 for loggin in or 3 to end the program:");
       String choice = sc.nextLine();
 
-      if (choice.equals("1")) {
+      if(choice.equals("1")) {
         System.out.println("Enter Username: ");
         String username = sc.nextLine();
         System.out.println("Enter Email: ");
