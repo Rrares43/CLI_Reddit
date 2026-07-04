@@ -123,5 +123,41 @@ public class InteractionService {
         }
         System.out.println("Comentariul negasit.");
     }
+        public void printPostByAuthor(String authorName){
+            boolean autorGasit = false;
+            for(Post p : dataBase.mockPosts) {
+                if (p.getAuthor() == authorName) {
+                    System.out.println("Postarea are titlul:" + p.getTitle());
+                    System.out.println("Postarea are upvotes" + p.getUpvotes());
+                    System.out.println("Postarea are upvotes" + p.getDownvotes());
 
+                    autorGasit = true;
+
+                }
+            }
+                if(autorGasit == false)
+                {
+                    System.out.println("Autorul nu a fost gasit");
+                    return;
+                }
+
+
+        }
+
+        public void printPostsBySubreddit(String subredditName){
+        boolean subredditGasit = false;
+        for (Post p : dataBase.mockPosts){
+            if(p.getSubreddit().equalsIgnoreCase(subredditName)){
+                System.out.println("Subreddit: r/" + p.getSubreddit());
+                System.out.println("Titlu: " + p.getTitle());
+                System.out.println("Autor: " + p.getAuthor());
+                System.out.println("Upvotes: " + p.getUpvotes() + " | Downvotes: " + p.getDownvotes());
+
+                subredditGasit = true;
+            }
+        }
+        if(subredditGasit == false){
+            System.out.println("Subreddit-ul nu a fost gasit");
+        }
+        }
     }
