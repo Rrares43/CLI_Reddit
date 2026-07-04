@@ -33,6 +33,7 @@ public class Account {
         this.password = password;
     }
 
+    // checks the validity of the password
     public boolean verifyPassword(String password){
         boolean correctLength = false;
         boolean hasLetter = false;
@@ -76,7 +77,16 @@ public class Account {
         }
     }
 
+    // checks the validity of the email
     public boolean verifyEmail(String email){
-        return email.contains("@");
+        if(email == null || email.isBlank()){
+            return false;
+        }
+        int index1 = email.indexOf("@");
+        int index2 = email.indexOf(".");
+        if(index1 == -1 || index2 == -1 || index2 - index1 < 2){
+            return false;
+        }
+        return true;
     }
 }
