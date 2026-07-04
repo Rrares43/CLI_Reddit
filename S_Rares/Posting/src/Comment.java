@@ -15,7 +15,6 @@ public class Comment {
         this.replies=new ArrayList<>();
     }
 
-    //functie pentru editarea comenatriilor
     public void setText(String newText){
         this.text = newText;
 

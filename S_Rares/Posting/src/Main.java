@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,28 +9,66 @@ public class Main {
 
         System.out.println("-- CREATE A NEW POST --");
 
-        System.out.println("Enter post title:");
-        String title = sc.nextLine();
+        String title = "";
+        while (title.isBlank()) {
+            System.out.println("Enter post title:");
+            title = sc.nextLine();
+            if (title.isBlank()) {
+                System.out.println("Error: Title cannot be empty!");
+            }
+        }
 
-        System.out.println("Enter post content:");
-        String content = sc.nextLine();
+        String content = "";
+        while (content.isBlank()) {
+            System.out.println("Enter post content:");
+            content = sc.nextLine();
+            if (content.isBlank()) {
+                System.out.println("Error: Content cannot be empty!");
+            }
+        }
 
         while (true) {
-            System.out.println("Do you want to add a photo?");
-            String withPhoto = sc.nextLine();
+            System.out.println("Do you want to add an attachment? (photo/link/no)");
+            String attachmentType = sc.nextLine();
 
-            if (withPhoto.equalsIgnoreCase("yes")) {
-                System.out.println("Enter the photo name:");
-                String photoName = sc.nextLine();
-                content = content + "\n[Attachment: " + photoName + "]";
+            if (attachmentType.equalsIgnoreCase("photo")) {
+                String photoName = "";
+                while (photoName.isBlank()) {
+                    System.out.println("Enter the photo name:");
+                    photoName = sc.nextLine();
+                    if (photoName.isBlank()) {
+                        System.out.println("Error: Photo name cannot be empty!");
+                    }
+                }
+                content = content + "\n[Image: " + photoName + "]";
                 break;
 
-            } else if (withPhoto.equalsIgnoreCase("no")) {
+            } else if (attachmentType.equalsIgnoreCase("link")) {
+                String linkUrl = "";
+                while (true) {
+                    System.out.println("Enter the link (e.g. www.google.com):");
+                    linkUrl = sc.nextLine();
+
+                    if (linkUrl.isBlank()) {
+                        System.out.println("Error: Link cannot be empty!");
+                    }
+                    //validate the link
+                    else if (!linkUrl.contains(".") || linkUrl.contains(" ")) {
+                        System.out.println("Error: Invalid link! A link must contain a dot ('.') and no spaces.");
+                    }
+                    else {
+                        break;
+                    }
+                }
+                content = content + "\n[Link: " + linkUrl + "]";
+                break;
+
+            } else if (attachmentType.equalsIgnoreCase("no")) {
                 System.out.println("Proceeding text-only post...");
                 break;
 
             } else {
-                System.out.println("Invalid Input. Please type 'yes' or 'no'.");
+                System.out.println("Invalid Input. Please type 'photo', 'link', or 'no'.");
             }
         }
         Post myNewPost = new Post(mockId, title, content, mockAuthor);
