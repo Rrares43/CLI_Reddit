@@ -34,39 +34,49 @@ public class Account {
     }
 
     public boolean verifyPassword(String password){
-        boolean correct_length = false;
-        boolean has_letter = false;
-        boolean has_number = false;
-        boolean has_uppercase = false;
-        boolean has_lowercase = false;
-        boolean has_special_char = false;
+        boolean correctLength = false;
+        boolean hasLetter = false;
+        boolean hasNumber = false;
+        boolean hasUppercase = false;
+        boolean hasLowercase = false;
+        boolean hasSpecial = false;
+        boolean hasWhitespace = false;
 
-        if(password.length() > 8 && password.length() < 20){
-            correct_length = true;
+        if(password.length() >= 8 && password.length() < 20){
+            correctLength = true;
         }
         for(int i = 0; i < password.length();i++){
             if(Character.isDigit(password.charAt(i))){
-                has_number = true;
+                hasNumber = true;
             }
             if(Character.isAlphabetic(password.charAt(i))){
-                has_letter = true;
+                hasLetter = true;
             }
             if(Character.isUpperCase(password.charAt(i))){
-                has_uppercase = true;
+                hasUppercase = true;
             }
             if(Character.isLowerCase(password.charAt(i))){
-                has_lowercase = true;
+                hasLowercase = true;
             }
             if(!Character.isLetterOrDigit(password.charAt(i)) && !Character.isWhitespace(password.charAt(i))){
-                has_special_char = true;
+                hasSpecial = true;
+            }
+            if(Character.isWhitespace(password.charAt(i))){
+                hasWhitespace = true;
             }
         }
-        if(correct_length && has_letter && has_number && has_uppercase && has_lowercase && has_special_char){
+        if(hasWhitespace){
+            return false;
+        }
+        else if(correctLength && hasLetter && hasNumber && hasUppercase && hasLowercase && hasSpecial){
             return true;
         }
         else{
-            System.out.println("Password condition not respected");
             return false;
         }
+    }
+
+    public boolean verifyEmail(String email){
+        return email.contains("@");
     }
 }
