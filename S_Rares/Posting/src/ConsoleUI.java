@@ -8,24 +8,36 @@ public class ConsoleUI {
     }
 
     public String askForTitle() {
+        int limit = 300;
         while (true) {
-            System.out.println("Enter post title:");
+            System.out.println("Enter post title (max " + limit + " characters):");
             String title = sc.nextLine();
-            if (InputValidator.isNotBlank(title)) {
+
+            if (!InputValidator.isNotBlank(title)) {
+                System.out.println("Error: Title cannot be empty!");
+
+            } else if (!InputValidator.isValidLength(title, limit)) {
+                System.out.println("Error: Title is too long! You entered " + title.length() + " characters.");
+
+            } else {
                 return title;
             }
-            System.out.println("Error: Title cannot be empty!");
         }
     }
 
     public String askForContent() {
+        int limit = 3000;
         while (true) {
-            System.out.println("Enter post content:");
+            System.out.println("Enter post content (max " + limit + " characters):");
             String content = sc.nextLine();
-            if (InputValidator.isNotBlank(content)) {
+
+            if (!InputValidator.isNotBlank(content)) {
+                System.out.println("Error: Content cannot be empty!");
+            } else if (!InputValidator.isValidLength(content, limit)) {
+                System.out.println("Error: Content is too long! You entered " + content.length() + " characters.");
+            } else {
                 return content;
             }
-            System.out.println("Error: Content cannot be empty!");
         }
     }
 
