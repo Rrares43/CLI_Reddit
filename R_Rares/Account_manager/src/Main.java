@@ -1,96 +1,51 @@
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Arrays;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Main {
-  public static void main(String[] args){
+  public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    System.out.println("Input 1 for account creation or 2 for loggin in:");
-    String choice = sc.nextLine();
+    boolean running = true;
+    while (running) {
+      System.out.println("Input 1 for account creation, 2 for loggin in or 3 to end the program:");
+      String choice = sc.nextLine();
 
-    if(choice.equals("1")) {
-      System.out.println("Enter Username: ");
-      String username = sc.nextLine();
-      System.out.println("Enter Email: ");
-      String email = sc.nextLine();
-      System.out.println("Enter Password: ");
-      System.out.println("Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character.");
-      String password = sc.nextLine();
-      Account account = new Account(username, email, password);
-      saveAccount(account);
-    }
+      if(choice.equals("1")) {
+        System.out.println("Enter Username: ");
+        String username = sc.nextLine();
+        System.out.println("Enter Email: ");
+        String email = sc.nextLine();
+        System.out.println("Enter Password: ");
+        System.out.println("Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character.");
+        String password = sc.nextLine();
+        Account account = new Account(username, email, password);
+        AccountOperations.saveAccount(account);
 
-    else if(choice.equals("2")){
-      System.out.println("Enter Username: ");
-      String username = sc.nextLine();
-      System.out.println("Enter Password: (or enter 0 to change password)");
-      String password = sc.nextLine();
-      if(password.equals("0")){
-        System.out.println("Enter New Password: ");
-        password = sc.nextLine();
-        changePassword(username, password);
-      }
-      else if(verifyAccount(new Account(username, "", password))){
-        System.out.println("Login Successful");
-      }
-      else{
-        System.out.println("Login Failed");
-      }
-      }
-    else{
-      System.out.println("Invalid Input");
-    }
-  }
-
-
-  public static void saveAccount(Account account) {
-    if (account.verifyPassword(account.getPassword()) && !verifyAccount(account)) {
-      try (FileWriter add_account = new FileWriter("accounts.txt", true)) {
-        add_account.write(account.getUsername() + " " + account.getEmail() + " " + account.getPassword() + "\n");
-        System.out.println("Account Saved");
-      } catch (IOException e) {
-        System.out.println("Error");
-      }
-    }
-  }
-
-  public static boolean verifyAccount(Account account){
-    File accountFile = new File("accounts.txt");
-
-    try(Scanner fileReader = new Scanner(accountFile)){
-      while(fileReader.hasNextLine()){
-        String line = fileReader.nextLine();
-        String[] data = line.split(" ");
-        if(data[0].equals(account.getUsername()) && data[2].equals(account.getPassword())){
-          System.out.println("Account Exists");
-          return true;
+      } else if (choice.equals("2")) {
+        System.out.println("Enter Username: ");
+        String username = sc.nextLine();
+        System.out.println("Enter Password: (or enter 0 to change password)");
+        String password = sc.nextLine();
+        if (password.equals("0")) {
+          System.out.println("Enter Email:");
+          String email = sc.nextLine();
+          if (AccountOperations.checkEmail(email)) {
+            System.out.println("Enter New Password: ");
+            password = sc.nextLine();
+            AccountOperations.changePassword(username, password);
+          } else {
+            System.out.println("Email not found");
+          }
+        } else if (AccountOperations.verifyAccount(new Account(username, "", password))) {
+          System.out.println("Login Successful");
+        } else {
+          System.out.println("Login Failed");
         }
       }
-    }
-    catch(IOException e){
-      System.out.println("Error");
-    }
-    return false;
-  }
-
-  // right now doesn't work, to be changed
-  public static void changePassword(String username, String newPassword){
-    File accountFile = new File("accounts.txt");
-    try(Scanner fileReader = new Scanner(accountFile)){
-      while (fileReader.hasNextLine()){
-        String line = fileReader.nextLine();
-        String[] data = line.split(" ");
-        if(data[0].equals(username)){
-          data[1] = newPassword;
-        }
+      else if (choice.equals("3")) {
+        running = false;
       }
-    }
-    catch(IOException e){
-      System.out.println("Error");
+      else {
+        System.out.println("Invalid Input");
+      }
     }
   }
 }
