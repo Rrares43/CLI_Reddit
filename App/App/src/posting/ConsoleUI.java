@@ -20,7 +20,7 @@ public class ConsoleUI {
             if (!InputValidator.isNotBlank(title)) {
                 System.out.println("Error: Title cannot be empty!");
 
-            } else if (!InputValidator.isValidLength(title, limit)) {
+            } else if (!posting.InputValidator.isValidLength(title, limit)) {
                 System.out.println("Error: Title is too long! You entered " + title.length() + " characters.");
 
             } else {

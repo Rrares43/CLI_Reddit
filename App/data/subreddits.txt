@@ -1,1 +1,3 @@
 r/CLI_reddit,test reddit
+r/something,sub for smth
+r/new,new stuff
