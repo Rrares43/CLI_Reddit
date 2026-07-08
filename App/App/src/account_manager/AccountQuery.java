@@ -2,8 +2,8 @@ package account_manager;
 
 import java.util.Scanner;
 
-public class Main {
-  public static void main(String[] args) {
+public class AccountQuery {
+  public static void accountQuery() {
     Scanner sc = new Scanner(System.in);
     boolean running = true;
     while (running) {

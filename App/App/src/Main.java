@@ -1,9 +1,22 @@
+import account_manager.Account;
+import account_manager.AccountOperations;
+import account_manager.AccountQuery;
+import Posting.ConsoleUI;
+import Posting.PostQuery;
+import java.util.Scanner;
 
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Input 1 for account options or 2 for post options:");
+    String choice = sc.nextLine();
 
-void main() {
-    IO.println(String.format("Hello and welcome!"));
-
-    for (int i = 1; i <= 5; i++){
-        IO.println("i = " + i);
+    if(choice.equals("1")) {
+        AccountQuery.accountQuery();
+    }
+    else if(choice.equals("2")) {
+        PostQuery.postQuery();
+    }
+    else{
+        System.out.println("Invalid Input");
     }
 }

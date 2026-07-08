@@ -1,7 +1,9 @@
-package Posting.src;
+package Posting;
 
-public class Main {
-    public static void main(String[] args) {
+import interaction.Post;
+
+public class PostQuery {
+    public static void postQuery() {
 
         ConsoleUI ui = new ConsoleUI();
 
