@@ -12,6 +12,7 @@ public class Post {
     private int downvotes;
     private List<Comment> comments;
 
+
     public Post(int Id,String title,String content,String author){
         this.Id = Id;
         this.title = title;
@@ -21,6 +22,7 @@ public class Post {
         this.downvotes = 0;
         this.comments = new ArrayList<>();
     }
+
     public int getId(){
         return Id;
     }

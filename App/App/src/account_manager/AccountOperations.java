@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AccountOperations {
-    private static final String FILE_NAME = "accounts.txt";
+    private static final String FILE_NAME = "App/data/accounts.txt";
 
-    // saves account into the text file and checks if the account already exists or if any fields are empty
     public static void saveAccount(Account account) {
         if(account.getUsername().isBlank() || account.getEmail().isBlank() || account.getPassword().isBlank()){
             System.out.println("Please fill in all fields");

@@ -3,6 +3,8 @@ import account_manager.AccountOperations;
 import account_manager.AccountQuery;
 import Posting.ConsoleUI;
 import Posting.PostQuery;
+import interaction.InteractionQuery;
+
 import java.util.Scanner;
 
 public static void main(String[] args) {
@@ -15,6 +17,10 @@ public static void main(String[] args) {
     }
     else if(choice.equals("2")) {
         PostQuery.postQuery();
+    }
+    // doesnt do anything for now
+    else if(choice.equals("3")) {
+        InteractionQuery.interactionQuery();
     }
     else{
         System.out.println("Invalid Input");
