@@ -9,8 +9,16 @@ public class SubredditQuery {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input subreddit name:");
         String subredditName = sc.nextLine();
+        if(subredditName.isBlank()) {
+            System.out.println("Error: Subreddit name cannot be empty!");
+            return;
+        }
         System.out.println("Input subreddit description:");
         String subredditDescription = sc.nextLine();
+        if(subredditDescription.isBlank()) {
+            System.out.println("Error: Subreddit description cannot be empty!");
+            return;
+        }
         Subreddit subreddit = new Subreddit(subredditName, subredditDescription);
         saveSubreddit(subreddit);
     }

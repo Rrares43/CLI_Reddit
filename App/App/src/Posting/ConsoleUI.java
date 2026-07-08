@@ -89,10 +89,23 @@ public class ConsoleUI {
         }
     }
 
+    public String askForSubreddit() {
+        while (true) {
+            System.out.println("Enter the subreddit name:");
+            String subreddit = sc.nextLine();
+            if(!InputValidator.isNotBlank(subreddit)){
+                System.out.println("Error: Subreddit name cannot be empty!");
+            }
+            else{
+                return subreddit;
+            }
+        }
+    }
     public void displayPost(Post post) {
         System.out.println("\n-- POST SUCCESSFULLY CREATED --");
         System.out.println("ID: " + post.getId());
         System.out.println("Author: " + post.getAuthor());
+        System.out.println("Subreddit: " + post.getSubredditName());
         System.out.println("Title: " + post.getTitle());
         System.out.println("Content: " + post.getContent());
     }

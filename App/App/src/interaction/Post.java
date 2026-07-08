@@ -11,13 +11,14 @@ public class Post {
     private int upvotes;
     private int downvotes;
     private List<Comment> comments;
+    private String subredditName;
 
-
-    public Post(int Id,String title,String content,String author){
+    public Post(int Id,String title,String content,String author, String subredditName){
         this.Id = Id;
         this.title = title;
         this.content = content;
         this.author = author;
+        this.subredditName = subredditName;
         this.upvotes = 0;
         this.downvotes = 0;
         this.comments = new ArrayList<>();
@@ -41,6 +42,10 @@ public class Post {
 
     public List<Comment> getComments(){
         return comments;
+    }
+
+    public String getSubredditName(){
+        return subredditName;
     }
 
     public void increment_upvotes(){

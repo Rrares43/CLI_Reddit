@@ -45,7 +45,7 @@ public class Account {
         boolean hasSpecial = false;
         boolean hasWhitespace = false;
 
-        if(password.length() >= 8 && password.length() < 20){
+        if(password.length() >= 8 && password.length() < 40){
             correctLength = true;
         }
         for(int i = 0; i < password.length();i++){
