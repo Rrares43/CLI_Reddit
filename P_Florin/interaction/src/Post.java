@@ -6,15 +6,17 @@ public class Post {
     private String title;
     private String content;
     private String author;
+    private String subreddit;
     private int upvotes;
     private int downvotes;
     private List<Comment> comments;
 
-    public Post(int Id,String title,String content,String author){
+    public Post(int Id,String title,String content,String author,String subreddit){
         this.Id = Id;
         this.title = title;
         this.content = content;
         this.author = author;
+        this.subreddit = subreddit;
         this.upvotes = 0;
         this.downvotes = 0;
         this.comments = new ArrayList<>();
@@ -33,6 +35,10 @@ public class Post {
 
     public String getAuthor(){
         return author;
+    }
+
+    public String getSubreddit(){
+        return subreddit;
     }
 
     public List<Comment> getComments(){
@@ -64,4 +70,13 @@ public class Post {
             this.comments.remove(index);
         }
     }
+
+    public int getUpvotes(){
+        return this.upvotes;
+    }
+
+    public int getDownvotes(){
+        return this.downvotes;
+    }
+
 }
