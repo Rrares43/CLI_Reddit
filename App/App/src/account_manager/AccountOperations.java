@@ -1,9 +1,11 @@
-import java.util.Scanner;
+package account_manager;
+
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileWriter;
+import java.util.Scanner;
 
 public class AccountOperations {
     private static final String FILE_NAME = "accounts.txt";
