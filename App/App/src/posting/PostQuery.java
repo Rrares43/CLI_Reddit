@@ -14,12 +14,13 @@ public class PostQuery {
 
         // Requesting info
         String title = ui.askForTitle();
+        String subreddit = ui.askForSubreddit();
         String baseContent = ui.askForContent();
         String attachment = ui.askForAttachment();
 
         String finalContent = baseContent + attachment;
 
-        Post myNewPost = new Post(mockId, title, finalContent, mockAuthor);
+        Post myNewPost = new Post(mockId, title, finalContent, mockAuthor, subreddit);
 
         ui.displayPost(myNewPost);
 
