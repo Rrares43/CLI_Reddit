@@ -1,4 +1,4 @@
-package interaction.src;
+package interaction;
 
 public class InteractionService {
 

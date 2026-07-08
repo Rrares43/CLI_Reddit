@@ -1,4 +1,6 @@
-package Posting.src;
+package Posting;
+
+import interaction.Post;
 
 import java.util.Scanner;
 
