@@ -3,7 +3,7 @@ package account_manager;
 import java.util.Scanner;
 
 public class AccountQuery {
-  public static void accountQuery() {
+  public void accountQuery() {
     Scanner sc = new Scanner(System.in);
     boolean running = true;
     while (running) {
