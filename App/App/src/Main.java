@@ -5,7 +5,6 @@ import posting.ConsoleUI;
 import posting.PostQuery;
 import interaction.InteractionQuery;
 
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {

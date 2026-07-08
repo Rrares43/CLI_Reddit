@@ -7,7 +7,10 @@ public class AccountQuery {
     Scanner sc = new Scanner(System.in);
     boolean running = true;
     while (running) {
-      System.out.println("Input 1 for account creation, 2 for loggin in or 3 to end the program:");
+      System.out.println("Select an option(1/2/3):");
+      System.out.println("1. Account creation");
+      System.out.println("2. Logging in");
+      System.out.println("3. End program");
       String choice = sc.nextLine();
 
       if(choice.equals("1")) {
