@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class SubredditQuery {
-    public static void subredditQuery() {
+    public void subredditQuery() {
         String subredditName = SubredditOperations.askForName();
         String subredditDescription = SubredditOperations.askForDescription();
 

@@ -1,7 +1,7 @@
 import community.SubredditQuery;
 
 public class SubredditCommand implements MenuCommand{
-    private SubredditQuery subredditQuery;
+    private final SubredditQuery subredditQuery;
     public SubredditCommand(SubredditQuery subredditQuery){
         this.subredditQuery = subredditQuery;
     }
