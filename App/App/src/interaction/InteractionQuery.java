@@ -1,7 +1,7 @@
 package interaction;
 
 public class InteractionQuery {
-    public static void interactionQuery() {
+    public void interactionQuery() {
         System.out.println("InteractionQuery");
     }
 }

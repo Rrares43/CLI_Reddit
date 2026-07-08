@@ -2,7 +2,7 @@ import posting.PostQuery;
 
 public class PostCommand implements MenuCommand {
 
-    private PostQuery postQuery;
+    private final PostQuery postQuery;
 
     public PostCommand(PostQuery postQuery) {
         this.postQuery = postQuery;

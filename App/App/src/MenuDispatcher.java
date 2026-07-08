@@ -2,6 +2,8 @@ import posting.ConsoleUI;
 
 import java.util.HashMap;
 import java.util.Map;
+import logger.Logger;
+import logger.LogLevel;
 
 public class MenuDispatcher {
     private Map<String, MenuCommand> commands = new HashMap<>();

@@ -1,7 +1,7 @@
 import account_manager.AccountQuery;
 
 public class AccountCommand implements MenuCommand{
-    private AccountQuery accountQuery;
+    private final AccountQuery accountQuery;
 
     public AccountCommand(AccountQuery accountQuery) {
         this.accountQuery = accountQuery;
