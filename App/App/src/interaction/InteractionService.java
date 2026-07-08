@@ -1,5 +1,7 @@
 package interaction;
 
+import java.util.List;
+
 public class InteractionService {
 
     public Post findPostbyId(int postId) {
@@ -54,6 +56,29 @@ public class InteractionService {
         } else {
             System.out.println("Postarea nu exista");
         }
+    }
+
+    public Comment findCommentById(int commentId) {
+        for (Post post : dataBase.mockPosts) {
+            Comment found = searchInComments(post.getComments(), commentId);
+            if (found != null) {
+                return found;
+            }
+        }
+        return null;
+    }
+
+    private Comment searchInComments(List<Comment> comments, int commentId) {
+        for (Comment c : comments) {
+            if (c.getId() == commentId) {
+                return c;
+            }
+            Comment foundInReplies = searchInComments(c.getReplies(), commentId);
+            if (foundInReplies != null) {
+                return foundInReplies;
+            }
+        }
+        return null;
     }
 
     public void replyToComment(int postId, int parentCommentId, String text) {

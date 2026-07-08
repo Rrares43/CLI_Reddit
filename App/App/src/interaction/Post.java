@@ -40,6 +40,14 @@ public class Post {
         return author;
     }
 
+    public int getUpvotes() {
+        return upvotes;
+    }
+
+    public int getDownvotes() {
+        return downvotes;
+    }
+
     public List<Comment> getComments(){
         return comments;
     }

@@ -1,7 +1,12 @@
 package interaction;
 
+import posting.ConsoleUI;
+
 public class InteractionQuery {
     public void interactionQuery() {
-        System.out.println("InteractionQuery");
+        ConsoleUI ui = new ConsoleUI();
+
+        ui.interactWithPost();
+
     }
 }
