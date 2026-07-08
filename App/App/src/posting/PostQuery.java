@@ -1,9 +1,9 @@
-package Posting;
+package posting;
 
 import interaction.Post;
 
 public class PostQuery {
-    public static void postQuery() {
+    public void postQuery() {
 
         ConsoleUI ui = new ConsoleUI();
 

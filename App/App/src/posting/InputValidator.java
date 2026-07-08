@@ -1,4 +1,4 @@
-package Posting;
+package posting;
 public class InputValidator {
 
     public static boolean isNotBlank(String input) {
