@@ -1,4 +1,5 @@
 import account_manager.AccountQuery;
+import posting.ConsoleUI;
 import posting.PostQuery;
 import interaction.InteractionQuery;
 
@@ -8,25 +9,22 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        ConsoleUI ui = new ConsoleUI();
+
         AccountQuery accountQuery = new AccountQuery();
         PostQuery postQuery = new PostQuery();
         InteractionQuery interactionQuery = new InteractionQuery();
 
-        System.out.println("Input 1 for account options or 2 for post options:");
-        String choice = sc.nextLine();
+        MenuDispatcher dispatcher = new MenuDispatcher(ui);
 
-        MenuCommand selectedCommand = switch(choice){
-            case "1" -> new AccountCommand(accountQuery);
-            case "2" -> new PostCommand(postQuery);
-            case "3" -> new InterractionCommand(interactionQuery);
-            default -> null;
-        };
+        dispatcher.registerCommand("1", new AccountCommand(accountQuery));
+        dispatcher.registerCommand("2", new PostCommand(postQuery));
+        dispatcher.registerCommand("3", new InterractionCommand(interactionQuery));
 
-        if (selectedCommand != null) {
-            selectedCommand.execute();
-        } else {
-            System.out.println("Invalid Input");
-        }
+        String prompt = "Input 1 for account options, 2 for post options or 3 for interaction:";
+        String choice = ui.getInput(prompt);
+
+        dispatcher.execute(choice);
 
     }
 }

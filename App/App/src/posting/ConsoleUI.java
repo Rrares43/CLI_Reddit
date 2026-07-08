@@ -97,6 +97,14 @@ public class ConsoleUI {
         System.out.println("Content: " + post.getContent());
     }
 
+    public String getInput(String prompt) {
+        System.out.println(prompt);
+        return sc.nextLine();
+    }
+
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
     public void closeScanner() {
         sc.close();
     }
