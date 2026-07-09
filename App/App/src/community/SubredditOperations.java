@@ -5,6 +5,8 @@ import posting.InputValidator;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import logger.Logger;
+import logger.LogLevel;
 
 public class SubredditOperations {
     public static void saveSubreddit(Subreddit subreddit){
