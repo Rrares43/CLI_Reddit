@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Logger {
     private static Logger instance;
-    private static final String FILE_NAME = "app_log.txt";
+    private static final String FILE_NAME = "App/data/app_log.txt";
     private Logger() {}
 
     public static Logger getInstance() {
