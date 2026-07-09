@@ -13,21 +13,19 @@ public class LoggerCommand implements MenuCommand {
     public void execute() {
         String prompt = """
                 --- LOGGER SETTINGS ---
-                1. Set to CONSOLE
-                2. Set to FILE
+                1. Show all logs
+                2. Back to Main Menu
                 -----------------------
                 Select mode (1/2): """;
 
         String choice = ui.getInput(prompt);
 
         if (choice.equals("1")) {
-            logger.setLogMode("CONSOLE");
-            ui.showMessage("Logger mode successfully set to CONSOLE.");
+            logger.printLogsToConsole();
         } else if (choice.equals("2")) {
-            logger.setLogMode("FILE");
-            ui.showMessage("Logger mode successfully set to FILE.");
+            ui.showMessage("Going back to Main Menu");
         } else {
-            ui.showMessage("Invalid input. Logger mode remains unchanged.");
+            ui.showMessage("Invalid option.");
         }
     }
 }
