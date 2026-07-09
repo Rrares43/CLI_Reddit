@@ -9,13 +9,17 @@ import logger.Logger;
 import logger.LogLevel;
 
 public class SubredditOperations {
+
     public static void saveSubreddit(Subreddit subreddit){
         try(FileWriter writer = new FileWriter("App/data/subreddits.txt", true)){
             writer.write(subreddit.getName() + "," + subreddit.getDescription() + "\n");
             System.out.println("Subreddit created successfully!");
+            Logger.getInstance().log(LogLevel.INFO,"Subreddit created successfully");
+
         }
         catch(IOException e){
             System.out.println("Error");
+            Logger.getInstance().log(LogLevel.ERROR,"Error");
         }
     }
 
@@ -26,6 +30,7 @@ public class SubredditOperations {
             String subredditName = sc.nextLine();
             if (!InputValidator.isNotBlank(subredditName)) {
                 System.out.println("Error: Subreddit name cannot be empty!");
+                Logger.getInstance().log(LogLevel.ERROR,"Error: Subreddit name cannot be empty!");
             } else {
                 return subredditName;
             }
@@ -39,6 +44,7 @@ public class SubredditOperations {
             String subredditDescription = sc.nextLine();
             if (!InputValidator.isNotBlank(subredditDescription)) {
                 System.out.println("Error: Subreddit description cannot be empty!");
+                Logger.getInstance().log(LogLevel.ERROR,"Error: Subreddit description cannot be empty!");
             } else {
                 return subredditDescription;
             }
