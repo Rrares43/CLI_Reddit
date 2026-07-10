@@ -1,3 +1,0 @@
-public interface MenuCommand {
-    public void execute();
-}

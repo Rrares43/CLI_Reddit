@@ -1,7 +1,7 @@
 import account_manager.AccountQuery;
 import logger.Logger;
-import logger.LogLevel;
 import community.SubredditQuery;
+import menu_commands.*;
 import posting.ConsoleUI;
 import posting.PostQuery;
 import interaction.InteractionQuery;
@@ -12,7 +12,6 @@ public class Main {
 
         ConsoleUI ui = new ConsoleUI();
         logger.Logger.getInstance().log(logger.LogLevel.INFO, "Application Started");
-
 
         AccountQuery accountQuery = new AccountQuery();
         PostQuery postQuery = new PostQuery();
