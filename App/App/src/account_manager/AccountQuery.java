@@ -1,58 +1,43 @@
 package account_manager;
 
+import account_manager.account_commands.AccountCommand;
+import account_manager.account_commands.ChangePasswordCommand;
+import account_manager.account_commands.CreateAccountCommand;
+import account_manager.account_commands.LoginCommand;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AccountQuery {
+  private final Map<String, AccountCommand> Commands;
+  private boolean running;
+
+  public AccountQuery(){
+    this.Commands = new HashMap<>();
+    this.running = true;
+
+    Commands.put("1" , new CreateAccountCommand());
+    Commands.put("2" , new LoginCommand());
+    Commands.put("3" , new ChangePasswordCommand());
+    Commands.put("4", () -> this.running = false);
+  }
   public void accountQuery() {
     Scanner sc = new Scanner(System.in);
-    boolean running = true;
     while (running) {
-      System.out.println("Select an option(1/2/3):");
+      System.out.println("Select an option(1/2/3/4):");
       System.out.println("1. Account creation");
       System.out.println("2. Logging in");
       System.out.println("3. Change password");
       System.out.println("4. End program");
       String choice = sc.nextLine();
 
-      if(choice.equals("1")) {
-        System.out.println("Enter Username: ");
-        String username = sc.nextLine();
-        System.out.println("Enter Email: ");
-        String email = sc.nextLine();
-        System.out.println("Enter Password: ");
-        System.out.println("Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character.");
-        String password = sc.nextLine();
-        Account account = new Account(username, email, password);
-        AccountOperations.saveAccount(account);
+      AccountCommand command = Commands.get(choice);
 
+      if(command != null) {
+        command.execute();
       }
-      else if (choice.equals("2")) {
-        System.out.println("Enter Username: ");
-        String username = sc.nextLine();
-        System.out.println("Enter Password: ");
-        String password = sc.nextLine();
-        if (AccountOperations.verifyAccount(new Account(username, "", password))) {
-          System.out.println("Login Successful");
-        }
-        else {
-          System.out.println("Login Failed");
-        }
-      }
-      else if (choice.equals("3")) {
-        System.out.println("Enter Email:");
-        String email = sc.nextLine();
-        if (AccountOperations.checkEmail(email)) {
-          System.out.println("Enter New Password: ");
-          String password = sc.nextLine();
-          AccountOperations.changePassword(email, password);
-        }
-        else {
-          System.out.println("Email not found");
-        }
-      }
-      else if (choice.equals("4")) {
-        running = false;
-      } else {
+      else {
         System.out.println("Invalid Input");
       }
     }

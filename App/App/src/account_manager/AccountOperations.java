@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import account_manager.account_verification.EmailVerification;
+import account_manager.account_verification.PasswordVerification;
 import logger.Logger;
 import logger.LogLevel;
 
@@ -17,7 +20,7 @@ public class AccountOperations {
         if(account.getUsername().isBlank() || account.getEmail().isBlank() || account.getPassword().isBlank()){
             System.out.println("Please fill in all fields");
         }
-        else if (account.verifyPassword(account.getPassword()) && !verifyAccount(account) && account.verifyEmail(account.getEmail())) {
+        else if (PasswordVerification.verify(account.getPassword()) && !verifyAccount(account) && EmailVerification.verify(account.getEmail())) {
             try (FileWriter addAccount = new FileWriter(FILE_NAME, true)) {
                 addAccount.write(account.getUsername() + "," + account.getEmail() + "," + account.getPassword() + "\n");
                 System.out.println("Account Saved");
@@ -28,11 +31,11 @@ public class AccountOperations {
                 logger.log(LogLevel.ERROR, "Error");
             }
         }
-        else if(!account.verifyEmail(account.getEmail())){
+        else if(!EmailVerification.verify(account.getEmail())){
             System.out.println("Email condition not respected");
             logger.log(LogLevel.WARNING, "Email condition not respected");
         }
-        else if(!account.verifyPassword(account.getPassword())){
+        else if(!PasswordVerification.verify(account.getPassword())){
             System.out.println("Password condition not respected");
             logger.log(LogLevel.WARNING, "Password condition not respected");
         }
