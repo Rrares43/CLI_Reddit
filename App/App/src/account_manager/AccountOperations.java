@@ -66,7 +66,7 @@ public class AccountOperations {
     }
 
     // used for changing the password
-    public static void changePassword(String username, String newPassword){
+    public static void changePassword(String email, String newPassword){
         File accountFile = new File(FILE_NAME);
         List<String> newLines = new ArrayList<>();
         boolean userFound = false;
@@ -76,9 +76,9 @@ public class AccountOperations {
             while(fileReader.hasNextLine()){
                 String line = fileReader.nextLine();
                 String[] data = line.split(",");
-                if(data[0].equals(username)){
+                if(data[1].equals(email)){
                     userFound = true;
-                    newLines.add(username + "," + data[1] + "," + newPassword);
+                    newLines.add(data[0] + "," + email + "," + newPassword);
                 }
                 else{
                     newLines.add(line);

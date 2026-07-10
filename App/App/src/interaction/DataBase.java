@@ -5,7 +5,7 @@ import community.Subreddit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class dataBase {
+public class DataBase {
 
     public static List<Post> mockPosts = new ArrayList<>();
     public static List<Subreddit> mockSubreddits = new ArrayList<>();
