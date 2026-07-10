@@ -17,7 +17,7 @@ public class BacktoMain implements LoggerSubCommand {
 
     @Override
     public boolean execute() {
-        ui.showMessage("Going back to Main Menu...");
+        ui.showMessage("Going back to Main Menu");
         return false;
     }
 }
