@@ -3,16 +3,18 @@ package posting;
 import interaction.Post;
 
 public class PostQuery {
+    private final ConsoleUI ui;
+    public PostQuery(ConsoleUI ui) {
+        this.ui = ui;
+    }
+
     public void postQuery() {
-
-        ConsoleUI ui = new ConsoleUI();
-
         String mockAuthor = "rares0208";
         int mockId = 2;
 
-        System.out.println("-- CREATE A NEW POST --");
+        System.out.println("CREATE A NEW POST");
 
-        // Requesting info
+
         String title = ui.askForTitle();
         String subreddit = ui.askForSubreddit();
         String baseContent = ui.askForContent();
@@ -24,6 +26,6 @@ public class PostQuery {
 
         ui.displayPost(myNewPost);
 
-        ui.closeScanner();
+
     }
 }

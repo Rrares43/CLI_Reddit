@@ -1,9 +1,10 @@
 package posting;
 
 import interaction.Comment;
-import interaction.InteractionService;
 import interaction.Post;
-
+import interaction.VoteService;
+import interaction.CommentService;
+import interaction.PostRepo;
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -21,10 +22,8 @@ public class ConsoleUI {
 
             if (!InputValidator.isNotBlank(title)) {
                 System.out.println("Error: Title cannot be empty!");
-
             } else if (!posting.InputValidator.isValidLength(title, limit)) {
                 System.out.println("Error: Title is too long! You entered " + title.length() + " characters.");
-
             } else {
                 return title;
             }
@@ -57,7 +56,7 @@ public class ConsoleUI {
             } else if (type.equalsIgnoreCase("link")) {
                 return askForLink();
             } else if (type.equalsIgnoreCase("no")) {
-                System.out.println("Proceeding text-only post...");
+                System.out.println("Proceeding text-only post");
                 return "";
             } else {
                 System.out.println("Invalid Input. Please type 'photo', 'link', or 'no'.");
@@ -97,23 +96,21 @@ public class ConsoleUI {
             String subreddit = sc.nextLine();
             if(!InputValidator.isNotBlank(subreddit)){
                 System.out.println("Error: Subreddit name cannot be empty!");
-            }
-            else{
+            } else {
                 return subreddit;
             }
         }
     }
 
-    private final InteractionService interactionService = new InteractionService();
-
-    public void interactWithPost() {
+    public void interactWithPost(VoteService voteService, CommentService commentService, PostRepo postRepo) {
         System.out.println("Enter post ID:");
 
         if (sc.hasNextInt()) {
             int postID = sc.nextInt();
             sc.nextLine();
 
-            Post foundPost = interactionService.findPostbyId(postID);
+            Post foundPost = postRepo.findPostById(postID);
+
 
             if (foundPost != null) {
                 displayPost(foundPost);
@@ -127,40 +124,46 @@ public class ConsoleUI {
                 System.out.print("Select option (0-4): ");
 
                 String choice = sc.nextLine();
-
-                switch (choice) {
-                    case "1" -> {
-                        System.out.println("Select: 1 for Add Upvote | 2 for Remove Upvote");
-                        if (sc.hasNextInt()) {
-                            int voteChoice = sc.nextInt();
-                            sc.nextLine();
-                            interactionService.upvote(postID, voteChoice);
-                        } else {
-                            System.out.println("Invalid number!");
-                            sc.nextLine();
+                try {
+                    switch (choice) {
+                        case "1" -> {
+                            System.out.println("Select: 1 for Add Upvote | 2 for Remove Upvote");
+                            if (sc.hasNextInt()) {
+                                int voteChoice = sc.nextInt();
+                                sc.nextLine();
+                                voteService.upvote(postID, voteChoice);
+                                System.out.println("Vote updated successfully.");
+                            } else {
+                                System.out.println("Invalid number!");
+                                sc.nextLine();
+                            }
                         }
-                    }
-                    case "2" -> {
-                        System.out.println("Select: 1 for Add Downvote | 2 for Remove Downvote");
-                        if (sc.hasNextInt()) {
-                            int voteChoice = sc.nextInt();
-                            sc.nextLine();
-                            interactionService.downvote(postID, voteChoice);
-                        } else {
-                            System.out.println("Invalid number!");
-                            sc.nextLine();
+                        case "2" -> {
+                            System.out.println("Select: 1 for Add Downvote | 2 for Remove Downvote");
+                            if (sc.hasNextInt()) {
+                                int voteChoice = sc.nextInt();
+                                sc.nextLine();
+                                voteService.downvote(postID, voteChoice);
+                                System.out.println("Vote updated successfully.");
+                            } else {
+                                System.out.println("Invalid number!");
+                                sc.nextLine();
+                            }
                         }
+                        case "3" -> {
+                            System.out.println("Enter your comment text:");
+                            String text = sc.nextLine();
+                            commentService.comment(postID, text);
+                            System.out.println("Comment processed.");
+                        }
+                        case "4" -> {
+                            manageCommentInteraction(postID, commentService);
+                        }
+                        case "0" -> System.out.println("Action cancelled.");
+                        default -> System.out.println("Invalid choice! Returning to menu.");
                     }
-                    case "3" -> {
-                        System.out.println("Enter your comment text:");
-                        String text = sc.nextLine();
-                        interactionService.comment(postID, text);
-                    }
-                    case "4" -> {
-                        manageCommentInteraction(postID);
-                    }
-                    case "0" -> System.out.println("Action cancelled.");
-                    default -> System.out.println("Invalid choice! Returning to menu.");
+                } catch (IllegalArgumentException | SecurityException e) {
+                    System.out.println("Error: " + e.getMessage());
                 }
 
             } else {
@@ -173,14 +176,14 @@ public class ConsoleUI {
         }
     }
 
-    private void manageCommentInteraction(int postID) {
+    private void manageCommentInteraction(int postID, CommentService commentService) {
         System.out.println("Insert Comment ID to interact with:");
 
         if (sc.hasNextInt()) {
             int commentID = sc.nextInt();
             sc.nextLine();
 
-            Comment foundComment = interactionService.findCommentById(commentID);
+            Comment foundComment = commentService.findCommentById(commentID);
 
             if (foundComment != null) {
                 System.out.println("Selected comment by: " + foundComment.getAuthor());
@@ -191,21 +194,28 @@ public class ConsoleUI {
 
                 String commentChoice = sc.nextLine();
 
-                switch (commentChoice) {
-                    case "1" -> {
-                        System.out.println("Enter your reply text:");
-                        String text = sc.nextLine();
-                        interactionService.replyToComment(postID, commentID, text);
+                try {
+                    switch (commentChoice) {
+                        case "1" -> {
+                            System.out.println("Enter your reply text:");
+                            String text = sc.nextLine();
+                            commentService.replyToComment(postID, commentID, text);
+                            System.out.println("Reply added successfully.");
+                        }
+                        case "2" -> {
+                            System.out.println("Enter new text for your comment:");
+                            String text = sc.nextLine();
+                            commentService.editComment(postID, commentID, text);
+                            System.out.println("Comment updated successfully.");
+                        }
+                        case "3" -> {
+                            commentService.deleteComment(postID, commentID);
+                            System.out.println("Comment deleted successfully.");
+                        }
+                        default -> System.out.println("Invalid choice! Action cancelled.");
                     }
-                    case "2" -> {
-                        System.out.println("Enter new text for your comment:");
-                        String text = sc.nextLine();
-                        interactionService.editComment(postID, commentID, text);
-                    }
-                    case "3" -> {
-                        interactionService.deleteComment(postID, commentID);
-                    }
-                    default -> System.out.println("Invalid choice! Action cancelled.");
+                } catch (IllegalArgumentException | SecurityException e) {
+                    System.out.println("Error: " + e.getMessage());
                 }
             } else {
                 System.out.println("Error: Comment with ID " + commentID + " does not exist.");
@@ -216,30 +226,24 @@ public class ConsoleUI {
         }
     }
 
-
     public void displayPost(Post post) {
-        System.out.println("\n==========================================");
-        System.out.println("📌 [" + post.getSubredditName() + "] " + post.getTitle());
-        System.out.println("👤 By: " + post.getAuthor() + " | ID: " + post.getId());
-        System.out.println("🔼 Upvotes: " + post.getUpvotes() + " | 🔽 Downvotes: " + post.getDownvotes());
+        System.out.println("[" + post.getSubredditName() + "] " + post.getTitle());
+        System.out.println("By: " + post.getAuthor() + " | ID: " + post.getId());
+        System.out.println("Upvotes: " + post.getUpvotes() + " | Downvotes: " + post.getDownvotes());
         System.out.println("------------------------------------------");
         System.out.println(post.getContent());
-        System.out.println("==========================================");
-
-        System.out.println("💬 COMMENTS:");
+        System.out.println("COMMENTS:");
         if (post.getComments().isEmpty()) {
-            System.out.println("   No comments yet. Be the first to share your thoughts!");
+            System.out.println("No comments yet. Be the first to share your thoughts!");
         } else {
             for (Comment c : post.getComments()) {
                 displayCommentTree(c, "   ");
             }
         }
-        System.out.println("==========================================\n");
     }
 
-
     private void displayCommentTree(Comment comment, String indent) {
-        System.out.println(indent + "↳ [ID: " + comment.getId() + "] 👤 " + comment.getAuthor() + ": " + comment.getText());
+        System.out.println(indent + "↳ [ID: " + comment.getId() + "]" + comment.getAuthor() + ": " + comment.getText());
 
         for (Comment reply : comment.getReplies()) {
             displayCommentTree(reply, indent + "      ");
@@ -254,6 +258,7 @@ public class ConsoleUI {
     public void showMessage(String message) {
         System.out.println(message);
     }
+
     public void closeScanner() {
         sc.close();
     }
