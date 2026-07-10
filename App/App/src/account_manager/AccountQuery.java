@@ -22,24 +22,23 @@ public class AccountQuery {
     Commands.put("3" , new ChangePasswordCommand());
     Commands.put("4", () -> this.running = false);
   }
+
   public void accountQuery() {
     Scanner sc = new Scanner(System.in);
-    while (running) {
-      System.out.println("Select an option(1/2/3/4):");
-      System.out.println("1. Account creation");
-      System.out.println("2. Logging in");
-      System.out.println("3. Change password");
-      System.out.println("4. End program");
-      String choice = sc.nextLine();
+    System.out.println("Select an option(1/2/3/4):");
+    System.out.println("1. Account creation");
+    System.out.println("2. Logging in");
+    System.out.println("3. Change password");
+    System.out.println("4. End program");
+    String choice = sc.nextLine();
 
-      AccountCommand command = Commands.get(choice);
+    AccountCommand command = Commands.get(choice);
 
-      if(command != null) {
-        command.execute();
-      }
-      else {
-        System.out.println("Invalid Input");
-      }
+    if(command != null) {
+      command.execute();
+    }
+    else {
+      System.out.println("Invalid Input");
     }
   }
 }
