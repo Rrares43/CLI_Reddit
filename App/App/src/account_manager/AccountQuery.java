@@ -10,7 +10,8 @@ public class AccountQuery {
       System.out.println("Select an option(1/2/3):");
       System.out.println("1. Account creation");
       System.out.println("2. Logging in");
-      System.out.println("3. End program");
+      System.out.println("3. Change password");
+      System.out.println("4. End program");
       String choice = sc.nextLine();
 
       if(choice.equals("1")) {
@@ -24,31 +25,34 @@ public class AccountQuery {
         Account account = new Account(username, email, password);
         AccountOperations.saveAccount(account);
 
-      } else if (choice.equals("2")) {
+      }
+      else if (choice.equals("2")) {
         System.out.println("Enter Username: ");
         String username = sc.nextLine();
-        System.out.println("Enter Password: (or enter 0 to change password)");
+        System.out.println("Enter Password: ");
         String password = sc.nextLine();
-        if (password.equals("0")) {
-          System.out.println("Enter Email:");
-          String email = sc.nextLine();
-          if (AccountOperations.checkEmail(email)) {
-            System.out.println("Enter New Password: ");
-            password = sc.nextLine();
-            AccountOperations.changePassword(username, password);
-          } else {
-            System.out.println("Email not found");
-          }
-        } else if (AccountOperations.verifyAccount(new Account(username, "", password))) {
+        if (AccountOperations.verifyAccount(new Account(username, "", password))) {
           System.out.println("Login Successful");
-        } else {
+        }
+        else {
           System.out.println("Login Failed");
         }
       }
       else if (choice.equals("3")) {
-        running = false;
+        System.out.println("Enter Email:");
+        String email = sc.nextLine();
+        if (AccountOperations.checkEmail(email)) {
+          System.out.println("Enter New Password: ");
+          String password = sc.nextLine();
+          AccountOperations.changePassword(email, password);
+        }
+        else {
+          System.out.println("Email not found");
+        }
       }
-      else {
+      else if (choice.equals("4")) {
+        running = false;
+      } else {
         System.out.println("Invalid Input");
       }
     }

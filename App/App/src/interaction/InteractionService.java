@@ -2,15 +2,12 @@ package interaction;
 import logger.Logger;
 import logger.LogLevel;
 import java.util.List;
-import logger.LogLevel;
-import logger.Logger;
-
 
 
 public class InteractionService {
 
     public Post findPostbyId(int postId) {
-        for (Post p : dataBase.mockPosts){
+        for (Post p : DataBase.mockPosts){
             if (p.getId() == postId) {
                 return p;
             }
@@ -63,8 +60,8 @@ public class InteractionService {
         Post post = findPostbyId(postId);
         Logger logger = Logger.getInstance();
         if (post != null) {
-            int commentId = dataBase.nextCommentId++;
-            Comment newComment = new Comment(commentId, text, dataBase.currentLoggedInUser);
+            int commentId = DataBase.nextCommentId++;
+            Comment newComment = new Comment(commentId, text, DataBase.currentLoggedInUser);
 
             post.addComment(newComment);
             System.out.println("Comment added ID: " + commentId);
@@ -76,7 +73,7 @@ public class InteractionService {
     }
 
     public Comment findCommentById(int commentId) {
-        for (Post post : dataBase.mockPosts) {
+        for (Post post : DataBase.mockPosts) {
             Comment found = searchInComments(post.getComments(), commentId);
             if (found != null) {
                 return found;
@@ -116,8 +113,8 @@ public class InteractionService {
         }
 
         if (parentComment != null) {
-            int replyId = dataBase.nextCommentId++;
-            Comment reply = new Comment(replyId, text, dataBase.currentLoggedInUser);
+            int replyId = DataBase.nextCommentId++;
+            Comment reply = new Comment(replyId, text, DataBase.currentLoggedInUser);
 
             parentComment.addreply(reply);
             System.out.println("Reply at comment " + parentCommentId);
@@ -141,7 +138,7 @@ public class InteractionService {
 
         for (Comment c : post.getComments()) {
             if (c.getId() == commentId) {
-                if (!c.getAuthor().equals(dataBase.currentLoggedInUser)) {
+                if (!c.getAuthor().equals(DataBase.currentLoggedInUser)) {
                     System.out.println("Comment cannot be edited");
                     logger.log(LogLevel.ERROR, "Comment cannot be edited");
                     return;
@@ -169,7 +166,7 @@ public class InteractionService {
         for (int i = 0; i < post.getComments().size(); i++) {
             Comment c = post.getComments().get(i);
             if (c.getId() == commentId) {
-                if (!c.getAuthor().equals(dataBase.currentLoggedInUser)) {
+                if (!c.getAuthor().equals(DataBase.currentLoggedInUser)) {
                     System.out.println("Comment cannot be deleted");
                     logger.log(LogLevel.ERROR, "Comment cannot be deleted");
                     return;
