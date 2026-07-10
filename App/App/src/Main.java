@@ -28,16 +28,22 @@ public class Main {
         dispatcher.registerCommand("4", new SubredditCommand(subredditQuery));
         dispatcher.registerCommand("5", new LoggerCommand(logger, ui));
 
-        ui.showMessage("--- MENIU PRINCIPAL ---");
-        ui.showMessage("1. Account Options");
-        ui.showMessage("2. Post Options");
-        ui.showMessage("3. Interaction");
-        ui.showMessage("4. Subreddit Creation");
-        ui.showMessage("5. Logger");
-        ui.showMessage("-----------------------");
+        while (true) {
+            ui.showMessage("--- MENIU PRINCIPAL ---");
+            ui.showMessage("0. Exit");
+            ui.showMessage("1. Account Options");
+            ui.showMessage("2. Post Options");
+            ui.showMessage("3. Interaction");
+            ui.showMessage("4. Subreddit Creation");
+            ui.showMessage("5. Logger");
+            ui.showMessage("-----------------------");
 
-        String choice = ui.getInput("Select your choice (1/2/3/4/5): ");
-        dispatcher.execute(choice);
-
+            String choice = ui.getInput("Select your choice (0/1/2/3/4/5): ");
+            if (choice.equals("0")) {
+                ui.showMessage("Application is closing");
+                break;
+            }
+            dispatcher.execute(choice);
+        }
     }
 }

@@ -1,33 +1,50 @@
 package menu_commands;
 
-import logger.Logger;
+import logger.Logger; // 💡 Importul corect pentru a recunoaște tipul Logger
+import logger.logger_commands.BacktoMain;
+import logger.logger_commands.ShowLogOptions;
 import posting.ConsoleUI;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoggerCommand implements MenuCommand {
 
-    private final Logger logger;
     private final ConsoleUI ui;
+    private final List<LoggerSubCommand> options = new ArrayList<>();
+
+    // 💡 Toată magia de configurare a sub-meniului se întâmplă direct aici:
     public LoggerCommand(Logger logger, ConsoleUI ui) {
-        this.logger = logger;
         this.ui = ui;
+        this.options.add(new ShowLogOptions(logger));
+        this.options.add(new BacktoMain(ui));
     }
+
     @Override
     public void execute() {
-        String prompt = """
-                --- LOGGER SETTINGS ---
-                1. Show all logs
-                2. Back to Main Menu
-                -----------------------
-                Select mode (1/2): """;
+        boolean stayInMenu = true;
 
-        String choice = ui.getInput(prompt);
+        while (stayInMenu) {
+            ui.showMessage("\n--- LOGGER SETTINGS ---");
 
-        if (choice.equals("1")) {
-            logger.printLogsToConsole();
-        } else if (choice.equals("2")) {
-            ui.showMessage("Going back to Main Menu");
-        } else {
-            ui.showMessage("Invalid option.");
+            for (int i = 0; i < options.size(); i++) {
+                ui.showMessage((i + 1) + ". " + options.get(i).getNotificationText());
+            }
+            ui.showMessage("-----------------------");
+
+            String choice = ui.getInput("Select option: ");
+
+            try {
+                int numarSelectat = Integer.parseInt(choice);
+                int indexInLista = numarSelectat - 1;
+
+                if (indexInLista >= 0 && indexInLista < options.size()) {
+                    stayInMenu = options.get(indexInLista).execute();
+                } else {
+                    ui.showMessage("Invalid option.");
+                }
+            } catch (NumberFormatException e) {
+                ui.showMessage("Please enter a valid number.");
+            }
         }
     }
 }

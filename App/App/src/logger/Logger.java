@@ -1,16 +1,19 @@
 package logger;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-
 
 public class Logger {
     private static Logger instance;
     private static final String FILE_NAME = "App/data/app_log.txt";
+
     private Logger() {}
 
     public static Logger getInstance() {
@@ -34,21 +37,35 @@ public class Logger {
     }
 
     public void printLogsToConsole() {
-        File logFile = new File(FILE_NAME);
-        if (!logFile.exists() || logFile.length() == 0) {
-            System.out.println("\n Log file does not exist or is empty.");
+        File file = new File(FILE_NAME);
+        if (!file.exists()) {
+            System.out.println("No logs available (log file does not exist).");
             return;
         }
 
-        System.out.println("\n Log file content (`app_log.txt`)");
+        List<String> allLogs = new ArrayList<>();
 
-        try (Scanner fileReader = new Scanner(logFile)) {
-            while (fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
-                System.out.println(line);
+        try (Scanner fileScanner = new Scanner(file)) {
+            while (fileScanner.hasNextLine()) {
+                allLogs.add(fileScanner.nextLine());
             }
         } catch (IOException e) {
-            System.out.println("Error reading the file: " + e.getMessage());
+            System.out.println("Error: Could not read the log file.");
+            return;
+        }
+
+        if (allLogs.isEmpty()) {
+            System.out.println("No logs available.");
+            return;
+        }
+        int startIndex = 0;
+        if (allLogs.size() > 10) {
+            startIndex = allLogs.size() - 10;
+        }
+
+        System.out.println(" DISPLAYING LAST 10 LOGS");
+        for (int i = startIndex; i < allLogs.size(); i++) {
+            System.out.println(allLogs.get(i));
         }
 
     }
