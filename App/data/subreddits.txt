@@ -5,3 +5,6 @@ r/asd,da
 r/ads,asd
 r/test,testing sub
 r/refactor,refactor attempt :O
+r/cyber,about cyber stuff
+r/0,0
+r/network,for networking
