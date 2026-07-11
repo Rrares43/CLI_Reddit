@@ -1,22 +1,28 @@
 package menu_commands;
 
-import logger.Logger; // 💡 Importul corect pentru a recunoaște tipul Logger
+import logger.Logger;
 import logger.logger_commands.BacktoMain;
 import logger.logger_commands.ShowLogOptions;
-import posting.ConsoleUI;
+import posting.ConsoleIO;
+import posting.OutputWriter;
+import posting.StringReader;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoggerCommand implements MenuCommand {
 
-    private final ConsoleUI ui;
+    private final StringReader stringReader;
+    private final OutputWriter output;
     private final List<LoggerSubCommand> options = new ArrayList<>();
 
-    // 💡 Toată magia de configurare a sub-meniului se întâmplă direct aici:
-    public LoggerCommand(Logger logger, ConsoleUI ui) {
-        this.ui = ui;
+    public LoggerCommand(Logger logger, StringReader stringReader, OutputWriter output) {
+        this.stringReader = stringReader;
+        this.output = output;
+
         this.options.add(new ShowLogOptions(logger));
-        this.options.add(new BacktoMain(ui));
+
+        this.options.add(new BacktoMain(output));
     }
 
     @Override
@@ -24,14 +30,14 @@ public class LoggerCommand implements MenuCommand {
         boolean stayInMenu = true;
 
         while (stayInMenu) {
-            ui.showMessage("\n--- LOGGER SETTINGS ---");
+            output.write("\n--- LOGGER SETTINGS ---");
 
             for (int i = 0; i < options.size(); i++) {
-                ui.showMessage((i + 1) + ". " + options.get(i).getNotificationText());
+                output.write((i + 1) + ". " + options.get(i).getNotificationText());
             }
-            ui.showMessage("-----------------------");
+            output.write("-----------------------");
 
-            String choice = ui.getInput("Select option: ");
+            String choice = stringReader.readString("Select option: ");
 
             try {
                 int numarSelectat = Integer.parseInt(choice);
@@ -40,10 +46,10 @@ public class LoggerCommand implements MenuCommand {
                 if (indexInLista >= 0 && indexInLista < options.size()) {
                     stayInMenu = options.get(indexInLista).execute();
                 } else {
-                    ui.showMessage("Invalid option.");
+                    output.write("Invalid option.");
                 }
             } catch (NumberFormatException e) {
-                ui.showMessage("Please enter a valid number.");
+                output.write("Please enter a valid number.");
             }
         }
     }

@@ -2,49 +2,69 @@ import account_manager.AccountQuery;
 import logger.Logger;
 import community.SubredditQuery;
 import menu_commands.*;
-import posting.ConsoleUI;
+import posting.ConsoleIO;
+import posting.IntReader;
+import posting.OutputWriter;
+import posting.StringReader;
+import posting.post_validators.IsNotBlank;
+import posting.post_validators.IsValidLink;
+import posting.post_validators.Validator;
+import posting.PostView;
+import posting.PostInteractionController;
 import posting.PostQuery;
 import interaction.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        ConsoleUI ui = new ConsoleUI();
+        ConsoleIO console = new ConsoleIO();
+        StringReader stringReader = console;
+        IntReader intReader = console;
+        OutputWriter output = console;
+
         logger.Logger.getInstance().log(logger.LogLevel.INFO, "Application Started");
 
         AccountQuery accountQuery = new AccountQuery();
-        PostQuery postQuery = new PostQuery(ui);
         Logger logger = Logger.getInstance();
         PostRepo postRepo = new PostRepo();
         VoteService voteService = new VoteServiceImpl(postRepo, logger);
         CommentService commentService = new CommentServiceImpl(postRepo, logger);
 
+        Validator<String> notBlankValidator = new IsNotBlank();
+        Validator<String> linkValidator = new IsValidLink();
 
-        InteractionQuery interactionQuery = new InteractionQuery(voteService, commentService, postRepo, ui);
+        PostView postView = new PostView(stringReader, output, notBlankValidator, linkValidator);
+
+        PostInteractionController interactionController = new PostInteractionController(
+                stringReader, intReader, output, postView, voteService, commentService, postRepo
+        );
+
+        PostQuery postQuery = new PostQuery(postView);
+
+        InteractionQuery interactionQuery = new InteractionQuery(interactionController);
         SubredditQuery subredditQuery = new SubredditQuery();
 
-        MenuDispatcher dispatcher = new MenuDispatcher(ui);
+        MenuDispatcher dispatcher = new MenuDispatcher(stringReader, output);
 
         dispatcher.registerCommand("1", new AccountCommand(accountQuery));
         dispatcher.registerCommand("2", new PostCommand(postQuery));
         dispatcher.registerCommand("3", new InterractionCommand(interactionQuery));
         dispatcher.registerCommand("4", new SubredditCommand(subredditQuery));
-        dispatcher.registerCommand("5", new LoggerCommand(logger, ui));
+        dispatcher.registerCommand("5", new LoggerCommand(logger, stringReader, output));
 
         while (true) {
-            ui.showMessage("\n--- MENIU PRINCIPAL ---");
-            ui.showMessage("0. Exit");
-            ui.showMessage("1. Account Options");
-            ui.showMessage("2. Post Options");
-            ui.showMessage("3. Interaction");
-            ui.showMessage("4. Subreddit Creation");
-            ui.showMessage("5. Logger");
-            ui.showMessage("-----------------------");
+            output.write("\n--- MENIU PRINCIPAL ---");
+            output.write("0. Exit");
+            output.write("1. Account Options");
+            output.write("2. Post Options");
+            output.write("3. Interaction");
+            output.write("4. Subreddit Creation");
+            output.write("5. Logger");
+            output.write("-----------------------");
 
-            String choice = ui.getInput("Select your choice (0/1/2/3/4/5): ");
+            String choice = stringReader.readString("Select your choice (0/1/2/3/4/5): ");
             if (choice.equals("0")) {
-                ui.showMessage("Application is closing");
-                ui.closeScanner();
+                output.write("Application is closing");
                 break;
             }
             dispatcher.execute(choice);

@@ -1,15 +1,18 @@
 import menu_commands.MenuCommand;
-import posting.ConsoleUI;
-
+import posting.ConsoleIO;
+import posting.StringReader;
+import posting.OutputWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MenuDispatcher {
     private Map<String, MenuCommand> commands = new HashMap<>();
-    private ConsoleUI ui;
+    private final StringReader stringReader;
+    private final OutputWriter output;
 
-    public MenuDispatcher(ConsoleUI ui) {
-        this.ui = ui;
+    public MenuDispatcher(StringReader stringReader, OutputWriter output) {
+        this.stringReader = stringReader;
+        this.output = output;
     }
 
     public void registerCommand(String choice, MenuCommand command) {
@@ -21,7 +24,7 @@ public class MenuDispatcher {
         if (command != null) {
             command.execute();
         } else {
-            ui.showMessage("Invalid Input");
+            output.write("Invalid Input");
         }
     }
 }

@@ -1,21 +1,13 @@
 package interaction;
-
-import posting.ConsoleUI;
+import posting.PostInteractionController;
 
 public class InteractionQuery {
-    private final VoteService voteService;
-    private final CommentService commentService;
-    private final PostRepo postRepo;
-    private final ConsoleUI ui;
+    private final PostInteractionController controller;
 
-    public InteractionQuery(VoteService voteService, CommentService commentService, PostRepo postRepo, ConsoleUI ui) {
-        this.voteService = voteService;
-        this.commentService = commentService;
-        this.postRepo = postRepo;
-        this.ui = ui;
+    public InteractionQuery(PostInteractionController controller) {
+        this.controller = controller;
     }
-
     public void interactionQuery() {
-        ui.interactWithPost(voteService, commentService, postRepo);
+        controller.startInteraction();
     }
 }

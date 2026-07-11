@@ -1,15 +1,14 @@
 package logger.logger_commands;
 
 import menu_commands.LoggerSubCommand;
-import posting.ConsoleUI;
+import posting.OutputWriter;
 
 public class BacktoMain implements LoggerSubCommand {
-    private final ConsoleUI ui;
+    private final OutputWriter output;
 
-    public BacktoMain(ConsoleUI ui) {
-        this.ui = ui;
+    public BacktoMain(OutputWriter output) {
+        this.output = output;
     }
-
     @Override
     public String getNotificationText() {
         return "Back to Main Menu";
@@ -17,7 +16,7 @@ public class BacktoMain implements LoggerSubCommand {
 
     @Override
     public boolean execute() {
-        ui.showMessage("Going back to Main Menu");
+        output.write("Going back to Main Menu");
         return false;
     }
 }
