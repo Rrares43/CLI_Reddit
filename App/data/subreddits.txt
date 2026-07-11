@@ -8,3 +8,6 @@ r/refactor,refactor attempt :O
 r/cyber,about cyber stuff
 r/0,0
 r/network,for networking
+r/asd,a
+r/asd,asd
+r/asd,as
