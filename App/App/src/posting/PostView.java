@@ -1,7 +1,10 @@
 package posting;
 import interaction.Comment;
 import interaction.Post;
+import posting.attachment_handlers.AttachmentHandler;
 import posting.post_validators.Validator;
+
+import java.util.Map;
 
 public class PostView {
     private final StringReader stringReader;
@@ -9,22 +12,32 @@ public class PostView {
     private final Validator<String> notBlankValidator;
     private final Validator<String> linkValidator;
 
+    private final Validator<String> titleLengthValidator;
+    private final Validator<String> contentLengthValidator;
+    private final Map<String, AttachmentHandler> attachmentHandlers;
+
     public PostView(StringReader stringReader, OutputWriter output,
-                    Validator<String> notBlankValidator, Validator<String> linkValidator) {
+                    Validator<String> notBlankValidator,
+                    Validator<String> linkValidator,
+                    Validator<String> titleLengthValidator,
+                    Validator<String> contentLengthValidator,
+                    Map<String, AttachmentHandler> attachmentHandlers) {
         this.stringReader = stringReader;
         this.output = output;
         this.notBlankValidator = notBlankValidator;
         this.linkValidator = linkValidator;
+        this.titleLengthValidator = titleLengthValidator;
+        this.contentLengthValidator = contentLengthValidator;
+        this.attachmentHandlers = attachmentHandlers;
     }
 
     public String askForTitle() {
-        int limit = 300;
         while (true) {
-            String title = stringReader.readString("Enter post title (max " + limit + " characters):");
+            String title = stringReader.readString("Enter post title:");
             if (!notBlankValidator.isValid(title)) {
                 output.write("Error: Title cannot be empty!");
-            } else if (title.length() > limit) {
-                output.write("Error: Title is too long! You entered " + title.length() + " characters.");
+            } else if (!titleLengthValidator.isValid(title)) {
+                output.write("Error: Title exceeds the maximum allowed length!");
             } else {
                 return title;
             }
@@ -32,13 +45,12 @@ public class PostView {
     }
 
     public String askForContent() {
-        int limit = 3000;
         while (true) {
-            String content = stringReader.readString("Enter post content (max " + limit + " characters):");
+            String content = stringReader.readString("Enter post content:");
             if (!notBlankValidator.isValid(content)) {
                 output.write("Error: Content cannot be empty!");
-            } else if (content.length() > limit) {
-                output.write("Error: Content is too long!");
+            } else if (!contentLengthValidator.isValid(content)) {
+                output.write("Error: Content exceeds the maximum allowed length!");
             } else {
                 return content;
             }
@@ -46,34 +58,16 @@ public class PostView {
     }
 
     public String askForAttachment() {
-        while (true) {
-            String type = stringReader.readString("Do you want to add an attachment? (photo/link/no)");
-            if (type.equalsIgnoreCase("photo")) return askForPhoto();
-            if (type.equalsIgnoreCase("link")) return askForLink();
-            if (type.equalsIgnoreCase("no")) {
-                output.write("Proceeding text-only post");
-                return "";
-            }
-            output.write("Invalid Input. Please type 'photo', 'link', or 'no'.");
-        }
-    }
+        String options = String.join("/", attachmentHandlers.keySet());
 
-    private String askForPhoto() {
         while (true) {
-            String photo = stringReader.readString("Enter the photo name:");
-            if (notBlankValidator.isValid(photo)) return "\n[Image: " + photo + "]";
-            output.write("Error: Photo name cannot be empty!");
-        }
-    }
+            String type = stringReader.readString("Do you want to add an attachment? (" + options + ")");
 
-    private String askForLink() {
-        while (true) {
-            String link = stringReader.readString("Enter the link (e.g. www.google.com):");
-            if (!linkValidator.isValid(link)) {
-                output.write("Error: Invalid link!");
-            } else {
-                return "\n[Link: " + link + "]";
+            AttachmentHandler handler = attachmentHandlers.get(type.toLowerCase());
+            if (handler != null) {
+                return handler.handle();
             }
+            output.write("Invalid Input. Please type one of: " + options);
         }
     }
 

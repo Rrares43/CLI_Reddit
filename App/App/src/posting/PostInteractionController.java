@@ -1,14 +1,11 @@
 package posting;
 
-import interaction.Comment;
-import interaction.Post;
-import interaction.VoteService;
-import interaction.CommentService;
-import interaction.PostRepo;
-import posting.IntReader;
-import posting.OutputWriter;
-import posting.StringReader;
-import posting.PostView;
+import interaction.*;
+import posting.commands.CommentActionCommand;
+import posting.commands.PostActionCommand;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PostInteractionController {
     private final StringReader stringReader;
@@ -17,12 +14,23 @@ public class PostInteractionController {
     private final PostView postView;
     private final VoteService voteService;
     private final CommentService commentService;
-    private final PostRepo postRepo;
+    private final PostRepository postRepo;
+
+    private final Map<String, PostActionCommand> postCommands = new HashMap<>();
+    private final Map<String, CommentActionCommand> commentCommands = new HashMap<>();
+
+    public void registerPostCommand(String choice, PostActionCommand command) {
+        postCommands.put(choice, command);
+    }
+
+    public void registerCommentCommand(String choice, CommentActionCommand command) {
+        commentCommands.put(choice, command);
+    }
 
     public PostInteractionController(StringReader stringReader, IntReader intReader,
                                      OutputWriter output, PostView postView,
                                      VoteService voteService, CommentService commentService,
-                                     PostRepo postRepo) {
+                                     PostRepository postRepo) {
         this.stringReader = stringReader;
         this.intReader = intReader;
         this.output = output;
@@ -49,17 +57,20 @@ public class PostInteractionController {
         output.write("Choose an action:\n1. Upvote\n2. Downvote\n3. Add Comment\n4. Interact with a specific Comment\n0. Cancel");
         String choice = stringReader.readString("Select option (0-4):");
 
-        try {
-            switch (choice) {
-                case "1" -> handleVote(postID, true);
-                case "2" -> handleVote(postID, false);
-                case "3" -> handleAddComment(postID);
-                case "4" -> manageCommentInteraction(postID);
-                case "0" -> output.write("Action cancelled.");
-                default -> output.write("Invalid choice! Returning to menu.");
+        if (choice.equals("0")) {
+            output.write("Action cancelled.");
+            return;
+        }
+
+        PostActionCommand command = postCommands.get(choice);
+        if (command != null) {
+            try {
+                command.execute(postID);
+            } catch (Exception e) {
+                output.write("Error: " + e.getMessage());
             }
-        } catch (IllegalArgumentException | SecurityException e) {
-            output.write("Error: " + e.getMessage());
+        } else {
+            output.write("Invalid choice! Returning to menu.");
         }
     }
 
@@ -81,12 +92,12 @@ public class PostInteractionController {
         output.write("Comment processed.");
     }
 
-    private void manageCommentInteraction(int postID) {
+    public void manageCommentInteraction(int postID) {
         int commentID = intReader.readInt("Insert Comment ID to interact with:");
         Comment foundComment = commentService.findCommentById(commentID);
 
         if (foundComment == null) {
-            output.write("Error: Comment with ID " + commentID + " does not exist.");
+            output.write("Error: Comment does not exist.");
             return;
         }
 
@@ -94,26 +105,16 @@ public class PostInteractionController {
         output.write("1. Reply to comment\n2. Edit comment\n3. Delete comment");
         String commentChoice = stringReader.readString("Select option (1-3): ");
 
-        try {
-            switch (commentChoice) {
-                case "1" -> {
-                    String text = stringReader.readString("Enter your reply text:");
-                    commentService.replyToComment(postID, commentID, text);
-                    output.write("Reply added successfully.");
-                }
-                case "2" -> {
-                    String text = stringReader.readString("Enter new text for your comment:");
-                    commentService.editComment(postID, commentID, text);
-                    output.write("Comment updated successfully.");
-                }
-                case "3" -> {
-                    commentService.deleteComment(postID, commentID);
-                    output.write("Comment deleted successfully.");
-                }
-                default -> output.write("Invalid choice! Action cancelled.");
+        // FĂRĂ SWITCH! Delegăm către comandă:
+        CommentActionCommand command = commentCommands.get(commentChoice);
+        if (command != null) {
+            try {
+                command.execute(postID, commentID);
+            } catch (Exception e) {
+                output.write("Error: " + e.getMessage());
             }
-        } catch (IllegalArgumentException | SecurityException e) {
-            output.write("Error: " + e.getMessage());
+        } else {
+            output.write("Invalid choice! Action cancelled.");
         }
     }
 }

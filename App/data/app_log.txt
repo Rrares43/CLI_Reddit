@@ -50,3 +50,12 @@
 [2026-07-11 15:34:45] [INFO] Application Started
 [2026-07-11 15:35:10] [INFO] Subreddit created successfully
 [2026-07-11 15:35:13] [INFO] Subreddit created successfully
+[2026-07-11 15:40:02] [INFO] Application Started
+[2026-07-11 16:00:38] [INFO] Application Started
+[2026-07-11 16:12:12] [INFO] Application Started
+[2026-07-11 16:12:39] [INFO] Application Started
+[2026-07-11 16:14:47] [INFO] Application Started
+[2026-07-11 16:30:09] [INFO] Application Started
+[2026-07-11 16:30:29] [INFO] Vote for post with id 2 has been upvoted
+[2026-07-11 16:31:00] [INFO] Comment added ID: 1 by FlorinUser
+[2026-07-11 16:31:21] [INFO] Reply ID 2 added at comment 1

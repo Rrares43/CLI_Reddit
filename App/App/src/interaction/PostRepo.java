@@ -2,7 +2,7 @@ package interaction;
 
 import java.util.List;
 
-public class PostRepo {
+public class PostRepo implements PostRepository {
     public Post findPostById(int postId){
         for(Post p : DataBase.mockPosts){
             if(p.getId() == postId){
