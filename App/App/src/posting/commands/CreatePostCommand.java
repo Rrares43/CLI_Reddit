@@ -1,19 +1,20 @@
-package posting;
+package posting.commands;
 
 import interaction.Post;
+import interaction.PostService;
+import posting.PostView;
 
-public class PostQuery {
+public class CreatePostCommand {
     private final PostView view;
-    public PostQuery(PostView view) {
+    private final PostService postService;
+
+    public CreatePostCommand(PostView view, PostService postService) {
         this.view = view;
+        this.postService = postService;
     }
 
-    public void postQuery() {
-        String mockAuthor = "rares0208";
-        int mockId = 2;
-
+    public void execute() {
         System.out.println("CREATE A NEW POST");
-
 
         String title = view.askForTitle();
         String subreddit = view.askForSubreddit();
@@ -22,10 +23,8 @@ public class PostQuery {
 
         String finalContent = baseContent + attachment;
 
-        Post myNewPost = new Post(mockId, title, finalContent, mockAuthor, subreddit);
+        Post myNewPost = postService.createPost("rares0208", title, finalContent, subreddit);
 
         view.displayPost(myNewPost);
-
-
     }
 }

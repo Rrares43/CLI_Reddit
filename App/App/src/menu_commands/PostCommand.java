@@ -1,16 +1,16 @@
 package menu_commands;
 
-import posting.PostQuery;
+import posting.commands.CreatePostCommand;
 
 public class PostCommand implements MenuCommand {
 
-    private final PostQuery postQuery;
+    private final CreatePostCommand createPostCommand;
 
-    public PostCommand(PostQuery postQuery) {
-        this.postQuery = postQuery;
+    public PostCommand(CreatePostCommand createPostCommand) {
+        this.createPostCommand = createPostCommand;
     }
     @Override
     public void execute(){
-        postQuery.postQuery();
+        createPostCommand.execute();
     }
 }

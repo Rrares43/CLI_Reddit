@@ -8,6 +8,7 @@ import posting.attachment_handlers.LinkAttachmentHandler;
 import posting.attachment_handlers.NoAttachmentHandler;
 import posting.attachment_handlers.PhotoAttachmentHandler;
 import posting.commands.AddCommentCommand;
+import posting.commands.CreatePostCommand;
 import posting.commands.ReplyCommentCommand;
 import posting.commands.VoteCommand;
 import posting.post_validators.IsNotBlank;
@@ -35,6 +36,8 @@ public class Main {
         VoteService voteService = new VoteServiceImpl(postRepo, logger);
         CommentService commentService = new CommentServiceImpl(postRepo, logger);
 
+        PostService postService = new PostServiceImpl(postRepo);
+
         Validator<String> notBlankValidator = new IsNotBlank();
         Validator<String> linkValidator = new IsValidLink();
         Validator<String> titleLengthValidator = new IsValidLength(300);
@@ -56,10 +59,10 @@ public class Main {
         );
 
         PostInteractionController interactionController = new PostInteractionController(
-                stringReader, intReader, output, postView, voteService, commentService, postRepo
+                stringReader, intReader, output, postView, commentService, postRepo
         );
 
-        PostQuery postQuery = new PostQuery(postView);
+        CreatePostCommand createPostCommand = new CreatePostCommand(postView, postService);
 
         InteractionQuery interactionQuery = new InteractionQuery(interactionController);
         SubredditQuery subredditQuery = new SubredditQuery();
@@ -67,7 +70,7 @@ public class Main {
         MenuDispatcher dispatcher = new MenuDispatcher(stringReader, output);
 
         dispatcher.registerCommand("1", new AccountCommand(accountQuery));
-        dispatcher.registerCommand("2", new PostCommand(postQuery));
+        dispatcher.registerCommand("2", new PostCommand(createPostCommand));
         dispatcher.registerCommand("3", new InterractionCommand(interactionQuery));
         dispatcher.registerCommand("4", new SubredditCommand(subredditQuery));
         dispatcher.registerCommand("5", new LoggerCommand(logger, stringReader, output));
