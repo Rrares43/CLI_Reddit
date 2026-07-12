@@ -63,3 +63,7 @@
 [2026-07-11 16:35:40] [INFO] Comment added ID: 1 by FlorinUser
 [2026-07-11 16:47:16] [INFO] Application Started
 [2026-07-11 16:47:23] [INFO] Comment added ID: 1 by FlorinUser
+[2026-07-11 16:53:50] [INFO] Application Started
+[2026-07-12 20:56:08] [INFO] Application Started
+[2026-07-12 20:56:29] [WARNING] Email condition not respected
+[2026-07-12 21:33:21] [INFO] Application Started

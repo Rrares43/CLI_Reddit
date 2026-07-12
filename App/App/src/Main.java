@@ -52,7 +52,6 @@ public class Main {
                 stringReader,
                 output,
                 notBlankValidator,
-                linkValidator,
                 titleLengthValidator,
                 contentLengthValidator,
                 attachmentHandlers
@@ -67,7 +66,7 @@ public class Main {
         InteractionQuery interactionQuery = new InteractionQuery(interactionController);
         SubredditQuery subredditQuery = new SubredditQuery();
 
-        MenuDispatcher dispatcher = new MenuDispatcher(stringReader, output);
+        MenuDispatcher dispatcher = new MenuDispatcher(output);
 
         dispatcher.registerCommand("1", new AccountCommand(accountQuery));
         dispatcher.registerCommand("2", new PostCommand(createPostCommand));
@@ -78,12 +77,12 @@ public class Main {
         interactionController.registerPostCommand("1", new VoteCommand(voteService, intReader, output, true));  // true = Upvote
         interactionController.registerPostCommand("2", new VoteCommand(voteService, intReader, output, false)); // false = Downvote
         interactionController.registerPostCommand("3", new AddCommentCommand(commentService, stringReader, output));
-        interactionController.registerPostCommand("4", postId -> interactionController.manageCommentInteraction(postId));
+        interactionController.registerPostCommand("4", interactionController::manageCommentInteraction);
 
         interactionController.registerCommentCommand("1", new ReplyCommentCommand(commentService, stringReader, output));
 
         while (true) {
-            output.write("\n--- MENIU PRINCIPAL ---");
+            output.write("\n--- MAIN MENU ---");
             output.write("0. Exit");
             output.write("1. Account Options");
             output.write("2. Post Options");

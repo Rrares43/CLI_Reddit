@@ -1,17 +1,13 @@
 import menu_commands.MenuCommand;
-import posting.ConsoleIO;
-import posting.StringReader;
 import posting.OutputWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MenuDispatcher {
-    private Map<String, MenuCommand> commands = new HashMap<>();
-    private final StringReader stringReader;
+    private final Map<String, MenuCommand> commands = new HashMap<>();
     private final OutputWriter output;
 
-    public MenuDispatcher(StringReader stringReader, OutputWriter output) {
-        this.stringReader = stringReader;
+    public MenuDispatcher(OutputWriter output) {
         this.output = output;
     }
 
@@ -28,4 +24,3 @@ public class MenuDispatcher {
         }
     }
 }
-
