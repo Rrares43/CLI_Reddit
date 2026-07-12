@@ -20,6 +20,10 @@ public class DataBase {
         mockPosts.add(new Post(99, "Regulament", "Va rugam sa pastrati un limbaj decent pe acest subreddit.", "Admin", "r/test"));
     }
 
+    static{Post primaPostare = mockPosts.get(0);
+    Comment comentariuDeTest = new Comment(nextCommentId++, "Comentariu!", "Marcel2");
+    primaPostare.getComments().add(comentariuDeTest);}
+
     static{ mockSubreddits.add(new Subreddit("r/test", "testing for subs")); }
 
 }
