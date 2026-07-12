@@ -10,7 +10,6 @@ public class PostView {
     private final StringReader stringReader;
     private final OutputWriter output;
     private final Validator<String> notBlankValidator;
-    private final Validator<String> linkValidator;
 
     private final Validator<String> titleLengthValidator;
     private final Validator<String> contentLengthValidator;
@@ -18,14 +17,12 @@ public class PostView {
 
     public PostView(StringReader stringReader, OutputWriter output,
                     Validator<String> notBlankValidator,
-                    Validator<String> linkValidator,
                     Validator<String> titleLengthValidator,
                     Validator<String> contentLengthValidator,
                     Map<String, AttachmentHandler> attachmentHandlers) {
         this.stringReader = stringReader;
         this.output = output;
         this.notBlankValidator = notBlankValidator;
-        this.linkValidator = linkValidator;
         this.titleLengthValidator = titleLengthValidator;
         this.contentLengthValidator = contentLengthValidator;
         this.attachmentHandlers = attachmentHandlers;
