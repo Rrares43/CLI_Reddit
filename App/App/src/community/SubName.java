@@ -17,7 +17,12 @@ public class SubName implements SubredditData{
             if (!isNotBlank.isValid(subredditName)) {
                 System.out.println("Error: Subreddit name cannot be empty!");
                 Logger.getInstance().log(LogLevel.ERROR,"Error: Subreddit name cannot be empty!");
-            } else {
+            }
+            else if(subredditName.equals("0")) {
+                System.out.println("Back to menu");
+                return "0";
+            }
+            else {
                 return subredditName;
             }
         }

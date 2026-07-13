@@ -35,7 +35,12 @@ public class PostView {
                 output.write("Error: Title cannot be empty!");
             } else if (!titleLengthValidator.isValid(title)) {
                 output.write("Error: Title exceeds the maximum allowed length!");
-            } else {
+            }
+            else if (title.equals("0")){
+                output.write("Back to menu");
+                return "0";
+            }
+            else {
                 return title;
             }
         }
@@ -48,7 +53,12 @@ public class PostView {
                 output.write("Error: Content cannot be empty!");
             } else if (!contentLengthValidator.isValid(content)) {
                 output.write("Error: Content exceeds the maximum allowed length!");
-            } else {
+            }
+            else if (content.equals("0")){
+                output.write("Back to menu");
+                return "0";
+            }
+            else {
                 return content;
             }
         }
@@ -71,8 +81,16 @@ public class PostView {
     public String askForSubreddit() {
         while (true) {
             String subreddit = stringReader.readString("Enter the subreddit name:");
-            if (notBlankValidator.isValid(subreddit)) return subreddit;
-            output.write("Error: Subreddit name cannot be empty!");
+            if (notBlankValidator.isValid(subreddit)){
+                return subreddit;
+            }
+            else if (subreddit.equals("0")){
+                output.write("Back to menu");
+                return "0";
+            }
+            else if(subreddit.equals("")) {
+                output.write("Error: Subreddit name cannot be empty!");
+            }
         }
     }
 
