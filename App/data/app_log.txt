@@ -68,3 +68,8 @@
 [2026-07-12 20:56:29] [WARNING] Email condition not respected
 [2026-07-12 21:33:21] [INFO] Application Started
 [2026-07-12 23:00:30] [INFO] Application Started
+[2026-07-13 10:20:06] [INFO] Application Started
+[2026-07-13 10:21:05] [INFO] Vote for post with id 2 has been upvoted
+[2026-07-13 11:00:06] [INFO] Application Started
+[2026-07-13 11:03:16] [INFO] Application Started
+[2026-07-13 11:05:18] [INFO] Application Started

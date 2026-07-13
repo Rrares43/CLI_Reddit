@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Post {
-    private final int Id;
-    private final String title;
-    private final String content;
-    private final String author;
+    private int Id;
+    private String title;
+    private String content;
+    private String author;
     private int upvotes;
     private int downvotes;
-    private final List<Comment> comments;
-    private final String subredditName;
+    private List<Comment> comments;
+    private String subredditName;
 
     public Post(int Id,String title,String content,String author, String subredditName){
         this.Id = Id;

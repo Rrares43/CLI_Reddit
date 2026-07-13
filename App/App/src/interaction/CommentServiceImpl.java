@@ -25,6 +25,7 @@ public class CommentServiceImpl implements CommentService {
         int commentId = postRepo.getNextCommentId();
         Comment newComment = new Comment(commentId, text, postRepo.getCurrentUser());
         post.addComment(newComment);
+        postRepo.saveToFile();
 
         logger.log(LogLevel.INFO, "Comment added ID: " + commentId + " by " + postRepo.getCurrentUser());
     }
@@ -53,6 +54,7 @@ public class CommentServiceImpl implements CommentService {
         int replyId = postRepo.getNextCommentId();
         Comment reply = new Comment(replyId, text, postRepo.getCurrentUser());
         parentComment.addreply(reply);
+        postRepo.saveToFile();
 
         logger.log(LogLevel.INFO, "Reply ID " + replyId + " added at comment " + parentCommentId);
     }
@@ -72,6 +74,7 @@ public class CommentServiceImpl implements CommentService {
                     throw new SecurityException("Comment cannot be edited");
                 }
                 c.setText(newText);
+                postRepo.saveToFile();
                 logger.log(LogLevel.INFO, "Comment edited: " + commentId);
                 return;
             }
@@ -96,6 +99,7 @@ public class CommentServiceImpl implements CommentService {
                     throw new SecurityException("Comment cannot be deleted");
                 }
                 post.remove_comment(i);
+                postRepo.saveToFile();
                 logger.log(LogLevel.INFO, "Comment deleted: " + commentId);
                 return;
             }
