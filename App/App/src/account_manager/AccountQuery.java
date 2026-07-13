@@ -4,7 +4,6 @@ import account_manager.account_commands.AccountCommand;
 import account_manager.account_commands.ChangePasswordCommand;
 import account_manager.account_commands.CreateAccountCommand;
 import account_manager.account_commands.LoginCommand;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -29,7 +28,7 @@ public class AccountQuery {
     System.out.println("1. Account creation");
     System.out.println("2. Logging in");
     System.out.println("3. Change password");
-    System.out.println("4. End program");
+    System.out.println("4. Return to previous menu");
     String choice = sc.nextLine();
 
     AccountCommand command = Commands.get(choice);

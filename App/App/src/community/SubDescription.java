@@ -17,7 +17,12 @@ public class SubDescription implements SubredditData{
             if (!isNotBlank.isValid(subredditDescription)) {
                 System.out.println("Error: Subreddit description cannot be empty!");
                 Logger.getInstance().log(LogLevel.ERROR,"Error: Subreddit description cannot be empty!");
-            } else {
+            }
+            else if(subredditDescription.equals("0")) {
+                System.out.println("Back to menu");
+                return "0";
+            }
+            else {
                 return subredditDescription;
             }
         }

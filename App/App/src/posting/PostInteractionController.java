@@ -22,9 +22,11 @@ public class PostInteractionController {
         postCommands.put(choice, command);
     }
 
+
     public void registerCommentCommand(String choice, CommentActionCommand command) {
         commentCommands.put(choice, command);
     }
+
 
     public PostInteractionController(StringReader stringReader, IntReader intReader,
                                      OutputWriter output, PostView postView,

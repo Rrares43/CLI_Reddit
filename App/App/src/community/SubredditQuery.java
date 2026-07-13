@@ -6,12 +6,15 @@ public class SubredditQuery {
     public void subredditQuery() {
         boolean running = true;
         while(running) {
-            System.out.println("Enter data or 0 to end the program");
+            System.out.println("Enter data or 0 to return to the previous menu:");
             String subredditName = SubName.ask();
-            String subredditDescription = SubDescription.ask();
-            if(Objects.equals(subredditName, "0") || Objects.equals(subredditDescription, "0")){
+            if(Objects.equals(subredditName, "0")){
                 running = false;
-                System.out.println("Program ended");
+                continue;
+            }
+            String subredditDescription = SubDescription.ask();
+            if(Objects.equals(subredditDescription, "0")){
+                running = false;
                 continue;
             }
             Subreddit subreddit = new Subreddit(subredditName, subredditDescription);

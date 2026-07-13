@@ -79,6 +79,7 @@ public class Main {
         interactionController.registerPostCommand("3", new AddCommentCommand(commentService, stringReader, output));
         interactionController.registerPostCommand("4", interactionController::manageCommentInteraction);
 
+
         interactionController.registerCommentCommand("1", new ReplyCommentCommand(commentService, stringReader, output));
 
         while (true) {
