@@ -1,4 +1,4 @@
-package interaction;
+package interaction.repository;
 import posting.PostInteractionController;
 
 public class InteractionQuery {

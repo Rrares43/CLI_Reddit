@@ -11,10 +11,42 @@
         "Id": 1,
         "text": "Comentariu!",
         "author": "Marcel2",
-        "replies": []
+        "replies": [
+          {
+            "Id": 3,
+            "text": "xxxxxxx",
+            "author": "FlorinUser",
+            "replies": [],
+            "upvotes": 0,
+            "downvotes": 0
+          }
+        ],
+        "upvotes": 0,
+        "downvotes": 0
+      },
+      {
+        "Id": 2,
+        "text": "ccccccc",
+        "author": "FlorinUser",
+        "replies": [
+          {
+            "Id": 4,
+            "text": "fffffff",
+            "author": "FlorinUser",
+            "replies": [],
+            "upvotes": 0,
+            "downvotes": 0
+          }
+        ],
+        "upvotes": 0,
+        "downvotes": 0
       }
     ],
-    "subredditName": "r/test"
+    "subredditName": "r/test",
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
   },
   {
     "Id": 2,
@@ -23,8 +55,25 @@
     "author": "Alex",
     "upvotes": 0,
     "downvotes": 0,
-    "comments": [],
-    "subredditName": "r/test"
+    "comments": [
+      {
+        "Id": 2,
+        "text": "test",
+        "author": "FlorinUser",
+        "replies": [],
+        "upvotes": 0,
+        "downvotes": 0,
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        }
+      }
+    ],
+    "subredditName": "r/test",
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
   },
   {
     "Id": 3,

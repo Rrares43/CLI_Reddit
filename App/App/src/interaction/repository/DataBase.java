@@ -1,6 +1,8 @@
-package interaction;
+package interaction.repository;
 
 import community.Subreddit;
+import interaction.model.Comment;
+import interaction.model.Post;
 
 import java.util.ArrayList;
 import java.util.List;

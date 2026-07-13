@@ -1,8 +1,7 @@
 package posting.commands;
-import interaction.CommentService;
+import interaction.service.CommentService;
 import posting.StringReader;
 import posting.OutputWriter;
-import posting.commands.PostActionCommand;
 
 public class AddCommentCommand implements PostActionCommand {
     private final CommentService commentService;

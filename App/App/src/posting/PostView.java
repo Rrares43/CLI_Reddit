@@ -1,6 +1,6 @@
 package posting;
-import interaction.Comment;
-import interaction.Post;
+import interaction.model.Comment;
+import interaction.model.Post;
 import posting.attachment_handlers.AttachmentHandler;
 import posting.post_validators.Validator;
 

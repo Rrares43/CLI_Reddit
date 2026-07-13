@@ -1,13 +1,15 @@
-package interaction;
+package interaction.service;
+import interaction.model.Post;
+import interaction.repository.PostRepo;
 import logger.Logger;
 import logger.LogLevel;
 
 
-public class VoteServiceImpl implements VoteService{
+public class PostVoteServiceImpl implements PostVoteService {
     private final PostRepo postRepo;
     private final Logger logger;
 
-    public VoteServiceImpl(PostRepo postRepo,Logger logger){
+    public PostVoteServiceImpl(PostRepo postRepo, Logger logger){
         this.logger = logger;
         this.postRepo = postRepo;
     }
@@ -21,12 +23,12 @@ public class VoteServiceImpl implements VoteService{
         }
 
         if(choice==1){
-            post.increment_upvotes();
+            post.getVoteTracker().addUpvotes();
             postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been upvoted");
         }
         else if(choice==2){
-            post.decrement_upvotes();
+            post.getVoteTracker().removeUpvotes();
             postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been decremented");
         }
@@ -39,12 +41,12 @@ public class VoteServiceImpl implements VoteService{
             throw new IllegalArgumentException("Post with id "+postId+" does not exist");
         }
         if(choice==1){
-            post.increment_downvotes();
+            post.getVoteTracker().addDownvotes();
             postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been downvoted");
         }
         else if(choice==2){
-            post.decrement_downvotes();
+            post.getVoteTracker().removeDownvotes();
             postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been decremented");
         }

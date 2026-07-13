@@ -1,4 +1,4 @@
-package interaction;
+package interaction.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,10 @@ public class Post {
         this.upvotes = 0;
         this.downvotes = 0;
         this.comments = new ArrayList<>();
+        this.voteTracker = new VoteTracker();
     }
+
+    private VoteTracker voteTracker;
 
     public int getId(){
         return Id;
@@ -41,11 +44,21 @@ public class Post {
     }
 
     public int getUpvotes() {
-        return upvotes;
+        if(voteTracker==null){
+            voteTracker=new VoteTracker();
+        }
+        return voteTracker.getUpvotes();
     }
 
     public int getDownvotes() {
-        return downvotes;
+        if(voteTracker==null){
+            voteTracker=new VoteTracker();
+        }
+        return voteTracker.getDownvotes();
+    }
+
+    public VoteTracker getVoteTracker(){
+        return voteTracker;
     }
 
     public List<Comment> getComments(){
@@ -54,22 +67,6 @@ public class Post {
 
     public String getSubredditName(){
         return subredditName;
-    }
-
-    public void increment_upvotes(){
-        this.upvotes++;
-    }
-
-    public void increment_downvotes(){
-        this.downvotes++;
-    }
-
-    public void decrement_upvotes(){
-        this.upvotes--;
-    }
-
-    public void decrement_downvotes(){
-        this.downvotes--;
     }
 
     public void addComment(Comment comment){
