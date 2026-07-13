@@ -22,10 +22,12 @@ public class VoteServiceImpl implements VoteService{
 
         if(choice==1){
             post.increment_upvotes();
+            postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been upvoted");
         }
         else if(choice==2){
             post.decrement_upvotes();
+            postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been decremented");
         }
     }
@@ -38,10 +40,12 @@ public class VoteServiceImpl implements VoteService{
         }
         if(choice==1){
             post.increment_downvotes();
+            postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been downvoted");
         }
         else if(choice==2){
             post.decrement_downvotes();
+            postRepo.saveToFile();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been decremented");
         }
 }

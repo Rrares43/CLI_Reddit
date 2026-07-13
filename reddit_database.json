@@ -1,0 +1,69 @@
+[
+  {
+    "Id": 1,
+    "title": "Prima mea postare",
+    "content": "Acesta este continutul postarii de test.",
+    "author": "FlorinUser",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [
+      {
+        "Id": 1,
+        "text": "Comentariu!",
+        "author": "Marcel2",
+        "replies": []
+      }
+    ],
+    "subredditName": "r/test"
+  },
+  {
+    "Id": 2,
+    "title": "Intrebare Java",
+    "content": "Imi da o eroare la Scanner, ma poate ajuta cineva?",
+    "author": "Alex",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "r/test"
+  },
+  {
+    "Id": 3,
+    "title": "Regulament",
+    "content": "Va rugam sa pastrati un limbaj decent pe acest subreddit.",
+    "author": "Admin",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "r/test"
+  },
+  {
+    "Id": 1,
+    "title": "postare",
+    "content": "dadadadada",
+    "author": "rares0208",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "incercare"
+  },
+  {
+    "Id": 4,
+    "title": "o postare",
+    "content": "POSTARE NOUAA\n[Image: postare]",
+    "author": "rares0208",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "un subreddit"
+  },
+  {
+    "Id": 5,
+    "title": "0",
+    "content": "0",
+    "author": "rares0208",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "0"
+  }
+]
