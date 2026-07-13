@@ -20,7 +20,6 @@ public class VoteServiceImpl implements VoteService{
             throw new IllegalArgumentException("Post with id "+postId+" does not exist");
         }
 
-        String user = postRepo.getCurrentUser();
         if(choice==1){
             post.increment_upvotes();
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been upvoted");

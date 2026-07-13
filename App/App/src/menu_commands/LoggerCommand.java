@@ -3,7 +3,6 @@ package menu_commands;
 import logger.Logger;
 import logger.logger_commands.BacktoMain;
 import logger.logger_commands.ShowLogOptions;
-import posting.ConsoleIO;
 import posting.OutputWriter;
 import posting.StringReader;
 

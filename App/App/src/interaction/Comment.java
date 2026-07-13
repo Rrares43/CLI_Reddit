@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Comment {
-    private int Id;
+    private final int Id;
     private String text;
-    private String author;
-    private List<Comment> replies;
+    private final String author;
+    private final List<Comment> replies;
 
     public Comment(int Id,String text,String author)
     {
