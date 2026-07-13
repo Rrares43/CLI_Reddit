@@ -1,6 +1,6 @@
 package menu_commands;
 
-import interaction.InteractionQuery;
+import interaction.repository.InteractionQuery;
 
 public class InterractionCommand implements MenuCommand {
     private final InteractionQuery interactionQuery;

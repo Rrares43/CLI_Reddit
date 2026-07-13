@@ -1,8 +1,10 @@
-package interaction;
+package interaction.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import interaction.model.Comment;
+import interaction.model.Post;
 
 import java.io.Reader;
 import java.io.Writer;
@@ -80,5 +82,25 @@ public class PostRepo implements PostRepository {
     public void addPost(Post post) {
         this.posts.add(post);
         saveToFile();
+    }
+
+    public Comment findCommentById(int commentId) {
+        for(Post post : DataBase.mockPosts){
+            Comment found = searchInComments(post.getComments(),commentId);
+            if (found != null) {
+                return found;
+            }
+        }
+        return null;
+    }
+
+    private Comment searchInComments(List<Comment> comments, int commentId) {
+        for (Comment c : comments) {
+            if (c.getId() == commentId) {
+                return c;
+            }
+            Comment foundInReplies = searchInComments(c.getReplies(),commentId);
+        }
+        return null;
     }
 }

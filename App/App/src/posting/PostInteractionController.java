@@ -1,6 +1,10 @@
 package posting;
 
-import interaction.*;
+import interaction.model.Comment;
+import interaction.model.Post;
+import interaction.repository.PostRepository;
+import interaction.service.CommentService;
+import interaction.service.CommentVoteService;
 import posting.commands.CommentActionCommand;
 import posting.commands.PostActionCommand;
 
@@ -15,7 +19,7 @@ public class PostInteractionController {
     private final PostView postView;
     private final CommentService commentService;
     private final PostRepository postRepo;
-
+    private final CommentVoteService commentVoteService;
     private final Map<String, PostActionCommand> postCommands = new HashMap<>();
     private final Map<String, CommentActionCommand> commentCommands = new HashMap<>();
 
@@ -23,21 +27,20 @@ public class PostInteractionController {
         postCommands.put(choice, command);
     }
 
-
     public void registerCommentCommand(String choice, CommentActionCommand command) {
         commentCommands.put(choice, command);
     }
 
-
     public PostInteractionController(StringReader stringReader, IntReader intReader,
                                      OutputWriter output, PostView postView,
-                                     CommentService commentService,
+                                     CommentService commentService, CommentVoteService commentVoteService,
                                      PostRepository postRepo) {
         this.stringReader = stringReader;
         this.intReader = intReader;
         this.output = output;
         this.postView = postView;
         this.commentService = commentService;
+        this.commentVoteService = commentVoteService;
         this.postRepo = postRepo;
     }
 
@@ -85,15 +88,16 @@ public class PostInteractionController {
     public void manageCommentInteraction(int postID) {
         int commentID = intReader.readInt("Insert Comment ID to interact with:");
         Comment foundComment = commentService.findCommentById(commentID);
-
         if (foundComment == null) {
             output.write("Error: Comment does not exist.");
             return;
         }
 
         output.write("Selected comment by: " + foundComment.getAuthor());
-        output.write("1. Reply to comment\n2. Edit comment\n3. Delete comment");
-        String commentChoice = stringReader.readString("Select option (1-3): ");
+
+
+        output.write("1. Upvote comment\n2. Downvote comment\n3. Reply to comment\n4. Edit comment\n5. Delete comment");
+        String commentChoice = stringReader.readString("Select option (1-5): ");
 
         CommentActionCommand command = commentCommands.get(commentChoice);
         if (command != null) {

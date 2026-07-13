@@ -1,4 +1,7 @@
 import account_manager.AccountQuery;
+import interaction.repository.InteractionQuery;
+import interaction.repository.PostRepo;
+import interaction.service.*;
 import logger.Logger;
 import community.SubredditQuery;
 import menu_commands.*;
@@ -7,18 +10,15 @@ import posting.attachment_handlers.AttachmentHandler;
 import posting.attachment_handlers.LinkAttachmentHandler;
 import posting.attachment_handlers.NoAttachmentHandler;
 import posting.attachment_handlers.PhotoAttachmentHandler;
-import posting.commands.AddCommentCommand;
-import posting.commands.CreatePostCommand;
-import posting.commands.ReplyCommentCommand;
-import posting.commands.VoteCommand;
+import posting.commands.*;
 import posting.post_validators.IsNotBlank;
 import posting.post_validators.IsValidLink;
 import posting.post_validators.Validator;
 import posting.post_validators.IsValidLength;
 
+
 import java.util.HashMap;
 import java.util.Map;
-import interaction.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,8 +33,12 @@ public class Main {
         AccountQuery accountQuery = new AccountQuery();
         Logger logger = Logger.getInstance();
         PostRepo postRepo = new PostRepo();
-        VoteService voteService = new VoteServiceImpl(postRepo, logger);
+        PostVoteService postVoteService = new PostVoteServiceImpl(postRepo, logger);
         CommentService commentService = new CommentServiceImpl(postRepo, logger);
+        CommentVoteService commentVoteService = new CommentVoteServiceImpl(postRepo, logger);
+        CommentActionCommand upvoteComm = new UpvoteCommentCommand(commentVoteService,stringReader,output);
+        CommentActionCommand downvoteComm = new DownvoteCommentCommand(commentVoteService,stringReader,output);
+
 
         PostService postService = new PostServiceImpl(postRepo);
 
@@ -58,7 +62,7 @@ public class Main {
         );
 
         PostInteractionController interactionController = new PostInteractionController(
-                stringReader, intReader, output, postView, commentService, postRepo
+                stringReader, intReader, output, postView, commentService,commentVoteService,postRepo
         );
 
         CreatePostCommand createPostCommand = new CreatePostCommand(postView, postService);
@@ -74,13 +78,16 @@ public class Main {
         dispatcher.registerCommand("4", new SubredditCommand(subredditQuery));
         dispatcher.registerCommand("5", new LoggerCommand(logger, stringReader, output));
 
-        interactionController.registerPostCommand("1", new VoteCommand(voteService, intReader, output, true));  // true = Upvote
-        interactionController.registerPostCommand("2", new VoteCommand(voteService, intReader, output, false)); // false = Downvote
+        interactionController.registerPostCommand("1", new VoteCommand(postVoteService, intReader, output, true));  // true = Upvote
+        interactionController.registerPostCommand("2", new VoteCommand(postVoteService, intReader, output, false)); // false = Downvote
         interactionController.registerPostCommand("3", new AddCommentCommand(commentService, stringReader, output));
         interactionController.registerPostCommand("4", interactionController::manageCommentInteraction);
 
 
-        interactionController.registerCommentCommand("1", new ReplyCommentCommand(commentService, stringReader, output));
+
+        interactionController.registerCommentCommand("1",upvoteComm);
+        interactionController.registerCommentCommand("2",downvoteComm);
+        interactionController.registerCommentCommand("3",new ReplyCommentCommand(commentService, stringReader, output));
 
         while (true) {
             output.write("\n--- MAIN MENU ---");

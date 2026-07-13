@@ -1,5 +1,8 @@
-package interaction;
+package interaction.service;
 
+import interaction.model.Comment;
+import interaction.model.Post;
+import interaction.repository.PostRepo;
 import logger.Logger;
 import logger.LogLevel;
 import java.util.List;

@@ -1,4 +1,4 @@
-package interaction;
+package interaction.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,10 @@ public class Comment {
     private String text;
     private String author;
     private List<Comment> replies;
+    private int upvotes;
+    private int downvotes;
+
+    private VoteTracker voteTracker;
 
     public Comment(int Id,String text,String author)
     {
@@ -15,6 +19,9 @@ public class Comment {
         this.text=text;
         this.author=author;
         this.replies=new ArrayList<>();
+        this.upvotes=0;
+        this.downvotes=0;
+        this.voteTracker=new VoteTracker();
     }
 
     //functie pentru editarea comenatriilor
@@ -41,6 +48,23 @@ public class Comment {
 
     public void addreply(Comment reply){
         this.replies.add(reply);
+    }
+
+    public int getUpvotes(){
+        if(voteTracker==null){
+            voteTracker=new VoteTracker();
+        }
+        return voteTracker.getUpvotes();
+    }
+    public int getDownvotes(){
+        if(voteTracker==null){
+            voteTracker=new VoteTracker();
+        }
+        return voteTracker.getDownvotes();
+    }
+
+    public VoteTracker getVoteTracker(){
+        return voteTracker;
     }
 
 }

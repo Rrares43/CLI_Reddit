@@ -1,7 +1,7 @@
 package posting.commands;
 
-import interaction.Post;
-import interaction.PostService;
+import interaction.model.Post;
+import interaction.service.PostService;
 import posting.PostView;
 
 import java.util.Scanner;

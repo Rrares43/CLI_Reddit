@@ -1,4 +1,6 @@
-package interaction;
+package interaction.service;
+
+import interaction.model.Comment;
 
 public interface CommentService {
     public void comment(int postId, String text);
