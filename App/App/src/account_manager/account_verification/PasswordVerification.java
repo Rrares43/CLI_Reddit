@@ -36,12 +36,14 @@ public class PasswordVerification implements AccountVerifier {
             }
         }
         if(hasWhitespace){
+            System.out.println("Password cannot contain whitespace");
             return false;
         }
         else if(correctLength && hasLetter && hasNumber && hasUppercase && hasLowercase && hasSpecial){
             return true;
         }
         else{
+            System.out.println("Password does not meet the requirements");
             return false;
         }
     }

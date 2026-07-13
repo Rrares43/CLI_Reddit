@@ -81,3 +81,23 @@
 [2026-07-13 11:26:18] [INFO] Application Started
 [2026-07-13 11:26:54] [INFO] Application Started
 [2026-07-13 11:27:18] [INFO] Application Started
+[2026-07-13 11:36:16] [INFO] Application Started
+[2026-07-13 11:38:46] [INFO] Vote for post with id 1 has been upvoted
+[2026-07-13 11:38:55] [INFO] Vote for post with id 1 has been upvoted
+[2026-07-13 11:44:44] [INFO] Application Started
+[2026-07-13 11:48:20] [INFO] Application Started
+[2026-07-13 11:49:13] [INFO] Application Started
+[2026-07-13 11:50:38] [INFO] Application Started
+[2026-07-13 11:52:23] [INFO] Application Started
+[2026-07-13 11:54:02] [INFO] Application Started
+[2026-07-13 11:54:09] [WARNING] Email condition not respected
+[2026-07-13 11:55:42] [INFO] Application Started
+[2026-07-13 12:04:09] [INFO] Application Started
+[2026-07-13 12:04:44] [INFO] Application Started
+[2026-07-13 12:06:03] [INFO] Application Started
+[2026-07-13 12:07:33] [INFO] Application Started
+[2026-07-13 12:08:15] [INFO] Application Started
+[2026-07-13 12:08:57] [INFO] Application Started
+[2026-07-13 12:11:57] [INFO] Application Started
+[2026-07-13 12:13:43] [INFO] Application Started
+[2026-07-13 12:15:11] [INFO] Application Started

@@ -14,7 +14,6 @@ public class AccountQuery {
 
   public AccountQuery(){
     this.Commands = new HashMap<>();
-    this.running = true;
 
     Commands.put("1" , new CreateAccountCommand());
     Commands.put("2" , new LoginCommand());
@@ -23,21 +22,23 @@ public class AccountQuery {
   }
 
   public void accountQuery() {
+    running = true;
     Scanner sc = new Scanner(System.in);
-    System.out.println("Select an option(1/2/3/4):");
-    System.out.println("1. Account creation");
-    System.out.println("2. Logging in");
-    System.out.println("3. Change password");
-    System.out.println("4. Return to previous menu");
-    String choice = sc.nextLine();
+    while (running) {
+      System.out.println("Select an option(1/2/3/4):");
+      System.out.println("1. Account creation");
+      System.out.println("2. Logging in");
+      System.out.println("3. Change password");
+      System.out.println("4. Return to previous menu");
+      String choice = sc.nextLine();
 
-    AccountCommand command = Commands.get(choice);
+      AccountCommand command = Commands.get(choice);
 
-    if(command != null) {
-      command.execute();
-    }
-    else {
-      System.out.println("Invalid Input");
+      if (command != null) {
+        command.execute();
+      } else {
+        System.out.println("Invalid Input");
+      }
     }
   }
 }
