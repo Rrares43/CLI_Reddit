@@ -73,7 +73,7 @@ public class Post {
         this.comments.add(comment);
     }
 
-    public void remove_comment(int index){
+    public void removeComment(int index){
         if(index>=0 && index<this.comments.size()){
             this.comments.remove(index);
         }

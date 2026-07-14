@@ -101,7 +101,7 @@ public class CommentServiceImpl implements CommentService {
                     logger.log(LogLevel.ERROR, "Comment " + commentId + " cannot be deleted by " + postRepo.getCurrentUser());
                     throw new SecurityException("Comment cannot be deleted");
                 }
-                post.remove_comment(i);
+                post.removeComment(i);
                 postRepo.saveToFile();
                 logger.log(LogLevel.INFO, "Comment deleted: " + commentId);
                 return;

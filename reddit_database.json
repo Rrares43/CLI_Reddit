@@ -112,8 +112,25 @@
     "author": "rares0208",
     "upvotes": 0,
     "downvotes": 0,
-    "comments": [],
-    "subredditName": "0"
+    "comments": [
+      {
+        "Id": 2,
+        "text": "comment normal",
+        "author": "FlorinUser",
+        "replies": [],
+        "upvotes": 0,
+        "downvotes": 0,
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        }
+      }
+    ],
+    "subredditName": "0",
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
   },
   {
     "Id": 6,

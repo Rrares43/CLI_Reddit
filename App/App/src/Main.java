@@ -102,6 +102,9 @@ public class Main {
         interactionController.registerCommentCommand("1",upvoteComm);
         interactionController.registerCommentCommand("2",downvoteComm);
         interactionController.registerCommentCommand("3",new ReplyCommentCommand(commentService, stringReader, output));
+        interactionController.registerCommentCommand("4",new EditCommentCommand(commentService, stringReader, output));
+        interactionController.registerCommentCommand("5",new DeleteCommentCommand(commentService, output));
+
 
         while (true) {
             output.write("\n--- MAIN MENU ---");

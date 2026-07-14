@@ -109,3 +109,15 @@
 [2026-07-13 20:53:11] [INFO] Application Started
 [2026-07-14 09:47:11] [INFO] Application Started
 [2026-07-14 09:47:35] [INFO] Password Changed
+[2026-07-14 10:01:56] [INFO] Application Started
+[2026-07-14 10:16:23] [INFO] Application Started
+[2026-07-14 10:19:17] [ERROR] Comment 1 cannot be deleted by FlorinUser
+[2026-07-14 10:19:54] [INFO] Comment added ID: 2 by FlorinUser
+[2026-07-14 10:20:16] [INFO] Comment deleted: 2
+[2026-07-14 10:22:56] [INFO] Application Started
+[2026-07-14 10:23:12] [INFO] Comment added ID: 2 by FlorinUser
+[2026-07-14 10:28:09] [INFO] Application Started
+[2026-07-14 10:28:26] [INFO] Comment deleted: 2
+[2026-07-14 10:28:57] [INFO] Application Started
+[2026-07-14 10:29:10] [INFO] Comment added ID: 2 by FlorinUser
+[2026-07-14 10:29:55] [INFO] Comment edited: 2
