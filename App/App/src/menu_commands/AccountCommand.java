@@ -10,7 +10,7 @@ public class AccountCommand implements MenuCommand {
     }
     @Override
     public void execute(){
-        accountQuery.accountQuery();
+        accountQuery.startAccountMenu();
     }
 }
 

@@ -101,15 +101,11 @@
 [2026-07-13 12:11:57] [INFO] Application Started
 [2026-07-13 12:13:43] [INFO] Application Started
 [2026-07-13 12:15:11] [INFO] Application Started
-[2026-07-13 12:44:37] [INFO] Application Started
-[2026-07-13 12:48:26] [INFO] Application Started
-[2026-07-13 14:48:15] [INFO] Application Started
-[2026-07-13 14:55:09] [INFO] Application Started
-[2026-07-13 14:55:53] [INFO] Comment with id1 has been upvoted
-[2026-07-13 15:04:46] [INFO] Application Started
-[2026-07-13 15:05:31] [ERROR] Comment not found
-[2026-07-13 15:06:02] [INFO] Application Started
-[2026-07-13 15:06:18] [INFO] Comment added ID: 2 by FlorinUser
-[2026-07-13 15:06:41] [INFO] Comment with id1downvote deleted
-[2026-07-13 15:10:40] [INFO] Application Started
-[2026-07-13 15:11:35] [INFO] Comment with id1downvote deleted
+[2026-07-13 13:09:28] [INFO] Application Started
+[2026-07-13 20:40:58] [INFO] Application Started
+[2026-07-13 20:50:09] [INFO] Application Started
+[2026-07-13 20:51:06] [ERROR] Account Exists
+[2026-07-13 20:53:03] [INFO] Application Started
+[2026-07-13 20:53:11] [INFO] Application Started
+[2026-07-14 09:47:11] [INFO] Application Started
+[2026-07-14 09:47:35] [INFO] Password Changed

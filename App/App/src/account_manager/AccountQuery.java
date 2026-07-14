@@ -1,43 +1,51 @@
 package account_manager;
 
 import account_manager.account_commands.AccountCommand;
-import account_manager.account_commands.ChangePasswordCommand;
-import account_manager.account_commands.CreateAccountCommand;
-import account_manager.account_commands.LoginCommand;
+import posting.StringReader;
+import posting.OutputWriter;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class AccountQuery {
-  private final Map<String, AccountCommand> Commands;
+  private final Map<String, AccountCommand> commands;
+  private final StringReader stringReader;
+  private final OutputWriter output;
   private boolean running;
 
-  public AccountQuery(){
-    this.Commands = new HashMap<>();
+  public AccountQuery(StringReader stringReader, OutputWriter output) {
+    this.commands = new HashMap<>();
+    this.stringReader = stringReader;
+    this.output = output;
 
-    Commands.put("1" , new CreateAccountCommand());
-    Commands.put("2" , new LoginCommand());
-    Commands.put("3" , new ChangePasswordCommand());
-    Commands.put("4", () -> this.running = false);
+    this.commands.put("4", () -> this.running = false);
   }
 
-  public void accountQuery() {
+  public void registerCommand(String key, AccountCommand command) {
+    commands.put(key, command);
+  }
+
+  public void startAccountMenu() {
     running = true;
-    Scanner sc = new Scanner(System.in);
+
     while (running) {
-      System.out.println("Select an option(1/2/3/4):");
-      System.out.println("1. Account creation");
-      System.out.println("2. Logging in");
-      System.out.println("3. Change password");
-      System.out.println("4. Return to previous menu");
-      String choice = sc.nextLine();
+      output.write("\n--- ACCOUNT MENU ---");
+      output.write("1. Create Account");
+      output.write("2. Login");
+      output.write("3. Change Password");
+      output.write("4. Back to Main Menu");
 
-      AccountCommand command = Commands.get(choice);
+      String choice = stringReader.readString("Select an option (1/2/3/4): ");
 
+      AccountCommand command = commands.get(choice);
       if (command != null) {
-        command.execute();
+        try {
+          command.execute();
+        } catch (Exception e) {
+          output.write("Error: " + e.getMessage());
+        }
       } else {
-        System.out.println("Invalid Input");
+        output.write("Invalid option! Please try again.");
       }
     }
   }
