@@ -7,11 +7,9 @@ import java.util.Scanner;
 
 public class AccountLogin {
     private final StringReader stringReader;
-    private final OutputWriter output;
 
-    public AccountLogin(StringReader stringReader, OutputWriter output) {
+    public AccountLogin(StringReader stringReader) {
         this.stringReader = stringReader;
-        this.output = output;
     }
 
     public void Login(){

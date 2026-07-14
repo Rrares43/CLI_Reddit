@@ -22,7 +22,6 @@ public class PostServiceImpl implements PostService {
 
         postRepository.addPost(newPost);
 
-
         return newPost;
     }
 }

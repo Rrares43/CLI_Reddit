@@ -81,4 +81,12 @@ public class Post {
             this.comments.remove(index);
         }
     }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

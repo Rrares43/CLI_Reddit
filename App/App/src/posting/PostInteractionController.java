@@ -69,8 +69,8 @@ public class PostInteractionController {
     }
 
     private void handlePostMenu(int postID) {
-        output.write("Choose an action:\n1. Upvote\n2. Downvote\n3. Add Comment\n4. Interact with a specific Comment\n0. Cancel");
-        String choice = stringReader.readString("Select option (0-4):");
+        output.write("Choose an action:\n1. Upvote\n2. Downvote\n3. Add Comment\n4. Edit Post\n5. Interact with a specific Comment\n0. Cancel");
+        String choice = stringReader.readString("Select option (0-5):");
 
         if (choice.equals("0")) {
             output.write("Action cancelled.");
