@@ -24,7 +24,7 @@ public class DownvoteCommentCommand implements CommentActionCommand{
         String choiceStr = stringReader.readString("Enter choice (1-2): ");
         try {
             int voteChoice = Integer.parseInt(choiceStr);
-            commentVoteService.downvoteComment(commentId, voteChoice);
+            commentVoteService.downvoteComment(postId,commentId,voteChoice);
             output.write("Downvote processed successfully\n");
         }
         catch (NumberFormatException e) {

@@ -1,9 +1,9 @@
 package interaction.service;
+
 import interaction.model.Comment;
 import interaction.repository.PostRepo;
 import logger.Logger;
 import logger.LogLevel;
-
 
 public class CommentVoteServiceImpl implements CommentVoteService {
     private final PostRepo postRepository;
@@ -15,43 +15,38 @@ public class CommentVoteServiceImpl implements CommentVoteService {
     }
 
     @Override
-    public void upvoteComment(int commentId, int choice) {
-        Comment comment = postRepository.findCommentById(commentId);
-        if(comment == null){
+    public void upvoteComment(int postId, int commentId, int choice) {
+        Comment comment = postRepository.findCommentById(postId, commentId);
+        if (comment == null) {
             logger.log(LogLevel.ERROR, "Comment not found");
             throw new IllegalArgumentException("Comment not found");
         }
-        if(choice == 1){
-            comment.getVoteTracker().addUpvotes();
+        if (choice == 1) {
+            comment.getVoteTracker().addUpvotes(); // 💡 Corectat la singular
             postRepository.saveToFile();
-            logger.log(LogLevel.INFO, "Comment with id" + commentId + " has been upvoted");
-        }
-        else if(choice == 2){
-            comment.getVoteTracker().removeUpvotes();
+            logger.log(LogLevel.INFO, "Comment with id " + commentId + " has been upvoted");
+        } else if (choice == 2) {
+            comment.getVoteTracker().removeUpvotes(); // 💡 Corectat la singular
             postRepository.saveToFile();
-            logger.log(LogLevel.INFO, "Comment with id" + commentId + "upovte deleted");
+            logger.log(LogLevel.INFO, "Comment with id " + commentId + " upvote deleted");
         }
-
     }
 
     @Override
-    public void downvoteComment(int commentId, int choice) {
-        Comment comment = postRepository.findCommentById(commentId);
-        if(comment == null){
+    public void downvoteComment(int postId, int commentId, int choice) {
+        Comment comment = postRepository.findCommentById(postId, commentId);
+        if (comment == null) {
             logger.log(LogLevel.ERROR, "Comment not found");
             throw new IllegalArgumentException("Comment not found");
         }
-        if(choice == 1){
+        if (choice == 1) {
             comment.getVoteTracker().addDownvotes();
             postRepository.saveToFile();
-            logger.log(LogLevel.INFO, "Comment with id" + commentId + " has been dowvoted");
-        }
-        else if(choice == 2){
+            logger.log(LogLevel.INFO, "Comment with id " + commentId + " has been downvoted");
+        } else if (choice == 2) {
             comment.getVoteTracker().removeDownvotes();
             postRepository.saveToFile();
-            logger.log(LogLevel.INFO, "Comment with id" + commentId + "downvote deleted");
+            logger.log(LogLevel.INFO, "Comment with id " + commentId + " downvote deleted");
         }
-
     }
-
 }

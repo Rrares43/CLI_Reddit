@@ -21,7 +21,7 @@ public class UpvoteCommentCommand implements CommentActionCommand {
         String choiceStr = stringReader.readString("Enter choice (1-2): ");
         try {
             int voteChoice = Integer.parseInt(choiceStr);
-            commentVoteService.upvoteComment(commentId, voteChoice);
+            commentVoteService.upvoteComment(postId,commentId, voteChoice);
             output.write("Upvote processed successfully\n");
         }
         catch (NumberFormatException e) {

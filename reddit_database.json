@@ -35,11 +35,19 @@
             "author": "FlorinUser",
             "replies": [],
             "upvotes": 0,
-            "downvotes": 0
+            "downvotes": 0,
+            "voteTracker": {
+              "upvotes": 1,
+              "downvotes": 0
+            }
           }
         ],
         "upvotes": 0,
-        "downvotes": 0
+        "downvotes": 0,
+        "voteTracker": {
+          "upvotes": 1,
+          "downvotes": 0
+        }
       }
     ],
     "subredditName": "r/test",
