@@ -109,6 +109,7 @@
 [2026-07-13 20:53:11] [INFO] Application Started
 [2026-07-14 09:47:11] [INFO] Application Started
 [2026-07-14 09:47:35] [INFO] Password Changed
+<<<<<<< Updated upstream
 [2026-07-14 10:01:56] [INFO] Application Started
 [2026-07-14 10:16:23] [INFO] Application Started
 [2026-07-14 10:19:17] [ERROR] Comment 1 cannot be deleted by FlorinUser
@@ -121,3 +122,22 @@
 [2026-07-14 10:28:57] [INFO] Application Started
 [2026-07-14 10:29:10] [INFO] Comment added ID: 2 by FlorinUser
 [2026-07-14 10:29:55] [INFO] Comment edited: 2
+=======
+[2026-07-14 10:12:26] [INFO] Application Started
+[2026-07-14 10:12:56] [ERROR] Comment not found
+[2026-07-14 10:16:13] [INFO] Application Started
+[2026-07-14 10:16:34] [ERROR] Comment not found
+[2026-07-14 10:17:39] [INFO] Application Started
+[2026-07-14 10:28:56] [INFO] Application Started
+[2026-07-14 10:29:20] [ERROR] Comment not found
+>>>>>>> Stashed changes
+[2026-07-14 10:34:56] [INFO] Application Started
+[2026-07-14 10:35:12] [ERROR] Comment not found
+[2026-07-14 10:36:58] [INFO] Application Started
+[2026-07-14 10:37:17] [ERROR] Comment not found
+[2026-07-14 10:38:43] [INFO] Application Started
+[2026-07-14 10:39:01] [ERROR] Comment not found
+[2026-07-14 10:42:51] [INFO] Application Started
+[2026-07-14 10:44:55] [INFO] Application Started
+[2026-07-14 10:45:08] [INFO] Comment with id 2 has been upvoted
+[2026-07-14 10:46:14] [INFO] Comment with id 4 has been upvoted

@@ -78,15 +78,24 @@ public class PostRepo implements PostRepository {
     public String getCurrentUser() {
         return DataBase.currentLoggedInUser;
     }
+
     @Override
     public void addPost(Post post) {
         this.posts.add(post);
         saveToFile();
     }
 
-    public Comment findCommentById(int commentId) {
-        for(Post post : DataBase.mockPosts){
-            Comment found = searchInComments(post.getComments(),commentId);
+    public Comment findCommentById(int postId, int commentId) {
+        for(Post post : this.posts){
+            if(post.getId() == postId) {
+                Comment found = searchInComments(post.getComments(), commentId);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        for(Post post : this.posts){
+            Comment found = searchInComments(post.getComments(), commentId);
             if (found != null) {
                 return found;
             }
@@ -95,11 +104,17 @@ public class PostRepo implements PostRepository {
     }
 
     private Comment searchInComments(List<Comment> comments, int commentId) {
+        if (comments == null) {
+            return null;
+        }
         for (Comment c : comments) {
             if (c.getId() == commentId) {
                 return c;
             }
-            Comment foundInReplies = searchInComments(c.getReplies(),commentId);
+            Comment foundInReplies = searchInComments(c.getReplies(), commentId);
+            if (foundInReplies != null) {
+                return foundInReplies;
+            }
         }
         return null;
     }

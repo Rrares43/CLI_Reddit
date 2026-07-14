@@ -62,10 +62,13 @@ public class Comment {
         }
         return voteTracker.getDownvotes();
     }
-
-    public VoteTracker getVoteTracker(){
-        return voteTracker;
+    public VoteTracker getVoteTracker() {
+        if (this.voteTracker == null) {
+            this.voteTracker = new VoteTracker();
+        }
+        return this.voteTracker;
     }
+
 
 }
 
