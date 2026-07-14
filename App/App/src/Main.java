@@ -2,6 +2,7 @@ import account_manager.AccountCreator;
 import account_manager.AccountLogin;
 import account_manager.AccountQuery;
 import account_manager.PasswordChanger;
+import account_manager.SessionService;
 import account_manager.account_commands.ChangePasswordCommand;
 import account_manager.account_commands.CreateAccountCommand;
 import account_manager.account_commands.LoginCommand;
@@ -36,9 +37,11 @@ public class Main {
 
         logger.Logger.getInstance().log(logger.LogLevel.INFO, "Application Started");
 
+        SessionService sessionService = new SessionService();
+
         AccountQuery accountQuery = new AccountQuery(stringReader, output);
         AccountCreator accountCreator = new AccountCreator(stringReader, output);
-        AccountLogin accountLogin = new AccountLogin(stringReader);
+        AccountLogin accountLogin = new AccountLogin(stringReader, sessionService, output);
         PasswordChanger passwordChanger = new PasswordChanger();
 
         accountQuery.registerCommand("1" , new CreateAccountCommand(accountCreator));
@@ -46,7 +49,7 @@ public class Main {
         accountQuery.registerCommand("3", new ChangePasswordCommand(passwordChanger));
 
         Logger logger = Logger.getInstance();
-        PostRepo postRepo = new PostRepo();
+        PostRepo postRepo = new PostRepo(sessionService);
         PostVoteService postVoteService = new PostVoteServiceImpl(postRepo, logger);
         PostEditServiceImpl postEditService = new PostEditServiceImpl(postRepo);
         CommentService commentService = new CommentServiceImpl(postRepo, logger);
@@ -80,7 +83,7 @@ public class Main {
                 stringReader, intReader, output, postView, commentService,commentVoteService,postRepo
         );
 
-        CreatePostCommand createPostCommand = new CreatePostCommand(postView, postService);
+        CreatePostCommand createPostCommand = new CreatePostCommand(postView, postService, sessionService);
 
         InteractionQuery interactionQuery = new InteractionQuery(interactionController);
         SubredditQuery subredditQuery = new SubredditQuery();

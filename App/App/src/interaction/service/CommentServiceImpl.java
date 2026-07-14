@@ -5,7 +5,6 @@ import interaction.model.Post;
 import interaction.repository.PostRepo;
 import logger.Logger;
 import logger.LogLevel;
-import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
 
@@ -41,14 +40,7 @@ public class CommentServiceImpl implements CommentService {
             throw new IllegalArgumentException("Post not found");
         }
 
-        Comment parentComment = null;
-        for (Comment c : post.getComments()) {
-            if (c.getId() == parentCommentId) {
-                parentComment = c;
-                break;
-            }
-        }
-
+        Comment parentComment = postRepo.findCommentById(postId, parentCommentId);
         if (parentComment == null) {
             logger.log(LogLevel.ERROR, "Base comment not found: " + parentCommentId);
             throw new IllegalArgumentException("Base comment not found.");
@@ -70,20 +62,19 @@ public class CommentServiceImpl implements CommentService {
             throw new IllegalArgumentException("Post not found");
         }
 
-        for (Comment c : post.getComments()) {
-            if (c.getId() == commentId) {
-                if (!c.getAuthor().equals(postRepo.getCurrentUser())) {
-                    logger.log(LogLevel.ERROR, "Comment " + commentId + " cannot be edited by " + postRepo.getCurrentUser());
-                    throw new SecurityException("Comment cannot be edited");
-                }
-                c.setText(newText);
-                postRepo.saveToFile();
-                logger.log(LogLevel.INFO, "Comment edited: " + commentId);
-                return;
-            }
+        Comment comment = postRepo.findCommentById(postId, commentId);
+        if (comment == null) {
+            throw new IllegalArgumentException("Comment not found.");
         }
 
-        throw new IllegalArgumentException("Comment not found.");
+        if (!comment.getAuthor().equals(postRepo.getCurrentUser())) {
+            logger.log(LogLevel.ERROR, "Comment " + commentId + " cannot be edited by " + postRepo.getCurrentUser());
+            throw new SecurityException("Comment cannot be edited");
+        }
+
+        comment.setText(newText);
+        postRepo.saveToFile();
+        logger.log(LogLevel.INFO, "Comment edited: " + commentId);
     }
 
     @Override
@@ -94,43 +85,30 @@ public class CommentServiceImpl implements CommentService {
             throw new IllegalArgumentException("Post not found");
         }
 
-        for (int i = 0; i < post.getComments().size(); i++) {
-            Comment c = post.getComments().get(i);
-            if (c.getId() == commentId) {
-                if (!c.getAuthor().equals(postRepo.getCurrentUser())) {
-                    logger.log(LogLevel.ERROR, "Comment " + commentId + " cannot be deleted by " + postRepo.getCurrentUser());
-                    throw new SecurityException("Comment cannot be deleted");
-                }
-                post.removeComment(i);
-                postRepo.saveToFile();
-                logger.log(LogLevel.INFO, "Comment deleted: " + commentId);
-                return;
-            }
+        Comment comment = postRepo.findCommentById(postId, commentId);
+        if (comment == null) {
+            throw new IllegalArgumentException("Comment not found.");
         }
 
-        throw new IllegalArgumentException("Comment not found.");
+        if (!comment.getAuthor().equals(postRepo.getCurrentUser())) {
+            logger.log(LogLevel.ERROR, "Comment " + commentId + " cannot be deleted by " + postRepo.getCurrentUser());
+            throw new SecurityException("Comment cannot be deleted");
+        }
+
+        if (!postRepo.removeComment(postId, commentId)) {
+            throw new IllegalArgumentException("Comment not found.");
+        }
+
+        postRepo.saveToFile();
+        logger.log(LogLevel.INFO, "Comment deleted: " + commentId);
     }
 
     @Override
     public Comment findCommentById(int commentId) {
         for (Post post : postRepo.findAllPosts()) {
-            Comment found = searchInComments(post.getComments(), commentId);
+            Comment found = postRepo.findCommentById(post.getId(), commentId);
             if (found != null) {
                 return found;
-            }
-        }
-        return null;
-    }
-
-
-    private Comment searchInComments(List<Comment> comments, int commentId) {
-        for (Comment c : comments) {
-            if (c.getId() == commentId) {
-                return c;
-            }
-            Comment foundInReplies = searchInComments(c.getReplies(), commentId);
-            if (foundInReplies != null) {
-                return foundInReplies;
             }
         }
         return null;

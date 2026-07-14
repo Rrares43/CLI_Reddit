@@ -1,5 +1,6 @@
 package posting.commands;
 
+import account_manager.SessionService;
 import interaction.model.Post;
 import interaction.service.PostService;
 import posting.PostView;
@@ -9,10 +10,12 @@ import java.util.Scanner;
 public class CreatePostCommand {
     private final PostView view;
     private final PostService postService;
+    private final SessionService sessionService;
 
-    public CreatePostCommand(PostView view, PostService postService) {
+    public CreatePostCommand(PostView view, PostService postService, SessionService sessionService) {
         this.view = view;
         this.postService = postService;
+        this.sessionService = sessionService;
     }
 
     public void execute() {
@@ -39,7 +42,12 @@ public class CreatePostCommand {
 
                 String finalContent = baseContent + attachment;
 
-                Post myNewPost = postService.createPost("rares0208", title, finalContent, subreddit);
+                Post myNewPost = postService.createPost(
+                        sessionService.getCurrentUsername(),
+                        title,
+                        finalContent,
+                        subreddit
+                );
 
                 view.displayPost(myNewPost);
             }

@@ -149,5 +149,19 @@
     "downvotes": 0,
     "comments": [],
     "subredditName": "as"
+  },
+  {
+    "Id": 7,
+    "title": "incercare",
+    "content": "dadadad",
+    "author": "guest",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "reddit",
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
   }
 ]

@@ -1,5 +1,6 @@
 package interaction.repository;
 
+import account_manager.SessionService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -19,8 +20,11 @@ public class PostRepo implements PostRepository {
     private final List<Post> posts;
     private static final Path DB_FILE = Paths.get("reddit_database.json");
     private final Gson gson;
+    private final SessionService sessionService;
+    private int nextCommentId = 1;
 
-    public PostRepo() {
+    public PostRepo(SessionService sessionService) {
+        this.sessionService = sessionService;
         this.gson = new GsonBuilder().setPrettyPrinting().create();
 
         this.posts = loadFromFile();
@@ -29,6 +33,28 @@ public class PostRepo implements PostRepository {
             this.posts.addAll(DataBase.mockPosts);
             saveToFile();
         }
+
+        initializeNextCommentId();
+    }
+
+    private void initializeNextCommentId() {
+        int maxId = 0;
+        for (Post post : posts) {
+            maxId = Math.max(maxId, findMaxCommentId(post.getComments()));
+        }
+        nextCommentId = maxId + 1;
+    }
+
+    private int findMaxCommentId(List<Comment> comments) {
+        int max = 0;
+        if (comments == null) {
+            return max;
+        }
+        for (Comment comment : comments) {
+            max = Math.max(max, comment.getId());
+            max = Math.max(max, findMaxCommentId(comment.getReplies()));
+        }
+        return max;
     }
 
     private List<Post> loadFromFile() {
@@ -71,12 +97,12 @@ public class PostRepo implements PostRepository {
 
     @Override
     public int getNextCommentId() {
-        return DataBase.nextCommentId++;
+        return nextCommentId++;
     }
 
     @Override
     public String getCurrentUser() {
-        return DataBase.currentLoggedInUser;
+        return sessionService.getCurrentUsername();
     }
 
     @Override
@@ -86,21 +112,35 @@ public class PostRepo implements PostRepository {
     }
 
     public Comment findCommentById(int postId, int commentId) {
-        for(Post post : this.posts){
-            if(post.getId() == postId) {
-                Comment found = searchInComments(post.getComments(), commentId);
-                if (found != null) {
-                    return found;
-                }
+        Post post = findPostById(postId);
+        if (post == null) {
+            return null;
+        }
+        return searchInComments(post.getComments(), commentId);
+    }
+
+    public boolean removeComment(int postId, int commentId) {
+        Post post = findPostById(postId);
+        if (post == null) {
+            return false;
+        }
+        return removeFromList(post.getComments(), commentId);
+    }
+
+    private boolean removeFromList(List<Comment> comments, int commentId) {
+        if (comments == null) {
+            return false;
+        }
+        for (int i = 0; i < comments.size(); i++) {
+            if (comments.get(i).getId() == commentId) {
+                comments.remove(i);
+                return true;
+            }
+            if (removeFromList(comments.get(i).getReplies(), commentId)) {
+                return true;
             }
         }
-        for(Post post : this.posts){
-            Comment found = searchInComments(post.getComments(), commentId);
-            if (found != null) {
-                return found;
-            }
-        }
-        return null;
+        return false;
     }
 
     private Comment searchInComments(List<Comment> comments, int commentId) {
