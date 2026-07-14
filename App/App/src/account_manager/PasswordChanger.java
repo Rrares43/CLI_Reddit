@@ -3,7 +3,7 @@ package account_manager;
 import java.util.Scanner;
 
 public class PasswordChanger {
-    public static void ChangePassword(){
+    public void ChangePassword(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Email:");
         String email = sc.nextLine();

@@ -1,4 +1,10 @@
+import account_manager.AccountCreator;
+import account_manager.AccountLogin;
 import account_manager.AccountQuery;
+import account_manager.PasswordChanger;
+import account_manager.account_commands.ChangePasswordCommand;
+import account_manager.account_commands.CreateAccountCommand;
+import account_manager.account_commands.LoginCommand;
 import interaction.repository.InteractionQuery;
 import interaction.repository.PostRepo;
 import interaction.service.*;
@@ -30,7 +36,15 @@ public class Main {
 
         logger.Logger.getInstance().log(logger.LogLevel.INFO, "Application Started");
 
-        AccountQuery accountQuery = new AccountQuery();
+        AccountQuery accountQuery = new AccountQuery(stringReader, output);
+        AccountCreator accountCreator = new AccountCreator(stringReader, output);
+        AccountLogin accountLogin = new AccountLogin(stringReader, output);
+        PasswordChanger passwordChanger = new PasswordChanger();
+
+        accountQuery.registerCommand("1" , new CreateAccountCommand(accountCreator));
+        accountQuery.registerCommand("2", new LoginCommand(accountLogin));
+        accountQuery.registerCommand("3", new ChangePasswordCommand(passwordChanger));
+
         Logger logger = Logger.getInstance();
         PostRepo postRepo = new PostRepo();
         PostVoteService postVoteService = new PostVoteServiceImpl(postRepo, logger);

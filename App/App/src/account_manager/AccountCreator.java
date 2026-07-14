@@ -2,36 +2,59 @@ package account_manager;
 
 import account_manager.account_verification.EmailVerification;
 import account_manager.account_verification.PasswordVerification;
+import posting.OutputWriter;
+import posting.StringReader;
 
-import java.util.IllegalFormatCodePointException;
-import java.util.Scanner;
 
 public class AccountCreator {
-    public static void AccountCreate(){
-        Scanner sc = new Scanner(System.in);
-        boolean running = true;
-        while(running) {
-            System.out.println("Create an account? (y/n)");
-            String answer = sc.nextLine().toLowerCase();
-            if (!answer.equals("y")) {
-                running = false;
-                continue;
+    private final StringReader stringReader;
+    private final OutputWriter output;
+
+    public AccountCreator(StringReader stringReader, OutputWriter output) {
+        this.stringReader = stringReader;
+        this.output = output;
+    }
+
+    public void createAccount(){
+            String answer = stringReader.readString("Create an account? (y/n)");
+            if(!answer.equalsIgnoreCase("y")) {
+                output.write("Account creation cancelled.");
+                return;
             }
-            System.out.println("Enter Username: ");
-            String username = sc.nextLine();
-            System.out.println("Enter Email: ");
-            String email = sc.nextLine();
-            if (!EmailVerification.verify(email)) {
-                continue;
+
+            String username = stringReader.readString("Enter username: (or 0 to cancel)");
+            if(username.equals("0")) {
+                return;
             }
-            System.out.println("Enter Password: ");
-            System.out.println("Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character.");
-            String password = sc.nextLine();
-            if (!PasswordVerification.verify(password)) {
-                continue;
+
+            String email;
+            while(true) {
+                email = stringReader.readString("Enter email: (or 0 to cancel)");
+                if(email.equals("0")) {
+                    return;
+                }
+                if(EmailVerification.verify(email)) {
+                    break;
+                }
+                else {
+                    output.write("Invalid email format!");
+                }
             }
+
+        String password;
+        while (true) {
+            output.write("Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character.");
+            password = stringReader.readString("Enter Password (or 0 to cancel): ");
+            if (password.equals("0")) return;
+
+            if (PasswordVerification.verify(password)) {
+                break;
+            } else {
+                output.write("Weak password. Please try again.");
+            }
+        }
+
             Account account = new Account(username, email, password);
             AccountOperations.saveAccount(account);
         }
     }
-}
