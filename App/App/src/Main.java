@@ -38,7 +38,7 @@ public class Main {
 
         AccountQuery accountQuery = new AccountQuery(stringReader, output);
         AccountCreator accountCreator = new AccountCreator(stringReader, output);
-        AccountLogin accountLogin = new AccountLogin(stringReader, output);
+        AccountLogin accountLogin = new AccountLogin(stringReader);
         PasswordChanger passwordChanger = new PasswordChanger();
 
         accountQuery.registerCommand("1" , new CreateAccountCommand(accountCreator));
@@ -48,6 +48,7 @@ public class Main {
         Logger logger = Logger.getInstance();
         PostRepo postRepo = new PostRepo();
         PostVoteService postVoteService = new PostVoteServiceImpl(postRepo, logger);
+        PostEditServiceImpl postEditService = new PostEditServiceImpl(postRepo);
         CommentService commentService = new CommentServiceImpl(postRepo, logger);
         CommentVoteService commentVoteService = new CommentVoteServiceImpl(postRepo, logger);
         CommentActionCommand upvoteComm = new UpvoteCommentCommand(commentVoteService,stringReader,output);
@@ -95,8 +96,8 @@ public class Main {
         interactionController.registerPostCommand("1", new VoteCommand(postVoteService, intReader, output, true));  // true = Upvote
         interactionController.registerPostCommand("2", new VoteCommand(postVoteService, intReader, output, false)); // false = Downvote
         interactionController.registerPostCommand("3", new AddCommentCommand(commentService, stringReader, output));
-        interactionController.registerPostCommand("4", interactionController::manageCommentInteraction);
-
+        interactionController.registerPostCommand("4", new EditPostCommand(stringReader, postEditService));
+        interactionController.registerPostCommand("5", interactionController::manageCommentInteraction);
 
 
         interactionController.registerCommentCommand("1",upvoteComm);
