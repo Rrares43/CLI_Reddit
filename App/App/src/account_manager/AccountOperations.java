@@ -1,19 +1,53 @@
 package account_manager;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import account_manager.account_verification.EmailVerification;
 import account_manager.account_verification.PasswordVerification;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import logger.Logger;
 import logger.LogLevel;
 
 public class AccountOperations {
-    private static final String FILE_NAME = "App/data/accounts.txt";
+    private static final String FILE_NAME = "App/data/accounts.json";
+
+    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    private static List<Account> loadAccounts() {
+        File file = new File(FILE_NAME);
+        if(!file.exists()){
+            return new ArrayList<>();
+        }
+        try(FileReader reader = new FileReader(FILE_NAME)){
+            Type listType = new TypeToken<ArrayList<Account>>(){}.getType();
+            List<Account> accounts = gson.fromJson(reader, listType);
+            return accounts != null ? accounts : new ArrayList<>();
+        }
+        catch(IOException e){
+            System.out.println("Error");
+            Logger.getInstance().log(LogLevel.ERROR, "Error");
+            return new ArrayList<>();
+        }
+    }
+
+    private static void writeAccounts(List<Account> accounts) {
+        try(FileWriter fileWriter = new FileWriter(FILE_NAME)){
+            gson.toJson(accounts, fileWriter);
+        }
+        catch (IOException e){
+            System.out.println("Error");
+            Logger.getInstance().log(LogLevel.ERROR, "Error");
+        }
+    }
 
     public static void saveAccount(Account account) {
         Logger logger = Logger.getInstance();
@@ -21,15 +55,11 @@ public class AccountOperations {
             System.out.println("Please fill in all fields");
         }
         else if (PasswordVerification.verify(account.getPassword()) && !verifyAccount(account) && EmailVerification.verify(account.getEmail())) {
-            try (FileWriter addAccount = new FileWriter(FILE_NAME, true)) {
-                addAccount.write(account.getUsername() + "," + account.getEmail() + "," + account.getPassword() + "\n");
-                System.out.println("Account Saved");
-                logger.log(LogLevel.INFO, "Account Saved");
-
-            } catch (IOException e) {
-                System.out.println("Error");
-                logger.log(LogLevel.ERROR, "Error");
-            }
+            List<Account> accounts = loadAccounts();
+            accounts.add(account);
+            writeAccounts(accounts);
+            System.out.println("Account saved successfully!");
+            logger.log(LogLevel.INFO, "Account saved successfully!");
         }
         else if(!EmailVerification.verify(account.getEmail())){
             System.out.println("Email condition not respected");
@@ -47,89 +77,52 @@ public class AccountOperations {
 
     // used for checking if the account already exists
     public static boolean verifyAccount(Account account){
-        File accountFile = new File(FILE_NAME);
         Logger logger = Logger.getInstance();
+        List<Account> accounts = loadAccounts();
 
-        try(Scanner fileReader = new Scanner(accountFile)){
-            while(fileReader.hasNextLine()){
-                String line = fileReader.nextLine();
-                String[] data = line.split(",");
-                if(data[0].equals(account.getUsername()) && data[2].equals(account.getPassword())){
-                    System.out.println("Account Exists");
-                    logger.log(LogLevel.ERROR, "Account Exists");
-                    return true;
-                }
+        for(Account acc : accounts){
+            if(acc.getUsername().equals(account.getUsername()) && acc.getEmail().equals(account.getEmail())){
+                System.out.println("Account already exists");
+                logger.log(LogLevel.ERROR, "Account already exists");
+                return true;
             }
-        }
-        catch(IOException e){
-            System.out.println("Error");
-            logger.log(LogLevel.ERROR, "Error");
         }
         return false;
     }
 
     // used for changing the password
     public static void changePassword(String email, String newPassword){
-        File accountFile = new File(FILE_NAME);
-        List<String> newLines = new ArrayList<>();
-        boolean userFound = false;
         Logger logger = Logger.getInstance();
+        List<Account> accounts = loadAccounts();
+        boolean found = false;
 
-        try(Scanner fileReader = new Scanner(accountFile)){
-            while(fileReader.hasNextLine()){
-                String line = fileReader.nextLine();
-                String[] data = line.split(",");
-                if(data[1].equals(email)){
-                    userFound = true;
-                    newLines.add(data[0] + "," + email + "," + newPassword);
-                }
-                else{
-                    newLines.add(line);
-                }
+        for(Account acc : accounts){
+            if(acc.getEmail().equals(email)){
+                acc.setPassword(newPassword);
+                found = true;
+                break;
             }
         }
-        catch(IOException e){
-            System.out.println("Error");
-            logger.log(LogLevel.ERROR, "Error");
+
+        if(!found){
+            System.out.println("Account not found");
+            logger.log(LogLevel.ERROR, "Account not found");
             return;
         }
 
-        if(!userFound){
-            System.out.println("User not found");
-            logger.log(LogLevel.ERROR, "User not found");
-            return;
-        }
-
-        try(FileWriter fw = new FileWriter(accountFile, false)){
-            for(String line: newLines){
-                fw.write(line + "\n");
-            }
-            System.out.println("Password Changed");
-            logger.log(LogLevel.INFO, "Password Changed");
-        }
-        catch(IOException e){
-            System.out.println("Error");
-            logger.log(LogLevel.ERROR, "Error");
-        }
+        writeAccounts(accounts);
+        System.out.println("Password changed successfully!");
+        logger.log(LogLevel.INFO, "Password changed successfully!");
     }
 
     // used for checking if the email already exists
     public static boolean checkEmail(String email){
-        File accountFile = new File(FILE_NAME);
-        Logger logger = Logger.getInstance();
-        try(Scanner fileReader = new Scanner(accountFile)){
-            while(fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
-                String[] data = line.split(",");
-                if (data[1].equals(email)) {
-                    return true;
-                }
+        List<Account> accounts = loadAccounts();
+
+        for(Account acc : accounts){
+            if(acc.getEmail().equals(email)){
+                return true;
             }
-            return false;
-        }
-        catch(IOException e){
-            System.out.println("Error");
-            logger.log(LogLevel.ERROR, "Error");
         }
         return false;
     }
