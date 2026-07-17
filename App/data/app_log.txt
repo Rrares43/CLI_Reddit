@@ -170,3 +170,5 @@
 [2026-07-17 14:30:47] [INFO] User logged out of their account
 [2026-07-17 14:36:52] [INFO] Application Started
 [2026-07-17 14:36:57] [INFO] Application Started
+[2026-07-17 15:09:38] [INFO] Application Started
+[2026-07-17 15:09:49] [ERROR] pandele has logged in.
