@@ -18,7 +18,7 @@ public class AccountQuery {
     this.stringReader = stringReader;
     this.output = output;
 
-    this.commands.put("4", () -> this.running = false);
+    this.commands.put("6", () -> this.running = false);
   }
 
   public void registerCommand(String key, AccountCommand command) {
@@ -33,9 +33,12 @@ public class AccountQuery {
       output.write("1. Create Account");
       output.write("2. Login");
       output.write("3. Change Password");
-      output.write("4. Back to Main Menu");
+      output.write("4. Check Current User");
+      output.write("5. Logout");
+      output.write("6. Back to Main Menu");
 
-      String choice = stringReader.readString("Select an option (1/2/3/4): ");
+
+      String choice = stringReader.readString("Select an option (1/2/3/4/5/6): ");
 
       AccountCommand command = commands.get(choice);
       if (command != null) {

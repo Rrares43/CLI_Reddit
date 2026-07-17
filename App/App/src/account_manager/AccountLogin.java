@@ -18,7 +18,7 @@ public class AccountLogin {
         String username = stringReader.readString("Enter username: ");
         String password = stringReader.readString("Enter password: ");
 
-        if (AccountOperations.verifyAccount(new Account(username, "", password))) {
+        if (AccountOperations.loginAccount(new Account(username, "", password))) {
             sessionService.login(username);
             output.write("Login Successful. Logged in as: " + username);
         } else {

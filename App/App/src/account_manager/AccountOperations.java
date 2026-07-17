@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import account_manager.account_verification.EmailVerification;
 import account_manager.account_verification.PasswordVerification;
@@ -54,7 +53,7 @@ public class AccountOperations {
         if(account.getUsername().isBlank() || account.getEmail().isBlank() || account.getPassword().isBlank()){
             System.out.println("Please fill in all fields");
         }
-        else if (PasswordVerification.verify(account.getPassword()) && !verifyAccount(account) && EmailVerification.verify(account.getEmail())) {
+        else if (PasswordVerification.verify(account.getPassword()) && !loginAccount(account) && EmailVerification.verify(account.getEmail())) {
             List<Account> accounts = loadAccounts();
             accounts.add(account);
             writeAccounts(accounts);
@@ -76,14 +75,13 @@ public class AccountOperations {
     }
 
     // used for checking if the account already exists
-    public static boolean verifyAccount(Account account){
+    public static boolean loginAccount(Account account){
         Logger logger = Logger.getInstance();
         List<Account> accounts = loadAccounts();
 
         for(Account acc : accounts){
-            if(acc.getUsername().equals(account.getUsername()) && acc.getEmail().equals(account.getEmail())){
-                System.out.println("Account already exists");
-                logger.log(LogLevel.ERROR, "Account already exists");
+            if(acc.getUsername().equals(account.getUsername()) && acc.getPassword().equals(account.getPassword())){
+                logger.log(LogLevel.ERROR, acc.getUsername() + " has logged in.");
                 return true;
             }
         }
@@ -125,5 +123,16 @@ public class AccountOperations {
             }
         }
         return false;
+    }
+
+    public static Account getAccountByUsername(String username){
+        List<Account> accounts = loadAccounts();
+
+        for(Account acc : accounts){
+            if(acc.getUsername().equals(username)){
+                return acc;
+            }
+        }
+        return null;
     }
 }
