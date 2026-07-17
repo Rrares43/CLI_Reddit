@@ -11,14 +11,16 @@ public class AccountQuery {
   private final Map<String, AccountCommand> commands;
   private final StringReader stringReader;
   private final OutputWriter output;
+  private final SessionService sessionService;
   private boolean running;
 
-  public AccountQuery(StringReader stringReader, OutputWriter output) {
+  public AccountQuery(StringReader stringReader, OutputWriter output, SessionService sessionService) {
+    this.sessionService = sessionService;
     this.commands = new HashMap<>();
     this.stringReader = stringReader;
     this.output = output;
 
-    this.commands.put("6", () -> this.running = false);
+    this.commands.put("0", () -> this.running = false);
   }
 
   public void registerCommand(String key, AccountCommand command) {
@@ -29,26 +31,52 @@ public class AccountQuery {
     running = true;
 
     while (running) {
-      output.write("\n--- ACCOUNT MENU ---");
-      output.write("1. Create Account");
-      output.write("2. Login");
-      output.write("3. Change Password");
-      output.write("4. Check Current User");
-      output.write("5. Logout");
-      output.write("6. Back to Main Menu");
+      String choice;
+      if(!sessionService.isLoggedIn()){
+        output.write("\n--- ACCOUNT MENU ---");
+        output.write("0. Back to Main Menu");
+        output.write("1. Create Account");
+        output.write("2. Login");
 
-
-      String choice = stringReader.readString("Select an option (1/2/3/4/5/6): ");
-
-      AccountCommand command = commands.get(choice);
-      if (command != null) {
-        try {
-          command.execute();
-        } catch (Exception e) {
-          output.write("Error: " + e.getMessage());
+        choice = stringReader.readString("Select an option (0/1/2): ");
+        if(choice.equals("0") || choice.equals("1") || choice.equals("2")) {
+          AccountCommand command = commands.get(choice);
+          if (command != null) {
+            try {
+              command.execute();
+            } catch (Exception e) {
+              output.write("Error: " + e.getMessage());
+            }
+          } else {
+            output.write("Invalid option! Please try again.");
+          }
         }
-      } else {
-        output.write("Invalid option! Please try again.");
+        else{
+          output.write("Choice invalid!");
+        }
+      }
+      else {
+        output.write("\n--- ACCOUNT MENU ---");
+        output.write("0. Back to Main Menu");
+        output.write("1. Create Account");
+        output.write("2. Login");
+        output.write("3. Change Password");
+        output.write("4. Check Current User");
+        output.write("5. Logout");
+
+        choice = stringReader.readString("Select an option (0/1/2/3/4/5): ");
+
+        AccountCommand command = commands.get(choice);
+        if (command != null) {
+          try {
+            command.execute();
+          } catch (Exception e) {
+            output.write("Error: " + e.getMessage());
+          }
+        }
+        else {
+          output.write("Invalid option! Please try again.");
+        }
       }
     }
   }
