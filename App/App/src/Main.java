@@ -18,12 +18,25 @@ import posting.post_validators.IsValidLink;
 import posting.post_validators.Validator;
 import posting.post_validators.IsValidLength;
 
-
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Se încearcă conectarea la Neon...");
+
+        // Test pt conexiunea la baza de date
+       /* try (Connection conn = DataBaseConnection.getConnection()) {
+            if (conn != null) {
+                System.out.println("Conexiunea a reusit");
+            }
+        } catch (SQLException e) {
+            System.out.println("Eroare la conexiune: " + e.getMessage());
+            e.printStackTrace();
+            System.out.println("Aplicația va continua fara baza de date...");
+        } */
 
         ConsoleIO console = new ConsoleIO();
         StringReader stringReader = console;
@@ -133,4 +146,5 @@ public class Main {
             }
         }
     }
+
 }
