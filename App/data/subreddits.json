@@ -1,6 +1,12 @@
 [
   {
-    "name": "r/test",
-    "description": "testing"
+    "name": "r/LetsJsonify",
+    "description": "A place to talk about json stuff",
+    "owner": "guest"
+  },
+  {
+    "name": "r/stackOverflow",
+    "description": "Place to talk about coding",
+    "owner": "guest"
   }
 ]

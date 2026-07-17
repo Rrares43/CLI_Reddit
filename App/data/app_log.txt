@@ -151,3 +151,10 @@
 [2026-07-17 12:27:33] [ERROR] JSON has logged in.
 [2026-07-17 12:27:40] [INFO] User logged out of their account
 [2026-07-17 12:27:51] [ERROR] JSON has logged in.
+[2026-07-17 12:48:24] [INFO] Application Started
+[2026-07-17 12:48:33] [ERROR] JSON has logged in.
+[2026-07-17 12:49:00] [INFO] Subreddit saved successfully!
+[2026-07-17 12:49:37] [INFO] Application Started
+[2026-07-17 12:50:14] [INFO] Account saved successfully!
+[2026-07-17 12:50:22] [ERROR] Stack has logged in.
+[2026-07-17 12:50:48] [INFO] Subreddit saved successfully!

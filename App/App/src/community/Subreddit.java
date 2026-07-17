@@ -3,8 +3,9 @@ package community;
 public class Subreddit {
     private String name;
     private String description;
+    private String owner;
 
-    public Subreddit(String name, String description){
+    public Subreddit(String name, String description, String owner){
         if(!name.startsWith("r/")) {
             this.name = "r/" + name;
         }
@@ -12,6 +13,7 @@ public class Subreddit {
             this.name = name;
         }
         this.description = description;
+        this.owner = owner;
     }
 
     public String getName(){
@@ -20,6 +22,7 @@ public class Subreddit {
     public String getDescription(){
         return description;
     }
+    public String getOwner(){ return owner; }
 
     public void setName(String name){
         this.name = name;
