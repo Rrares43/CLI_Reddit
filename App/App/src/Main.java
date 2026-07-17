@@ -1,17 +1,12 @@
-import account_manager.AccountCreator;
-import account_manager.AccountLogin;
-import account_manager.AccountQuery;
-import account_manager.PasswordChanger;
-import account_manager.SessionService;
-import account_manager.account_commands.ChangePasswordCommand;
-import account_manager.account_commands.CreateAccountCommand;
-import account_manager.account_commands.LoginCommand;
+import account_manager.*;
+import account_manager.account_commands.*;
 import interaction.repository.InteractionQuery;
 import interaction.repository.PostRepo;
 import interaction.service.*;
 import logger.Logger;
 import community.SubredditQuery;
 import menu_commands.*;
+import menu_commands.AccountCommand;
 import posting.*;
 import posting.attachment_handlers.AttachmentHandler;
 import posting.attachment_handlers.LinkAttachmentHandler;
@@ -43,10 +38,14 @@ public class Main {
         AccountCreator accountCreator = new AccountCreator(stringReader, output);
         AccountLogin accountLogin = new AccountLogin(stringReader, sessionService, output);
         PasswordChanger passwordChanger = new PasswordChanger();
+        AccountInfo accountInfo = new AccountInfo();
+        AccountLogout accountLogout = new AccountLogout(sessionService);
 
         accountQuery.registerCommand("1" , new CreateAccountCommand(accountCreator));
         accountQuery.registerCommand("2", new LoginCommand(accountLogin));
         accountQuery.registerCommand("3", new ChangePasswordCommand(passwordChanger));
+        accountQuery.registerCommand("4", new CheckCurrentUserCommand(accountInfo, sessionService));
+        accountQuery.registerCommand("5", new LogoutCommand(accountLogout));
 
         Logger logger = Logger.getInstance();
         PostRepo postRepo = new PostRepo(sessionService);
