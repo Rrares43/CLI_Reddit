@@ -14,12 +14,12 @@ import com.google.gson.reflect.TypeToken;
 import logger.Logger;
 import logger.LogLevel;
 
-public class SubredditCreator {
+public class SubredditOperations {
     private static final String FILE_NAME = "App/data/subreddits.json";
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static List<Subreddit> loadSubreddits() {
+    static List<Subreddit> loadSubreddits() {
         File file = new File(FILE_NAME);
         if(!file.exists()){
             return new ArrayList<>();
@@ -33,6 +33,15 @@ public class SubredditCreator {
             System.out.println("Error");
             Logger.getInstance().log(LogLevel.ERROR,"Error");
             return new ArrayList<>();
+        }
+    }
+
+    static void listSubsMadebyUser(String user){
+        List<Subreddit> subreddits = loadSubreddits();
+        for(Subreddit sub : subreddits){
+            if(sub.getOwner().equals(user)){
+                System.out.println(sub.getName() + "\n");
+            }
         }
     }
 

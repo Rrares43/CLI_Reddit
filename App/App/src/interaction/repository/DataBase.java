@@ -13,7 +13,7 @@ public class DataBase {
     public static List<Subreddit> mockSubreddits = new ArrayList<>();
 
     static {
-        mockSubreddits.add(new Subreddit("r/test", "testing for subs"));
+        mockSubreddits.add(new Subreddit("r/test", "testing for subs", "tester"));
 
         mockPosts.add(new Post(1, "Prima mea postare", "Acesta este continutul postarii de test.", "FlorinUser", "r/test"));
         mockPosts.add(new Post(2, "Intrebare Java", "Imi da o eroare la Scanner, ma poate ajuta cineva?", "Alex", "r/test"));
