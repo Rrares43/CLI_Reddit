@@ -112,22 +112,8 @@ public class Main {
         while (true) {
             String choice;
             if(!sessionService.isLoggedIn()){
-                output.write("\n--- INITIAL MENU ---");
-                output.write("Must be logged in to access app functions");
-                output.write("0. Exit");
-                output.write("1. Account Options");
-                output.write("-----------------------");
-                choice = stringReader.readString("Select your choice (0/1): ");
-                if (choice.equals("0")) {
-                    output.write("Application is closing");
-                    break;
-                }
-                else if(choice.equals("1")){
-                    dispatcher.execute(choice);
-                }
-                else{
-                    System.out.println("Please log in");
-                }
+                choice = "1";
+                dispatcher.execute(choice);
             }
             else {
                 output.write("\n--- MAIN MENU ---");
