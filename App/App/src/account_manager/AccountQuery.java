@@ -34,12 +34,12 @@ public class AccountQuery {
       String choice;
       if(!sessionService.isLoggedIn()){
         output.write("\n--- ACCOUNT MENU ---");
-        output.write("0. Back to Main Menu");
+        output.write("0. End Application");
         output.write("1. Create Account");
         output.write("2. Login");
 
         choice = stringReader.readString("Select an option (0/1/2): ");
-        if(choice.equals("0") || choice.equals("1") || choice.equals("2")) {
+        if(choice.equals("1") || choice.equals("2")) {
           AccountCommand command = commands.get(choice);
           if (command != null) {
             try {
@@ -51,6 +51,10 @@ public class AccountQuery {
             output.write("Invalid option! Please try again.");
           }
         }
+        else if(choice.equals("0")){
+          output.write("App closed");
+          System.exit(0);
+        }
         else{
           output.write("Choice invalid!");
         }
@@ -58,8 +62,8 @@ public class AccountQuery {
       else {
         output.write("\n--- ACCOUNT MENU ---");
         output.write("0. Back to Main Menu");
-        output.write("1. Create Account");
-        output.write("2. Login");
+        output.write("1. Add account");
+        output.write("2. Login into another account");
         output.write("3. Change Password");
         output.write("4. Check Current User");
         output.write("5. Logout");
