@@ -34,7 +34,7 @@ public class Main {
 
         SessionService sessionService = new SessionService();
 
-        AccountQuery accountQuery = new AccountQuery(stringReader, output);
+        AccountQuery accountQuery = new AccountQuery(stringReader, output, sessionService);
         AccountCreator accountCreator = new AccountCreator(stringReader, output);
         AccountLogin accountLogin = new AccountLogin(stringReader, sessionService, output);
         PasswordChanger passwordChanger = new PasswordChanger();
@@ -110,21 +110,41 @@ public class Main {
 
 
         while (true) {
-            output.write("\n--- MAIN MENU ---");
-            output.write("0. Exit");
-            output.write("1. Account Options");
-            output.write("2. Post Options");
-            output.write("3. Interaction");
-            output.write("4. Subreddit Creation");
-            output.write("5. Logger");
-            output.write("-----------------------");
-
-            String choice = stringReader.readString("Select your choice (0/1/2/3/4/5): ");
-            if (choice.equals("0")) {
-                output.write("Application is closing");
-                break;
+            String choice;
+            if(!sessionService.isLoggedIn()){
+                output.write("\n--- INITIAL MENU ---");
+                output.write("Must be logged in to access app functions");
+                output.write("0. Exit");
+                output.write("1. Account Options");
+                output.write("-----------------------");
+                choice = stringReader.readString("Select your choice (0/1): ");
+                if (choice.equals("0")) {
+                    output.write("Application is closing");
+                    break;
+                }
+                else if(choice.equals("1")){
+                    dispatcher.execute(choice);
+                }
+                else{
+                    System.out.println("Please log in");
+                }
             }
-            dispatcher.execute(choice);
+            else {
+                output.write("\n--- MAIN MENU ---");
+                output.write("0. Exit");
+                output.write("1. Account Options");
+                output.write("2. Post Options");
+                output.write("3. Interaction");
+                output.write("4. Subreddit Creation");
+                output.write("5. Logger");
+                output.write("-----------------------");
+                choice = stringReader.readString("Select your choice (0/1/2/3/4/5): ");
+                if (choice.equals("0")) {
+                    output.write("Application is closing");
+                    break;
+                }
+                dispatcher.execute(choice);
+            }
         }
     }
 }

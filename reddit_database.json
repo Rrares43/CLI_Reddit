@@ -163,5 +163,19 @@
       "upvotes": 0,
       "downvotes": 0
     }
+  },
+  {
+    "Id": 8,
+    "title": "JSON is cool",
+    "content": "wow json is pretty cool",
+    "author": "JSON",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "json",
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
   }
 ]
