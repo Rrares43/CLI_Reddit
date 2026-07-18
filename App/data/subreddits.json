@@ -8,5 +8,40 @@
     "name": "r/stackOverflow",
     "description": "Place to talk about coding",
     "owner": "guest"
+  },
+  {
+    "name": "r/test",
+    "description": "Test subreddit",
+    "owner": "Admin"
+  },
+  {
+    "name": "incercare",
+    "description": "Subreddit de incercare",
+    "owner": "rares0208"
+  },
+  {
+    "name": "un subreddit",
+    "description": "Doar un subreddit",
+    "owner": "rares0208"
+  },
+  {
+    "name": "0",
+    "description": "Subreddit 0",
+    "owner": "rares0208"
+  },
+  {
+    "name": "as",
+    "description": "Subreddit as",
+    "owner": "rares0208"
+  },
+  {
+    "name": "reddit",
+    "description": "Subreddit general",
+    "owner": "guest"
+  },
+  {
+    "name": "json",
+    "description": "Despre JSON",
+    "owner": "JSON"
   }
 ]

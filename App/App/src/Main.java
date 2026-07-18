@@ -25,19 +25,22 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Se încearcă conectarea la Neon...");
 
-        // Test pt conexiunea la baza de date
-       /* try (Connection conn = DataBaseConnection.getConnection()) {
+        //comanda pentru migrarea bazei de date, nu mai trebuie apelata
+        //DataMigrator.runMigration();
+
+        // Test for the database connection
+        /*   System.out.println("Se încearcă conectarea la Neon...");
+        try (Connection conn = DataBaseConnection.getConnection()) {
             if (conn != null) {
-                System.out.println("Conexiunea a reusit");
+                System.out.println("Connection successful");
             }
         } catch (SQLException e) {
-            System.out.println("Eroare la conexiune: " + e.getMessage());
+            System.out.println("Connection error: " + e.getMessage());
             e.printStackTrace();
-            System.out.println("Aplicația va continua fara baza de date...");
-        } */
-
+            System.out.println("The application will continue without the database...");
+        }
+        */
         ConsoleIO console = new ConsoleIO();
         StringReader stringReader = console;
         IntReader intReader = console;
@@ -113,7 +116,6 @@ public class Main {
         interactionController.registerPostCommand("3", new AddCommentCommand(commentService, stringReader, output));
         interactionController.registerPostCommand("4", new EditPostCommand(stringReader, postEditService));
         interactionController.registerPostCommand("5", interactionController::manageCommentInteraction);
-
 
         interactionController.registerCommentCommand("1",upvoteComm);
         interactionController.registerCommentCommand("2",downvoteComm);

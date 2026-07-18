@@ -13,7 +13,7 @@ public class DataBaseConnection {
             Class.forName("org.postgresql.Driver");
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
-            throw new SQLException("Driver-ul PostgreSQL nu a fost găsit în classpath!", e);
+            throw new SQLException("PostgreSQL driver isn't in classpath!", e);
         }
     }
 }
