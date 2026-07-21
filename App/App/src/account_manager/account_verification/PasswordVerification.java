@@ -4,6 +4,11 @@ public class PasswordVerification implements AccountVerifier {
     public PasswordVerification(){}
 
     public static boolean verify(String password){
+        if(password == null){
+            System.out.println("Password cannot be null");
+            return false;
+        }
+        
         boolean correctLength = false;
         boolean hasLetter = false;
         boolean hasNumber = false;
