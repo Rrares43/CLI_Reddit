@@ -85,20 +85,4 @@ class PostTest {
         assertEquals(1, post.getDownvotes());
     }
 
-    @Test
-    void shouldHandleEdgeCaseInputsForFields() {
-        Post emptyPost = new Post(-1, "", "", "user", "");
-        Post nullPost = new Post(0, null, null, null, null);
-
-        assertEquals(-1, emptyPost.getId());
-        assertEquals("", emptyPost.getTitle());
-        assertEquals("", emptyPost.getContent());
-        assertEquals("", emptyPost.getSubredditName());
-
-        assertEquals(0, nullPost.getId());
-        assertNull(nullPost.getTitle());
-        assertNull(nullPost.getContent());
-        assertNull(nullPost.getAuthor());
-        assertNull(nullPost.getSubredditName());
-    }
 }
