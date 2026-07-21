@@ -30,8 +30,8 @@ public class Main {
         //DataMigrator.runMigration();
 
         // Test for the database connection
-/*
-        System.out.println("Pornire Reddit CLI...");
+
+      /*  System.out.println("Pornire Reddit CLI...");
         try (Connection conn = DataBaseConnection.getConnection()) {
             if (conn != null && !conn.isClosed()) {
                 System.out.println("Conexiunea la baza de date a fost realizată");
@@ -41,7 +41,7 @@ public class Main {
             System.err.println("Eroare la conectarea bazei de date");
             e.printStackTrace();
         }
- */
+*/
         ConsoleIO console = new ConsoleIO();
         StringReader stringReader = console;
         IntReader intReader = console;
