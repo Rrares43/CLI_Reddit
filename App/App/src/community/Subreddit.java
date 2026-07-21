@@ -6,7 +6,7 @@ public class Subreddit {
     private String owner;
 
     public Subreddit(String name, String description, String owner){
-        if(!name.startsWith("r/")) {
+        if(name == null || !name.startsWith("r/")) {
             this.name = "r/" + name;
         }
         else{
