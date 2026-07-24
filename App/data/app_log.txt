@@ -256,3 +256,13 @@
 [2026-07-24 17:12:29] [INFO] Application Started
 [2026-07-24 17:13:46] [INFO] Application Started
 [2026-07-24 17:13:57] [ERROR] pandele has logged in.
+[2026-07-24 17:29:18] [INFO] Application Started
+[2026-07-24 17:37:39] [INFO] Application Started
+[2026-07-24 17:37:53] [ERROR] pandele has logged in.
+[2026-07-24 17:38:18] [INFO] User logged out of their account
+[2026-07-24 17:38:32] [ERROR] data has logged in.
+[2026-07-24 17:39:20] [INFO] Password changed successfully!
+[2026-07-24 17:41:58] [INFO] Application Started
+[2026-07-24 17:42:08] [ERROR] pandele has logged in.
+[2026-07-24 17:46:18] [INFO] Application Started
+[2026-07-24 17:46:50] [ERROR] data has logged in.

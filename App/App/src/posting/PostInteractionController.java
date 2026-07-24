@@ -46,7 +46,7 @@ public class PostInteractionController {
 
     public void startInteraction() {
         Scanner sc = new Scanner(System.in);
-        output.write("Welcome to the Post Interaction Menu!");
+
         System.out.println("Do you want to interact with a specific post? (y/n)");
         String answer = sc.nextLine().toLowerCase();
         if (answer.equals("n")) {
