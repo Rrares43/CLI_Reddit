@@ -47,7 +47,8 @@ public class AccountQuery {
             } catch (Exception e) {
               output.write("Error: " + e.getMessage());
             }
-          } else {
+          }
+          else {
             output.write("Invalid option! Please try again.");
           }
         }

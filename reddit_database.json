@@ -64,7 +64,7 @@
     ],
     "subredditName": "r/test",
     "voteTracker": {
-      "upvotes": 0,
+      "upvotes": 1,
       "downvotes": 1
     }
   },

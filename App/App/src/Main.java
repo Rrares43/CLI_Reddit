@@ -1,5 +1,8 @@
 import account_manager.*;
 import account_manager.account_commands.*;
+import community.subredditcommands.CreateSubredditCommand;
+import community.subredditcommands.EditSubredditCommand;
+import community.subredditcommands.ViewSubredditCommand;
 import interaction.repository.InteractionQuery;
 import interaction.repository.PostRepo;
 import interaction.service.*;
@@ -17,14 +20,16 @@ import posting.post_validators.IsNotBlank;
 import posting.post_validators.IsValidLink;
 import posting.post_validators.Validator;
 import posting.post_validators.IsValidLength;
+import com.github.lalyos.jfiglet.FigletFont;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String Art = FigletFont.convertOneLine("Buggit");
+        System.out.println(Art);
 
         //comanda pentru migrarea bazei de date, nu mai trebuie apelata
         //DataMigrator.runMigration();
@@ -105,7 +110,14 @@ public class Main {
         CreatePostCommand createPostCommand = new CreatePostCommand(postView, postService, sessionService);
 
         InteractionQuery interactionQuery = new InteractionQuery(interactionController);
-        SubredditQuery subredditQuery = new SubredditQuery();
+        SubredditQuery subredditQuery = new SubredditQuery(sessionService, stringReader, output);
+        CreateSubredditCommand createSubredditCommand = new CreateSubredditCommand(sessionService);
+        ViewSubredditCommand viewSubredditCommand = new ViewSubredditCommand(stringReader, output);
+        EditSubredditCommand editSubredditCommand = new EditSubredditCommand(sessionService, stringReader);
+
+        subredditQuery.registerCommand("1", createSubredditCommand);
+        subredditQuery.registerCommand("2", viewSubredditCommand);
+        subredditQuery.registerCommand("3", editSubredditCommand);
 
         MenuDispatcher dispatcher = new MenuDispatcher(output);
 
@@ -137,10 +149,10 @@ public class Main {
             else {
                 output.write("\n--- MAIN MENU ---");
                 output.write("0. Exit");
-                output.write("1. Account Options");
+                output.write("1. Account menu");
                 output.write("2. Post Options");
                 output.write("3. Interaction");
-                output.write("4. Subreddit Creation");
+                output.write("4. Subreddit menu");
                 output.write("5. Logger");
                 output.write("-----------------------");
                 choice = stringReader.readString("Select your choice (0/1/2/3/4/5): ");

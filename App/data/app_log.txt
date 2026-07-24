@@ -186,7 +186,6 @@
 [2026-07-18 15:34:18] [INFO] Application Started
 [2026-07-18 16:10:33] [INFO] Application Started
 [2026-07-18 16:11:42] [INFO] Application Started
-<<<<<<< HEAD
 [2026-07-19 14:52:10] [INFO] Application Started
 [2026-07-19 14:56:08] [INFO] Application Started
 [2026-07-19 14:59:33] [INFO] Application Started
@@ -199,14 +198,47 @@
 [2026-07-19 16:59:51] [ERROR] data has logged in.
 [2026-07-19 16:59:55] [INFO] User logged out of their account
 [2026-07-19 17:02:33] [INFO] Application Started
-=======
-[2026-07-19 16:53:02] [INFO] Application Started
-[2026-07-19 16:56:31] [INFO] Application Started
-[2026-07-19 16:56:56] [ERROR] Admin has logged in.
-[2026-07-21 12:42:10] [INFO] Application Started
-[2026-07-21 13:12:02] [INFO] Application Started
-[2026-07-21 13:12:20] [ERROR] pandele has logged in.
->>>>>>> 4b39341 (local modifiers)
-[2026-07-21 13:54:06] [INFO] Application Started
-[2026-07-21 13:54:15] [INFO] Application Started
-[2026-07-21 13:54:36] [ERROR] pandele has logged in.
+[2026-07-21 12:49:40] [INFO] Application Started
+[2026-07-21 13:52:28] [INFO] Application Started
+[2026-07-23 14:43:51] [INFO] Application Started
+[2026-07-23 14:44:07] [ERROR] Stack has logged in.
+[2026-07-23 14:44:27] [INFO] Subreddit saved successfully!
+[2026-07-23 14:44:38] [ERROR] Error: Subreddit name cannot be empty!
+[2026-07-23 16:03:44] [INFO] Application Started
+[2026-07-23 16:04:24] [ERROR] JSON has logged in.
+[2026-07-23 16:05:13] [INFO] Vote for post with id 1 has been upvoted
+[2026-07-24 13:20:30] [INFO] Application Started
+[2026-07-24 13:20:33] [INFO] Application Started
+[2026-07-24 13:21:01] [ERROR] pandele has logged in.
+[2026-07-24 13:21:36] [INFO] Application Started
+[2026-07-24 13:36:33] [ERROR] test has logged in.
+[2026-07-24 13:41:23] [INFO] Application Started
+[2026-07-24 13:42:14] [ERROR] test has logged in.
+[2026-07-24 13:43:46] [INFO] Application Started
+[2026-07-24 13:43:55] [ERROR] test has logged in.
+[2026-07-24 13:51:06] [INFO] Application Started
+[2026-07-24 13:53:27] [ERROR] test has logged in.
+[2026-07-24 13:55:30] [INFO] Application Started
+[2026-07-24 13:55:58] [ERROR] test has logged in.
+[2026-07-24 13:57:40] [INFO] Subreddit saved successfully!
+[2026-07-24 14:10:11] [INFO] Application Started
+[2026-07-24 14:10:20] [ERROR] test has logged in.
+[2026-07-24 14:12:47] [INFO] Application Started
+[2026-07-24 14:13:09] [INFO] Application Started
+[2026-07-24 14:15:28] [INFO] Application Started
+[2026-07-24 14:15:46] [ERROR] test has logged in.
+[2026-07-24 14:17:09] [INFO] Application Started
+[2026-07-24 14:17:20] [ERROR] test has logged in.
+[2026-07-24 14:29:38] [INFO] Application Started
+[2026-07-24 14:30:10] [INFO] Application Started
+[2026-07-24 14:30:41] [INFO] Application Started
+[2026-07-24 14:30:47] [ERROR] test has logged in.
+[2026-07-24 14:39:55] [INFO] Application Started
+[2026-07-24 14:42:21] [INFO] Application Started
+[2026-07-24 14:42:35] [ERROR] test has logged in.
+[2026-07-24 14:45:19] [INFO] Application Started
+[2026-07-24 14:45:27] [ERROR] test has logged in.
+[2026-07-24 14:46:54] [INFO] Application Started
+[2026-07-24 15:14:16] [INFO] Application Started
+[2026-07-24 15:34:42] [INFO] Application Started
+[2026-07-24 15:38:25] [INFO] Application Started
