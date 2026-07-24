@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import logger.Logger;
 import logger.LogLevel;
+import persistence.DatabaseSync;
 
 public class SubredditOperations {
     private static final String FILE_NAME = "App/data/subreddits.json";
@@ -52,7 +53,9 @@ public class SubredditOperations {
         catch (IOException e){
             System.out.println("Error");
             Logger.getInstance().log(LogLevel.ERROR,"Error");
+            return;
         }
+        DatabaseSync.syncSubreddits(subreddits);
     }
 
     public static void saveSubreddit(Subreddit subreddit){

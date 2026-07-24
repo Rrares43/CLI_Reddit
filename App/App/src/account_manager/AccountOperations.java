@@ -15,6 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import logger.Logger;
 import logger.LogLevel;
+import persistence.DatabaseSync;
 
 public class AccountOperations {
     private static final String FILE_NAME = "App/data/accounts.json";
@@ -45,7 +46,9 @@ public class AccountOperations {
         catch (IOException e){
             System.out.println("Error");
             Logger.getInstance().log(LogLevel.ERROR, "Error");
+            return;
         }
+        DatabaseSync.syncAccounts(accounts);
     }
 
     public static void saveAccount(Account account) {

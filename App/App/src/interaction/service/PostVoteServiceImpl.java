@@ -3,6 +3,7 @@ import interaction.model.Post;
 import interaction.repository.PostRepo;
 import logger.Logger;
 import logger.LogLevel;
+import persistence.DatabaseSync;
 
 
 public class PostVoteServiceImpl implements PostVoteService {
@@ -25,11 +26,13 @@ public class PostVoteServiceImpl implements PostVoteService {
         if(choice==1){
             post.getVoteTracker().addUpvotes();
             postRepo.saveToFile();
+            DatabaseSync.upsertPostVote(postRepo.getCurrentUser(), postId, 1);
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been upvoted");
         }
         else if(choice==2){
             post.getVoteTracker().removeUpvotes();
             postRepo.saveToFile();
+            DatabaseSync.removePostVote(postRepo.getCurrentUser(), postId, 1);
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been decremented");
         }
     }
@@ -43,11 +46,13 @@ public class PostVoteServiceImpl implements PostVoteService {
         if(choice==1){
             post.getVoteTracker().addDownvotes();
             postRepo.saveToFile();
+            DatabaseSync.upsertPostVote(postRepo.getCurrentUser(), postId, -1);
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been downvoted");
         }
         else if(choice==2){
             post.getVoteTracker().removeDownvotes();
             postRepo.saveToFile();
+            DatabaseSync.removePostVote(postRepo.getCurrentUser(), postId, -1);
             logger.log(LogLevel.INFO,"Vote for post with id "+postId+" has been decremented");
         }
 }

@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import interaction.model.Comment;
 import interaction.model.Post;
+import persistence.DatabaseSync;
 
 import java.io.Reader;
 import java.io.Writer;
@@ -77,7 +78,9 @@ public class PostRepo implements PostRepository {
             gson.toJson(this.posts, writer);
         } catch (Exception e) {
             System.err.println("Error saving to JSON: " + e.getMessage());
+            return;
         }
+        DatabaseSync.syncPosts(this.posts);
     }
 
     @Override
