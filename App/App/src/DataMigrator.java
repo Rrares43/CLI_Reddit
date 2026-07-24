@@ -15,9 +15,18 @@ public class DataMigrator {
     private static final String SUBREDDITS_FILE_PATH = "App/data/subreddits.json";
     private static final String POSTS_FILE_PATH = "reddit_database.json";
 
+    private static void cleanDatabase(Connection databaseConnection) throws Exception {
+        System.out.println("Cleaning existing database tables...");
+        try (Statement stmt = databaseConnection.createStatement()) {
+            stmt.execute("TRUNCATE TABLE accounts, subreddits, posts, comments, post_votes, comment_votes CASCADE;");
+        }
+    }
+
     public static void runMigration() {
+
         System.out.println("Starting data migration...");
         try (Connection databaseConnection = DataBaseConnection.getConnection()) {
+            cleanDatabase(databaseConnection);
 
             migrateAccounts(databaseConnection);
             migrateSubreddits(databaseConnection);
@@ -58,7 +67,10 @@ public class DataMigrator {
 
     private static void migrateSubreddits(Connection databaseConnection) throws Exception {
         String insertSubredditQuery = "INSERT INTO subreddits (name, description, creator_id) " +
-                "VALUES (?, ?, (SELECT id FROM accounts WHERE username = ?)) ON CONFLICT (name) DO NOTHING";
+                "VALUES (?, ?, (SELECT id FROM accounts WHERE username = ?)) " +
+                "ON CONFLICT (name) DO UPDATE " +
+                "SET description = EXCLUDED.description, " +
+                "creator_id = EXCLUDED.creator_id";
 
         try (FileReader fileReader = new FileReader(SUBREDDITS_FILE_PATH);
              PreparedStatement preparedStatement = databaseConnection.prepareStatement(insertSubredditQuery)) {

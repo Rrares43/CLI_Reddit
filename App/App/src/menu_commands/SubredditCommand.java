@@ -9,6 +9,6 @@ public class SubredditCommand implements MenuCommand {
     }
     @Override
     public void execute(){
-        subredditQuery.subredditQuery();
+        subredditQuery.startSubredditMenu();
     }
 }

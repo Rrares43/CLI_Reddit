@@ -19,7 +19,7 @@ public class SubredditOperations {
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    static List<Subreddit> loadSubreddits() {
+    public static List<Subreddit> loadSubreddits() {
         File file = new File(FILE_NAME);
         if(!file.exists()){
             return new ArrayList<>();
@@ -36,16 +36,16 @@ public class SubredditOperations {
         }
     }
 
-    static void listSubsMadebyUser(String user){
+    public static void listSubsMadebyUser(String user){
         List<Subreddit> subreddits = loadSubreddits();
         for(Subreddit sub : subreddits){
             if(sub.getOwner().equals(user)){
-                System.out.println(sub.getName() + "\n");
+                System.out.println(sub.getName());
             }
         }
     }
 
-    private static void writeSubreddits(List<Subreddit> subreddits){
+    public static void writeSubreddits(List<Subreddit> subreddits){
         try(FileWriter fileWriter = new FileWriter(FILE_NAME)){
             gson.toJson(subreddits, fileWriter);
         }

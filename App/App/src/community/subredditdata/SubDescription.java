@@ -1,4 +1,4 @@
-package community;
+package community.subredditdata;
 
 import logger.LogLevel;
 import logger.Logger;
@@ -6,7 +6,7 @@ import posting.post_validators.IsNotBlank;
 
 import java.util.Scanner;
 
-public class SubDescription implements SubredditData{
+public class SubDescription implements SubredditData {
     public static String ask(){
         while(true) {
             Scanner sc = new Scanner(System.in);

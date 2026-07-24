@@ -24,7 +24,11 @@ public class Subreddit {
     }
     public String getOwner(){ return owner; }
 
-    public void setName(String name){
+    public void setName(String name)
+    {
+        if(!name.startsWith("r/")) {
+            name = "r/" + name;
+        }
         this.name = name;
     }
     public void setDescription(String description){
