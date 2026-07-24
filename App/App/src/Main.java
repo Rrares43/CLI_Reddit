@@ -23,6 +23,8 @@ import posting.post_validators.IsValidLength;
 import com.github.lalyos.jfiglet.FigletFont;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +38,8 @@ public class Main {
 
         // Test for the database connection
 
-        /*
-        System.out.println("Pornire Reddit CLI...");
+
+        /*System.out.println("Pornire Reddit CLI...");
         try (Connection conn = DataBaseConnection.getConnection()) {
             if (conn != null && !conn.isClosed()) {
                 System.out.println("Conexiunea la baza de date a fost realizată");
@@ -48,7 +50,7 @@ public class Main {
             e.printStackTrace();
         }
 
-         */
+    */
 
         ConsoleIO console = new ConsoleIO();
         StringReader stringReader = console;
