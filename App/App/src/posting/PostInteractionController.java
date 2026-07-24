@@ -1,5 +1,7 @@
 package posting;
 
+import community.Subreddit;
+import community.SubredditOperations;
 import interaction.model.Comment;
 import interaction.model.Post;
 import interaction.repository.PostRepository;
@@ -9,8 +11,8 @@ import posting.commands.CommentActionCommand;
 import posting.commands.PostActionCommand;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class PostInteractionController {
     private final StringReader stringReader;
@@ -45,27 +47,79 @@ public class PostInteractionController {
     }
 
     public void startInteraction() {
-        Scanner sc = new Scanner(System.in);
+        String subredditName = askForSubreddit();
+        if (subredditName == null) {
+            return;
+        }
 
-        System.out.println("Do you want to interact with a specific post? (y/n)");
-        String answer = sc.nextLine().toLowerCase();
-        if (answer.equals("n")) {
+        List<Post> posts = postRepo.findPostsBySubreddit(subredditName);
+        if (posts.isEmpty()) {
+            output.write("No posts found in " + subredditName + ".");
             return;
         }
-        else if (!answer.equals("y")) {
-            System.out.println("Invalid input. Please enter 'y' or 'n'.");
-            return;
+
+        output.write("\nPosts in " + subredditName + ":");
+        for (Post post : posts) {
+            output.write("ID: " + post.getId() + " | Title: " + post.getTitle());
         }
-        int postID = intReader.readInt("Enter post ID:");
-        Post foundPost = postRepo.findPostById(postID);
+
+        int postID = intReader.readInt("Enter the ID of the post you want to interact with:");
+        Post foundPost = null;
+        for (Post post : posts) {
+            if (post.getId() == postID) {
+                foundPost = post;
+                break;
+            }
+        }
 
         if (foundPost == null) {
-            output.write("Error: Post with ID " + postID + " does not exist in the database.");
+            output.write("Error: Post with ID " + postID + " does not exist in " + subredditName + ".");
             return;
         }
 
         postView.displayPost(foundPost);
         handlePostMenu(postID);
+    }
+
+    private String askForSubreddit() {
+        List<Subreddit> subreddits = SubredditOperations.loadSubreddits();
+        if (subreddits.isEmpty()) {
+            output.write("No subreddits available.");
+            return null;
+        }
+
+        while (true) {
+            output.write("\nWhich subreddit would you like to browse?");
+            output.write("Available subreddits:");
+            for (Subreddit subreddit : subreddits) {
+                output.write("- " + subreddit.getName());
+            }
+
+            String input = stringReader.readString("Enter subreddit name (or 0 to cancel): ");
+            if ("0".equals(input)) {
+                output.write("Action cancelled.");
+                return null;
+            }
+
+            String normalized = normalizeSubredditName(input);
+            for (Subreddit subreddit : subreddits) {
+                if (subreddit.getName().equals(normalized)) {
+                    return subreddit.getName();
+                }
+            }
+
+            output.write("Invalid subreddit. Please try again.");
+        }
+    }
+
+    private String normalizeSubredditName(String name) {
+        if (name == null) {
+            return "";
+        }
+        if (!name.startsWith("r/")) {
+            return "r/" + name;
+        }
+        return name;
     }
 
     private void handlePostMenu(int postID) {

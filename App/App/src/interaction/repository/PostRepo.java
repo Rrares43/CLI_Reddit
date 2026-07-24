@@ -96,6 +96,17 @@ public class PostRepo implements PostRepository {
     }
 
     @Override
+    public List<Post> findPostsBySubreddit(String subredditName) {
+        List<Post> result = new ArrayList<>();
+        for (Post post : this.posts) {
+            if (post.getSubredditName() != null && post.getSubredditName().equals(subredditName)) {
+                result.add(post);
+            }
+        }
+        return result;
+    }
+
+    @Override
     public int getNextCommentId() {
         return nextCommentId++;
     }
