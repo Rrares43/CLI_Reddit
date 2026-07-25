@@ -17,7 +17,15 @@ public class DownvoteCommentCommand implements CommentActionCommand {
 
     @Override
     public void execute(int postId, int commentId) {
-        commentVoteService.downvoteComment(postId, commentId);
-        output.write("Downvote processed successfully\n");
+        output.write("Select: 1 to ADD Downvote | 2 to REMOVE Downvote\n");
+        String choiceStr = stringReader.readString("Enter choice (1-2): ");
+
+        try {
+            int voteChoice = Integer.parseInt(choiceStr);
+            String resultMessage = commentVoteService.downvoteComment(postId, commentId, voteChoice);
+            output.write(resultMessage);
+        } catch (NumberFormatException e) {
+            output.write("Invalid choice.\n");
+        }
     }
 }

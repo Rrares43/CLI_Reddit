@@ -79,9 +79,7 @@ public class PostInteractionController {
             output.write("Error: Post with ID " + postID + " does not exist in " + subredditName + ".");
             return;
         }
-
-        postView.displayPost(foundPost);
-        handlePostMenu(postID);
+        handlePostMenu(postID, subredditName);
     }
 
     private String askForSubreddit() {
@@ -125,24 +123,43 @@ public class PostInteractionController {
         return name;
     }
 
-    private void handlePostMenu(int postID) {
-        output.write("Choose an action:\n1. Upvote\n2. Downvote\n3. Add Comment\n4. Edit Post\n5. Delete Post\n6. Interact with a specific Comment\n0. Cancel");
-        String choice = stringReader.readString("Select option (0-6):");
-
-        if (choice.equals("0")) {
-            output.write("Action cancelled.");
-            return;
-        }
-
-        PostActionCommand command = postCommands.get(choice);
-        if (command != null) {
-            try {
-                command.execute(postID);
-            } catch (Exception e) {
-                output.write("Error: " + e.getMessage());
+    private void handlePostMenu(int postID, String subredditName) {
+        while (true) {
+            Post currentPost = null;
+            List<Post> posts = postRepo.findPostsBySubreddit(subredditName);
+            for (Post p : posts) {
+                if (p.getId() == postID) {
+                    currentPost = p;
+                    break;
+                }
             }
-        } else {
-            output.write("Invalid choice! Returning to menu.");
+
+            if (currentPost == null) {
+                output.write("Error: Post no longer exists.");
+                break;
+            }
+
+            output.write("\n==========================================");
+            postView.displayPost(currentPost);
+            output.write("==========================================\n");
+            output.write("Choose an action:\n1. Upvote\n2. Downvote\n3. Add Comment\n4. Edit Post\n5. Delete Post\n6. Interact with a specific Comment\n0. Go Back");
+            String choice = stringReader.readString("Select option (0-6): ");
+
+            if (choice.equals("0")) {
+                output.write("Returning to subreddit...");
+                break;
+            }
+
+            PostActionCommand command = postCommands.get(choice);
+            if (command != null) {
+                try {
+                    command.execute(postID);
+                } catch (Exception e) {
+                    output.write("Error: " + e.getMessage());
+                }
+            } else {
+                output.write("Invalid choice! Please try again.");
+            }
         }
     }
 
@@ -155,7 +172,6 @@ public class PostInteractionController {
         }
 
         output.write("Selected comment by: " + foundComment.getAuthor());
-
 
         output.write("1. Upvote comment\n2. Downvote comment\n3. Reply to comment\n4. Edit comment\n5. Delete comment");
         String commentChoice = stringReader.readString("Select option (1-5): ");
