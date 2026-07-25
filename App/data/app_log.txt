@@ -266,80 +266,52 @@
 [2026-07-24 17:42:08] [ERROR] pandele has logged in.
 [2026-07-24 17:46:18] [INFO] Application Started
 [2026-07-24 17:46:50] [ERROR] data has logged in.
-[2026-07-24 17:54:00] [INFO] Application Started
-[2026-07-24 17:54:11] [ERROR] pandele has logged in.
-[2026-07-24 17:56:56] [INFO] Application Started
-[2026-07-24 17:57:06] [ERROR] pandele has logged in.
-[2026-07-24 18:09:56] [INFO] Application Started
-[2026-07-24 18:10:54] [ERROR] pandele has logged in.
-[2026-07-24 18:34:22] [INFO] Application Started
-[2026-07-24 18:34:54] [INFO] Application Started
-[2026-07-24 18:35:03] [ERROR] pandele has logged in.
-[2026-07-24 18:38:04] [INFO] Subreddit saved successfully!
-[2026-07-24 18:47:38] [INFO] Application Started
-[2026-07-24 18:47:52] [ERROR] pandele has logged in.
-[2026-07-25 14:36:11] [INFO] Application Started
-[2026-07-25 14:39:25] [ERROR] pandele has logged in.
-[2026-07-25 14:47:35] [INFO] Application Started
-[2026-07-25 14:47:48] [ERROR] pandele has logged in.
-[2026-07-25 14:48:27] [ERROR] Database dual-write failed for post_votes: The server requested SCRAM-based authentication, but no password was provided.
-[2026-07-25 14:48:27] [INFO] New vote added for post 2
-[2026-07-25 14:48:27] [ERROR] Database dual-write failed for posts: The server requested SCRAM-based authentication, but no password was provided.
-[2026-07-25 14:49:16] [ERROR] Database dual-write failed for posts: The server requested SCRAM-based authentication, but no password was provided.
-[2026-07-25 15:09:30] [INFO] Application Started
-[2026-07-25 15:09:42] [ERROR] pandele has logged in.
-[2026-07-25 15:09:55] [INFO] Vote removed for post 2
-[2026-07-25 15:10:10] [INFO] New vote added for post 2
-[2026-07-25 15:10:47] [INFO] Vote removed for post 2
-[2026-07-25 15:11:08] [INFO] New vote added for post 2
-[2026-07-25 15:11:29] [INFO] Vote direction changed for post 2
-[2026-07-25 15:12:07] [INFO] New vote added for comment 2
-[2026-07-25 15:12:49] [INFO] Vote direction changed for comment 2
-[2026-07-25 15:14:23] [INFO] Application Started
-[2026-07-25 15:14:32] [ERROR] pandele has logged in.
-[2026-07-25 15:15:01] [INFO] Vote direction changed for post 2
-[2026-07-25 16:17:21] [INFO] Application Started
-[2026-07-25 16:17:32] [ERROR] pandele has logged in.
-[2026-07-25 16:17:49] [INFO] Vote removed for post 2
-[2026-07-25 16:18:27] [INFO] New vote added for post 2
-[2026-07-25 16:18:37] [INFO] Vote removed for post 2
-[2026-07-25 16:19:25] [INFO] New vote added for post 2
-[2026-07-25 16:19:37] [INFO] Vote direction changed for post 2
-[2026-07-25 16:20:18] [INFO] Vote removed for post 2
-[2026-07-25 16:22:04] [INFO] New vote added for post 2
-[2026-07-25 16:22:18] [INFO] Vote removed for post 2
-[2026-07-25 16:38:43] [INFO] Application Started
-[2026-07-25 16:39:11] [INFO] Application Started
-[2026-07-25 16:39:25] [ERROR] pandele has logged in.
-[2026-07-25 16:46:04] [INFO] Application Started
-[2026-07-25 16:46:12] [ERROR] pandele has logged in.
-[2026-07-25 16:50:43] [INFO] Application Started
-[2026-07-25 16:50:53] [ERROR] pandele has logged in.
-[2026-07-25 16:51:42] [INFO] Application Started
-[2026-07-25 16:51:51] [ERROR] pandele has logged in.
-[2026-07-25 16:54:19] [INFO] Application Started
-[2026-07-25 16:54:42] [ERROR] pandele has logged in.
-[2026-07-25 17:18:19] [INFO] Application Started
-[2026-07-25 17:18:38] [ERROR] pandele has logged in.
-[2026-07-25 17:18:56] [INFO] User logged out of their account
-[2026-07-25 17:20:49] [INFO] Application Started
-[2026-07-25 17:20:56] [ERROR] pandele has logged in.
-[2026-07-25 17:21:20] [INFO] Comment added ID: 7 by pandele
-[2026-07-25 17:21:57] [INFO] New vote added for comment 7
-[2026-07-25 17:23:47] [INFO] Application Started
-[2026-07-25 17:23:56] [ERROR] pandele has logged in.
-[2026-07-25 17:24:23] [INFO] Vote removed for comment 7
-[2026-07-25 17:33:21] [INFO] Application Started
-[2026-07-25 17:38:38] [INFO] Application Started
-[2026-07-25 17:42:29] [INFO] Application Started
-[2026-07-25 17:46:06] [INFO] Application Started
-[2026-07-25 17:46:15] [ERROR] pandele has logged in.
-[2026-07-25 17:46:30] [INFO] Application Started
-[2026-07-25 17:46:30] [INFO] Application Started
-[2026-07-25 17:46:30] [ERROR] test has logged in.
-[2026-07-25 17:47:05] [INFO] Application Started
-[2026-07-25 17:47:05] [ERROR] test has logged in.
-[2026-07-25 17:53:41] [INFO] Application Started
-[2026-07-25 18:04:16] [INFO] Application Started
-[2026-07-25 18:04:27] [ERROR] pandele has logged in.
-[2026-07-25 18:10:19] [INFO] Application Started
+[2026-07-24 17:54:19] [INFO] Application Started
+[2026-07-25 18:22:46] [INFO] Application Started
+[2026-07-25 18:23:05] [ERROR] data has logged in.
+[2026-07-25 18:23:35] [INFO] Password changed successfully!
+[2026-07-25 19:10:52] [INFO] Application Started
+[2026-07-25 19:11:00] [ERROR] data has logged in.
+[2026-07-25 19:11:20] [INFO] User logged out of their account
+[2026-07-25 19:11:29] [ERROR] data has logged in.
+[2026-07-25 19:12:53] [INFO] Application Started
+[2026-07-25 19:13:04] [ERROR] data has logged in.
+[2026-07-25 19:19:27] [INFO] Application Started
+[2026-07-25 19:19:37] [ERROR] data has logged in.
+[2026-07-25 19:19:42] [INFO] Account deleted successfully!
+[2026-07-25 19:19:54] [INFO] User logged out of their account
+[2026-07-25 19:25:03] [INFO] Application Started
+[2026-07-25 19:25:35] [INFO] Account saved successfully!
+[2026-07-25 19:25:46] [ERROR] fantoma has logged in.
+[2026-07-25 19:26:12] [INFO] User logged out of their account
+[2026-07-25 19:26:19] [ERROR] fantoma has logged in.
+[2026-07-25 19:26:27] [INFO] Account deleted successfully!
+[2026-07-25 19:43:05] [INFO] Application Started
+[2026-07-25 19:43:44] [ERROR] test has logged in.
+[2026-07-25 19:44:30] [INFO] Application Started
+[2026-07-25 19:44:38] [ERROR] test has logged in.
+[2026-07-25 19:45:57] [INFO] Application Started
+[2026-07-25 19:46:04] [ERROR] test has logged in.
+[2026-07-25 20:07:08] [INFO] Application Started
+[2026-07-25 20:07:41] [ERROR] test has logged in.
+[2026-07-25 20:20:16] [INFO] Application Started
+[2026-07-25 20:20:35] [ERROR] test has logged in.
+[2026-07-25 20:27:24] [INFO] Application Started
+[2026-07-25 20:27:39] [ERROR] test has logged in.
+[2026-07-25 20:31:55] [INFO] Application Started
+[2026-07-25 20:32:03] [ERROR] test has logged in.
+[2026-07-25 20:33:28] [INFO] Application Started
+[2026-07-25 20:33:35] [ERROR] test has logged in.
+[2026-07-25 20:34:41] [INFO] New vote added for post 2
+[2026-07-25 20:44:56] [INFO] Application Started
+[2026-07-25 20:45:03] [ERROR] test has logged in.
+[2026-07-25 20:46:15] [INFO] Application Started
+[2026-07-25 20:46:22] [ERROR] test has logged in.
+[2026-07-25 20:47:10] [INFO] New vote added for comment 1
+[2026-07-25 20:53:55] [INFO] Application Started
+[2026-07-25 20:54:02] [ERROR] test has logged in.
+[2026-07-25 20:54:34] [INFO] Vote removed for post 2
+[2026-07-25 21:06:41] [INFO] Application Started
+[2026-07-25 21:06:49] [ERROR] test has logged in.
+[2026-07-25 21:07:35] [INFO] New vote added for post 2
+[2026-07-25 21:08:03] [INFO] Vote removed for post 2

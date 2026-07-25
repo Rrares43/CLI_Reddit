@@ -1,4 +1,6 @@
-package account;
+package account.operations;
+
+import account.Account;
 
 public class AccountInfo {
     public static void checkUser(Account account){

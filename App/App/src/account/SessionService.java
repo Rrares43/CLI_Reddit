@@ -15,4 +15,8 @@ public class SessionService {
     public boolean isLoggedIn() {
         return !GUEST_USERNAME.equals(currentUsername);
     }
+
+    public void logout() {
+        this.currentUsername = GUEST_USERNAME;
+    }
 }

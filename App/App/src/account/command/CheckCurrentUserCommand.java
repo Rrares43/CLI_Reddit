@@ -1,7 +1,7 @@
 package account.command;
 
 import account.Account;
-import account.AccountInfo;
+import account.operations.AccountInfo;
 import account.repository.AccountRepository;
 import account.SessionService;
 

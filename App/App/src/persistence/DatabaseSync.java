@@ -7,6 +7,7 @@ import post.model.Post;
 import logger.LogLevel;
 import logger.Logger;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,40 +18,61 @@ import java.util.List;
 import java.util.Set;
 
 public final class DatabaseSync {
-    private DatabaseSync() {
-    }
+    private DatabaseSync() {}
 
     public static void syncAccounts(List<Account> accounts) {
         try (Connection connection = DataBaseConnection.getConnection()) {
-            String sql = "INSERT INTO accounts (username, password) VALUES (?, ?) "
-                    + "ON CONFLICT (username) DO UPDATE SET password = EXCLUDED.password";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                for (Account account : accounts) {
-                    statement.setString(1, account.getUsername());
-                    statement.setString(2, account.getPassword());
-                    statement.addBatch();
+            connection.setAutoCommit(false);
+            try{
+                String sql = "INSERT INTO accounts (username, password) VALUES (?, ?) "
+                        + "ON CONFLICT (username) DO UPDATE SET password = EXCLUDED.password";
+                try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                    for (Account account : accounts) {
+                        statement.setString(1, account.getUsername());
+                        statement.setString(2, account.getPassword());
+                        statement.addBatch();
+                    }
+                    statement.executeBatch();
                 }
-                statement.executeBatch();
+                deleteOrphanAccounts(connection, accounts);
+                connection.commit();
+            } catch (Exception e) {
+                connection.rollback();
+                throw e;
+            } finally {
+                connection.setAutoCommit(true);
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e){
             logDbFailure("accounts", e);
         }
     }
 
     public static void syncSubreddits(List<Subreddit> subreddits) {
         try (Connection connection = DataBaseConnection.getConnection()) {
-            String sql = "INSERT INTO subreddits (name, description, creator_id) "
-                    + "VALUES (?, ?, (SELECT id FROM accounts WHERE username = ?)) "
-                    + "ON CONFLICT (name) DO UPDATE SET description = EXCLUDED.description, "
-                    + "creator_id = EXCLUDED.creator_id";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                for (Subreddit subreddit : subreddits) {
-                    statement.setString(1, subreddit.getName());
-                    statement.setString(2, subreddit.getDescription());
-                    statement.setString(3, subreddit.getOwner());
-                    statement.addBatch();
+            connection.setAutoCommit(false);
+            try{
+                String sql = "INSERT INTO subreddits (name, description, creator_id) "
+                        + "VALUES (?, ?, (SELECT id FROM accounts WHERE username = ?)) "
+                        + "ON CONFLICT (name) DO UPDATE SET description = EXCLUDED.description, "
+                        + "creator_id = EXCLUDED.creator_id";
+                try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                    for (Subreddit subreddit : subreddits) {
+                        statement.setString(1, subreddit.getName());
+                        statement.setString(2, subreddit.getDescription());
+                        statement.setString(3, subreddit.getOwner());
+                        statement.addBatch();
+                    }
+                    statement.executeBatch();
                 }
-                statement.executeBatch();
+
+                deleteOrphanSubreddits(connection, subreddits);
+                connection.commit();
+            } catch (Exception e) {
+                connection.rollback();
+                throw e;
+            } finally {
+                connection.setAutoCommit(true);
             }
         } catch (Exception e) {
             logDbFailure("subreddits", e);
@@ -253,6 +275,56 @@ public final class DatabaseSync {
         try (PreparedStatement statement = connection.prepareStatement(sql.toString())) {
             for (int i = 0; i < posts.size(); i++) {
                 statement.setInt(i + 1, posts.get(i).getId());
+            }
+            statement.executeUpdate();
+        }
+    }
+
+    private static void deleteOrphanAccounts(Connection connection, List<Account> accounts) throws SQLException{
+        if(accounts.isEmpty()){
+            try(Statement statement = connection.createStatement()){
+                statement.executeUpdate("DELETE FROM accounts");
+            }
+            return;
+        }
+
+        StringBuilder sql = new StringBuilder("DELETE FROM accounts WHERE username NOT IN (");
+        for(int i = 0; i < accounts.size(); i++){
+            if(i > 0){
+                sql.append(',');
+            }
+            sql.append('?');
+        }
+        sql.append(')');
+
+        try(PreparedStatement statement = connection.prepareStatement(sql.toString())){
+            for(int i = 0; i < accounts.size(); i++){
+                statement.setString(i + 1, accounts.get(i).getUsername());
+            }
+            statement.executeUpdate();
+        }
+    }
+
+    private static void deleteOrphanSubreddits(Connection connection, List<Subreddit> subreddits) throws SQLException{
+        if(subreddits.isEmpty()){
+            try(Statement statement = connection.createStatement()){
+                statement.executeUpdate("DELETE FROM subreddits");
+            }
+            return;
+        }
+
+        StringBuilder sql = new StringBuilder("DELETE FROM subreddits WHERE name NOT IN (");
+        for(int i = 0; i < subreddits.size(); i++){
+            if(i > 0){
+                sql.append(',');
+            }
+            sql.append('?');
+        }
+        sql.append(')');
+
+        try(PreparedStatement statement = connection.prepareStatement(sql.toString())){
+            for(int i = 0; i < subreddits.size(); i++){
+                statement.setString(i + 1, subreddits.get(i).getName());
             }
             statement.executeUpdate();
         }

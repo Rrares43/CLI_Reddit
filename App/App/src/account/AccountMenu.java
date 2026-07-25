@@ -68,8 +68,9 @@ public class AccountMenu {
         output.write("3. Change Password");
         output.write("4. Check Current User");
         output.write("5. Logout");
+        output.write("6. Delete Account");
 
-        choice = stringReader.readString("Select an option (0/1/2/3/4/5): ");
+        choice = stringReader.readString("Select an option (0/1/2/3/4/5/6): ");
 
         AccountCommand command = commands.get(choice);
         if (command != null) {

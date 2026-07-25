@@ -1,4 +1,4 @@
-package account;
+package account.operations;
 
 import account.repository.AccountRepository;
 

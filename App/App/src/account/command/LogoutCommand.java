@@ -1,6 +1,6 @@
 package account.command;
 
-import account.AccountLogout;
+import account.operations.AccountLogout;
 
 public class LogoutCommand implements AccountCommand{
     private AccountLogout accountLogout;

@@ -22,7 +22,14 @@
           }
         ],
         "upvotes": 0,
-        "downvotes": 0
+        "downvotes": 0,
+        "votes": [
+          {
+            "usernamme": "test",
+            "commentId": 1,
+            "isUpvote": true
+          }
+        ]
       },
       {
         "Id": 2,
@@ -50,7 +57,8 @@
         "downvotes": 0
       }
     ],
-    "subredditName": "r/test"
+    "subredditName": "r/test",
+    "votes": []
   },
   {
     "Id": 2,
@@ -195,5 +203,20 @@
     "comments": [],
     "subredditName": "R/TEST",
     "votes": []
+  },
+  {
+    "Id": 11,
+    "title": "Post gresit :O",
+    "content": "deci am pus postul asta pe un sub care nu exista",
+    "author": "test",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "uuu, postul asta e pus pe un sub care nu exista uuu",
+    "votes": [],
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
   }
 ]

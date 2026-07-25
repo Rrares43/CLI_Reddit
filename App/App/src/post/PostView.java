@@ -2,11 +2,16 @@ package post;
 import post.model.Comment;
 import post.model.Post;
 import post.attachment.AttachmentHandler;
+import post.model.PostVote;
 import post.validator.Validator;
 import io.OutputWriter;
 import io.StringReader;
+import subreddit.Subreddit;
+import subreddit.repository.SubredditRepository;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class PostView {
     private final StringReader stringReader;
@@ -83,15 +88,28 @@ public class PostView {
     public String askForSubreddit() {
         while (true) {
             String subreddit = stringReader.readString("Enter the subreddit name:");
-            if (notBlankValidator.isValid(subreddit)){
-                return subreddit;
+            List<Subreddit> subreddits = SubredditRepository.loadSubreddits();
+            String foundSubreddit = "";
+            if (notBlankValidator.isValid(subreddit) && !subreddit.equals("0")){
+                for(Subreddit s : subreddits){
+                    if(s.getName().equals(subreddit)){
+                         foundSubreddit = s.getName();
+                    }
+                }
             }
             else if (subreddit.equals("0")){
                 output.write("Back to menu");
                 return "0";
             }
-            else if(subreddit.equals("")) {
+            else if(subreddit.isEmpty()) {
                 output.write("Error: Subreddit name cannot be empty!");
+            }
+
+            if(foundSubreddit.isEmpty()){
+                output.write("Error: Subreddit not found!");
+            }
+            else{
+                return foundSubreddit;
             }
         }
     }
@@ -99,7 +117,7 @@ public class PostView {
     public void displayPost(Post post) {
         output.write("[" + post.getSubredditName() + "] " + post.getTitle());
         output.write("By: " + post.getAuthor() + " | ID: " + post.getId());
-        output.write("Upvotes: " + post.getUpvotes() + " | Downvotes: " + post.getDownvotes());
+        output.write("Upvotes: " + post.getUpvotes() +  " | Downvotes: " + post.getDownvotes());
         output.write("------------------------------------------");
         output.write(post.getContent());
         output.write("COMMENTS:");

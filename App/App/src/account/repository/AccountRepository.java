@@ -139,4 +139,18 @@ public class AccountRepository {
         }
         return null;
     }
+
+    public static void deleteAccount(String currentUsername) {
+        List<Account> accounts = loadAccounts();
+        boolean removed = accounts.removeIf(account -> account.getUsername().equals(currentUsername));
+        if(removed) {
+            writeAccounts(accounts);
+            System.out.println("Account deleted successfully!");
+            Logger.getInstance().log(LogLevel.INFO, "Account deleted successfully!");
+        }
+        else {
+            System.out.println("Account not found");
+            Logger.getInstance().log(LogLevel.ERROR, "Account not found");
+        }
+    }
 }
