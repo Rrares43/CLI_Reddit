@@ -52,7 +52,7 @@ final class InteractionModule {
         interactionController.registerPostCommand("1", new VoteCommand(postVoteService, intReader, output, true));
         interactionController.registerPostCommand("2", new VoteCommand(postVoteService, intReader, output, false));
         interactionController.registerPostCommand("3", new AddCommentCommand(commentService, stringReader, output));
-        interactionController.registerPostCommand("4", new EditPostCommand(stringReader, postEditService));
+        interactionController.registerPostCommand("4", new EditPostCommand(stringReader, postEditService, postRepo));
         interactionController.registerPostCommand("5", new DeletePostCommand(postDeleteService, output));
         interactionController.registerPostCommand("6", interactionController::manageCommentInteraction);
 

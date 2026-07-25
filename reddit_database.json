@@ -175,5 +175,16 @@
     "downvotes": 0,
     "comments": [],
     "subredditName": "pandele"
+  },
+  {
+    "Id": 10,
+    "title": "mariusica",
+    "content": "MARIUSICA",
+    "author": "pandele",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "R/TEST",
+    "votes": []
   }
 ]
