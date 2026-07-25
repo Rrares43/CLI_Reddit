@@ -3,6 +3,7 @@ import bootstrap.AppContext;
 import bootstrap.ApplicationLoop;
 import com.github.lalyos.jfiglet.FigletFont;
 import persistence.DataBaseConnection;
+import io.TextFormatter;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,7 +11,8 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println(FigletFont.convertOneLine("Buggit"));
+        System.out.println(TextFormatter.color(FigletFont.convertOneLine("Buggit"), TextFormatter.GREEN));
+        System.out.println(TextFormatter.separator(50));
 
         // command for database migration, no longer needs to be called
         //DataMigrator.runMigration();

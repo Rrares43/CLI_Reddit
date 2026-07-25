@@ -1,6 +1,7 @@
 package subreddit;
 
 import account.SessionService;
+import io.TextFormatter;
 import subreddit.command.SubredditCommand;
 import io.OutputWriter;
 import io.StringReader;
@@ -38,7 +39,8 @@ public class SubredditMenu {
             System.out.println("2. View Subreddit");
             System.out.println("3. Edit Subreddit");
             System.out.println("4. Delete Subreddit");
-            System.out.println("-----------------------");
+            System.out.println(TextFormatter.separator(50));
+            System.out.println();
 
             choice = stringReader.readString("Select an option (0/1/2/3/4): ");
             if(choice.equals("0")){

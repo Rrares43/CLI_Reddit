@@ -3,6 +3,7 @@ package account;
 import account.command.AccountCommand;
 import io.StringReader;
 import io.OutputWriter;
+import io.TextFormatter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +38,8 @@ public class AccountMenu {
         output.write("0. End Application");
         output.write("1. Create Account");
         output.write("2. Login");
+        System.out.println();
+        System.out.println(TextFormatter.separator(50));
 
         choice = stringReader.readString("Select an option (0/1/2): ");
         if(choice.equals("1") || choice.equals("2")) {
@@ -69,6 +72,9 @@ public class AccountMenu {
         output.write("4. Check Current User");
         output.write("5. Logout");
         output.write("6. Delete Account");
+
+        System.out.println();
+        System.out.println(TextFormatter.separator(50));
 
         choice = stringReader.readString("Select an option (0/1/2/3/4/5/6): ");
 

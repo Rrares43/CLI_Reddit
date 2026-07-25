@@ -1,6 +1,7 @@
 package bootstrap;
 
 import account.SessionService;
+import io.TextFormatter;
 import menu.MenuDispatcher;
 import io.OutputWriter;
 import io.StringReader;
@@ -32,7 +33,8 @@ public class ApplicationLoop {
             output.write("3. Interaction");
             output.write("4. Subreddit menu");
             output.write("5. Logger");
-            output.write("-----------------------");
+            System.out.println(TextFormatter.separator(50));
+            System.out.println();
 
             String choice = stringReader.readString("Select your choice (0/1/2/3/4/5): ");
             if ("0".equals(choice)) {
