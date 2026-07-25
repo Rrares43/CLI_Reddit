@@ -30,11 +30,6 @@ public class PostRepo implements PostRepository {
 
         this.posts = loadFromFile();
 
-        if (this.posts.isEmpty()) {
-            this.posts.addAll(DataBase.mockPosts);
-            saveToFile();
-        }
-
         initializeNextCommentId();
     }
 
