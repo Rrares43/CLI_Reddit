@@ -1,8 +1,8 @@
 package post.command;
 
 import account.SessionService;
-import interaction.model.Post;
-import interaction.service.PostService;
+import post.model.Post;
+import post.service.PostService;
 import post.PostView;
 
 import java.util.Scanner;

@@ -3,8 +3,8 @@ package menu;
 import logger.Logger;
 import logger.command.BacktoMain;
 import logger.command.ShowLogOptions;
-import util.OutputWriter;
-import util.StringReader;
+import io.OutputWriter;
+import io.StringReader;
 
 import java.util.ArrayList;
 import java.util.List;

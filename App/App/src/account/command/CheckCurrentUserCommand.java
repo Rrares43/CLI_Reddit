@@ -2,7 +2,7 @@ package account.command;
 
 import account.Account;
 import account.AccountInfo;
-import account.AccountOperations;
+import account.repository.AccountRepository;
 import account.SessionService;
 
 public class CheckCurrentUserCommand implements AccountCommand{
@@ -20,7 +20,7 @@ public class CheckCurrentUserCommand implements AccountCommand{
         }
 
         String currentUser = session.getCurrentUsername();
-        Account currentAccount = AccountOperations.getAccountByUsername(currentUser);
+        Account currentAccount = AccountRepository.getAccountByUsername(currentUser);
         if(currentAccount != null) {
             AccountInfo.checkUser(currentAccount);
         }

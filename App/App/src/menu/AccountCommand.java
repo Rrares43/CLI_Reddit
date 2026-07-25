@@ -1,16 +1,16 @@
 package menu;
 
-import account.AccountQuery;
+import account.AccountMenu;
 
 public class AccountCommand implements MenuCommand {
-    private final AccountQuery accountQuery;
+    private final AccountMenu accountMenu;
 
-    public AccountCommand(AccountQuery accountQuery) {
-        this.accountQuery = accountQuery;
+    public AccountCommand(AccountMenu accountMenu) {
+        this.accountMenu = accountMenu;
     }
     @Override
     public void execute(){
-        accountQuery.startAccountMenu();
+        accountMenu.startAccountMenu();
     }
 }
 

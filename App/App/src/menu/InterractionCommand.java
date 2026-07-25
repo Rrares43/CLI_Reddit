@@ -1,15 +1,15 @@
 package menu;
 
-import interaction.repository.InteractionQuery;
+import post.repository.PostMenu;
 
 public class InterractionCommand implements MenuCommand {
-    private final InteractionQuery interactionQuery;
+    private final PostMenu postMenu;
 
-    public InterractionCommand(InteractionQuery interactionQuery) {
-        this.interactionQuery = interactionQuery;
+    public InterractionCommand(PostMenu postMenu) {
+        this.postMenu = postMenu;
     }
     @Override
     public void execute(){
-        interactionQuery.interactionQuery();
+        postMenu.interactionQuery();
     }
 }

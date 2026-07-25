@@ -1,6 +1,6 @@
 package post.attachment;
 
-import util.OutputWriter;
+import io.OutputWriter;
 
 public class NoAttachmentHandler implements AttachmentHandler {
     private final OutputWriter output;

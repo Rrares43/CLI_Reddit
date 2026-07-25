@@ -1,22 +1,22 @@
 package bootstrap;
 
 import account.SessionService;
-import community.SubredditQuery;
-import community.command.CreateSubredditCommand;
-import community.command.EditSubredditCommand;
-import community.command.ViewSubredditCommand;
-import util.OutputWriter;
-import util.StringReader;
+import subreddit.SubredditMenu;
+import subreddit.command.CreateSubredditCommand;
+import subreddit.command.EditSubredditCommand;
+import subreddit.command.ViewSubredditCommand;
+import io.OutputWriter;
+import io.StringReader;
 
 final class SubredditModule {
     private SubredditModule() {
     }
 
-    static SubredditQuery create(SessionService sessionService, StringReader stringReader, OutputWriter output) {
-        SubredditQuery subredditQuery = new SubredditQuery(sessionService, stringReader, output);
-        subredditQuery.registerCommand("1", new CreateSubredditCommand(sessionService));
-        subredditQuery.registerCommand("2", new ViewSubredditCommand(stringReader, output));
-        subredditQuery.registerCommand("3", new EditSubredditCommand(sessionService, stringReader));
-        return subredditQuery;
+    static SubredditMenu create(SessionService sessionService, StringReader stringReader, OutputWriter output) {
+        SubredditMenu subredditMenu = new SubredditMenu(sessionService, stringReader, output);
+        subredditMenu.registerCommand("1", new CreateSubredditCommand(sessionService));
+        subredditMenu.registerCommand("2", new ViewSubredditCommand(stringReader, output));
+        subredditMenu.registerCommand("3", new EditSubredditCommand(sessionService, stringReader));
+        return subredditMenu;
     }
 }

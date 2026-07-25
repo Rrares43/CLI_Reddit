@@ -1,17 +1,17 @@
 package post;
 
-import community.Subreddit;
-import community.SubredditOperations;
-import interaction.model.Comment;
-import interaction.model.Post;
-import interaction.repository.PostRepository;
-import interaction.service.CommentService;
-import interaction.service.CommentVoteService;
+import subreddit.Subreddit;
+import subreddit.repository.SubredditRepository;
+import post.model.Comment;
+import post.model.Post;
+import post.repository.PostRepository;
+import post.service.CommentService;
+import post.service.CommentVoteService;
 import post.command.CommentActionCommand;
 import post.command.PostActionCommand;
-import util.IntReader;
-import util.OutputWriter;
-import util.StringReader;
+import io.IntReader;
+import io.OutputWriter;
+import io.StringReader;
 
 import java.util.HashMap;
 import java.util.List;
@@ -85,7 +85,7 @@ public class PostInteractionController {
     }
 
     private String askForSubreddit() {
-        List<Subreddit> subreddits = SubredditOperations.loadSubreddits();
+        List<Subreddit> subreddits = SubredditRepository.loadSubreddits();
         if (subreddits.isEmpty()) {
             output.write("No subreddits available.");
             return null;

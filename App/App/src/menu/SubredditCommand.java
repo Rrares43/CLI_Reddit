@@ -1,14 +1,14 @@
 package menu;
 
-import community.SubredditQuery;
+import subreddit.SubredditMenu;
 
 public class SubredditCommand implements MenuCommand {
-    private final SubredditQuery subredditQuery;
-    public SubredditCommand(SubredditQuery subredditQuery){
-        this.subredditQuery = subredditQuery;
+    private final SubredditMenu subredditMenu;
+    public SubredditCommand(SubredditMenu subredditMenu){
+        this.subredditMenu = subredditMenu;
     }
     @Override
     public void execute(){
-        subredditQuery.startSubredditMenu();
+        subredditMenu.startSubredditMenu();
     }
 }

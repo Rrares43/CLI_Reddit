@@ -1,9 +1,9 @@
 package persistence;
 
 import account.Account;
-import community.Subreddit;
-import interaction.model.Comment;
-import interaction.model.Post;
+import subreddit.Subreddit;
+import post.model.Comment;
+import post.model.Post;
 import logger.LogLevel;
 import logger.Logger;
 

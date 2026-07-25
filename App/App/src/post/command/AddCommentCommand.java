@@ -1,7 +1,7 @@
 package post.command;
-import interaction.service.CommentService;
-import util.StringReader;
-import util.OutputWriter;
+import post.service.CommentService;
+import io.StringReader;
+import io.OutputWriter;
 
 public class AddCommentCommand implements PostActionCommand {
     private final CommentService commentService;

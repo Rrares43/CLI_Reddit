@@ -1,7 +1,7 @@
 package post.command;
 
-import interaction.service.PostDeleteService;
-import util.OutputWriter;
+import post.service.PostDeleteService;
+import io.OutputWriter;
 
 public class DeletePostCommand implements PostActionCommand {
     private final PostDeleteService postDeleteService;

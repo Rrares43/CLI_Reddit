@@ -1,9 +1,9 @@
 package post.command;
 
-import interaction.model.Post;
-import interaction.service.PostEditServiceImpl;
-import interaction.repository.PostRepository;
-import util.StringReader;
+import post.model.Post;
+import post.service.PostEditServiceImpl;
+import post.repository.PostRepository;
+import io.StringReader;
 
 public class EditPostCommand implements PostActionCommand{
     private final StringReader stringReader;

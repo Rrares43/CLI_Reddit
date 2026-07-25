@@ -1,5 +1,7 @@
 package account;
 
+import account.repository.AccountRepository;
+
 import java.util.Scanner;
 
 public class PasswordChanger {
@@ -7,10 +9,10 @@ public class PasswordChanger {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Email:");
         String email = sc.nextLine();
-        if (AccountOperations.checkEmail(email)) {
+        if (AccountRepository.checkEmail(email)) {
             System.out.println("Enter New Password: ");
             String password = sc.nextLine();
-            AccountOperations.changePassword(email, password);
+            AccountRepository.changePassword(email, password);
         }
         else {
             System.out.println("Email not found");

@@ -1,12 +1,12 @@
 package bootstrap;
 
 import account.SessionService;
-import interaction.repository.PostRepo;
-import interaction.service.PostService;
-import interaction.service.PostServiceImpl;
-import util.OutputWriter;
+import post.repository.PostRepo;
+import post.service.PostService;
+import post.service.PostServiceImpl;
+import io.OutputWriter;
 import post.PostView;
-import util.StringReader;
+import io.StringReader;
 import post.attachment.AttachmentHandler;
 import post.attachment.LinkAttachmentHandler;
 import post.attachment.NoAttachmentHandler;

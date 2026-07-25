@@ -1,7 +1,7 @@
 package post.command;
 
-import interaction.service.CommentService;
-import util.OutputWriter;
+import post.service.CommentService;
+import io.OutputWriter;
 
 public class DeleteCommentCommand implements CommentActionCommand {
     private final CommentService commentService;

@@ -1,8 +1,8 @@
 package post.command;
 
-import interaction.service.PostVoteService;
-import util.IntReader;
-import util.OutputWriter;
+import post.service.PostVoteService;
+import io.IntReader;
+import io.OutputWriter;
 
 public class VoteCommand implements PostActionCommand {
     private final PostVoteService postVoteService;

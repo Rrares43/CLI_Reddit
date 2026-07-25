@@ -1,8 +1,8 @@
 package post.command;
 
-import interaction.service.CommentVoteService;
-import util.StringReader;
-import util.OutputWriter;
+import post.service.CommentVoteService;
+import io.StringReader;
+import io.OutputWriter;
 
 public class DownvoteCommentCommand implements CommentActionCommand {
     private final CommentVoteService commentVoteService;

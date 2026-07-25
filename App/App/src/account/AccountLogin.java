@@ -1,7 +1,8 @@
 package account;
 
-import util.OutputWriter;
-import util.StringReader;
+import account.repository.AccountRepository;
+import io.OutputWriter;
+import io.StringReader;
 
 public class AccountLogin {
     private final StringReader stringReader;
@@ -18,7 +19,7 @@ public class AccountLogin {
         String username = stringReader.readString("Enter username: ");
         String password = stringReader.readString("Enter password: ");
 
-        if (AccountOperations.loginAccount(new Account(username, "", password))) {
+        if (AccountRepository.loginAccount(new Account(username, "", password))) {
             sessionService.login(username);
             output.write("Login Successful. Logged in as: " + username);
         } else {

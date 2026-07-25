@@ -2,8 +2,8 @@ package bootstrap;
 
 import account.SessionService;
 import menu.MenuDispatcher;
-import util.OutputWriter;
-import util.StringReader;
+import io.OutputWriter;
+import io.StringReader;
 
 public class ApplicationLoop {
     private final SessionService sessionService;

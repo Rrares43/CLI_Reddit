@@ -1,9 +1,10 @@
 package account;
 
+import account.repository.AccountRepository;
 import account.verification.EmailVerification;
 import account.verification.PasswordVerification;
-import util.OutputWriter;
-import util.StringReader;
+import io.OutputWriter;
+import io.StringReader;
 
 
 public class AccountCreator {
@@ -55,6 +56,6 @@ public class AccountCreator {
         }
 
             Account account = new Account(username, email, password);
-            AccountOperations.saveAccount(account);
+            AccountRepository.saveAccount(account);
         }
     }

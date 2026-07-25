@@ -1,10 +1,10 @@
 package post;
-import interaction.model.Comment;
-import interaction.model.Post;
+import post.model.Comment;
+import post.model.Post;
 import post.attachment.AttachmentHandler;
 import post.validator.Validator;
-import util.OutputWriter;
-import util.StringReader;
+import io.OutputWriter;
+import io.StringReader;
 
 import java.util.Map;
 

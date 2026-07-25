@@ -1,7 +1,7 @@
 package post.attachment;
 
-import util.OutputWriter;
-import util.StringReader;
+import io.OutputWriter;
+import io.StringReader;
 import post.validator.Validator;
 
 public class LinkAttachmentHandler implements AttachmentHandler {
