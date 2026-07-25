@@ -1,7 +1,7 @@
 package community;
 
-import account_manager.SessionService;
-import posting.StringReader;
+import account.SessionService;
+import util.StringReader;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package community;
 
-import account_manager.SessionService;
-import community.subredditcommands.SubredditCommand;
-import posting.OutputWriter;
-import posting.StringReader;
+import account.SessionService;
+import community.command.SubredditCommand;
+import util.OutputWriter;
+import util.StringReader;
 
 import java.util.HashMap;
 import java.util.Map;

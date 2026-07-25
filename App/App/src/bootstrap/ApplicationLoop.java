@@ -1,9 +1,9 @@
 package bootstrap;
 
-import account_manager.SessionService;
-import menu_commands.MenuDispatcher;
-import posting.OutputWriter;
-import posting.StringReader;
+import account.SessionService;
+import menu.MenuDispatcher;
+import util.OutputWriter;
+import util.StringReader;
 
 public class ApplicationLoop {
     private final SessionService sessionService;

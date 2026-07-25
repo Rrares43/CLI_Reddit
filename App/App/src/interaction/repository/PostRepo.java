@@ -1,6 +1,6 @@
 package interaction.repository;
 
-import account_manager.SessionService;
+import account.SessionService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

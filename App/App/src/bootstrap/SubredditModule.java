@@ -1,12 +1,12 @@
 package bootstrap;
 
-import account_manager.SessionService;
+import account.SessionService;
 import community.SubredditQuery;
-import community.subredditcommands.CreateSubredditCommand;
-import community.subredditcommands.EditSubredditCommand;
-import community.subredditcommands.ViewSubredditCommand;
-import posting.OutputWriter;
-import posting.StringReader;
+import community.command.CreateSubredditCommand;
+import community.command.EditSubredditCommand;
+import community.command.ViewSubredditCommand;
+import util.OutputWriter;
+import util.StringReader;
 
 final class SubredditModule {
     private SubredditModule() {

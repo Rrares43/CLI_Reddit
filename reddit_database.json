@@ -82,6 +82,15 @@
         "replies": [],
         "upvotes": 0,
         "downvotes": 0
+      },
+      {
+        "Id": 7,
+        "text": "comment",
+        "author": "pandele",
+        "replies": [],
+        "upvotes": 0,
+        "downvotes": 0,
+        "votes": []
       }
     ],
     "subredditName": "r/test",

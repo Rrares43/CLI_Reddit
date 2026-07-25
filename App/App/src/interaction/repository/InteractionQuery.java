@@ -1,5 +1,5 @@
 package interaction.repository;
-import posting.PostInteractionController;
+import post.PostInteractionController;
 
 public class InteractionQuery {
     private final PostInteractionController controller;

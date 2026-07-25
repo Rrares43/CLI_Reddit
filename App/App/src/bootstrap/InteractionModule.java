@@ -12,21 +12,21 @@ import interaction.service.PostEditServiceImpl;
 import interaction.service.PostVoteService;
 import interaction.service.PostVoteServiceImpl;
 import logger.Logger;
-import posting.IntReader;
-import posting.OutputWriter;
-import posting.PostInteractionController;
-import posting.PostView;
-import posting.StringReader;
-import posting.commands.AddCommentCommand;
-import posting.commands.CommentActionCommand;
-import posting.commands.DeleteCommentCommand;
-import posting.commands.DeletePostCommand;
-import posting.commands.DownvoteCommentCommand;
-import posting.commands.EditCommentCommand;
-import posting.commands.EditPostCommand;
-import posting.commands.ReplyCommentCommand;
-import posting.commands.UpvoteCommentCommand;
-import posting.commands.VoteCommand;
+import util.IntReader;
+import util.OutputWriter;
+import post.PostInteractionController;
+import post.PostView;
+import util.StringReader;
+import post.command.AddCommentCommand;
+import post.command.CommentActionCommand;
+import post.command.DeleteCommentCommand;
+import post.command.DeletePostCommand;
+import post.command.DownvoteCommentCommand;
+import post.command.EditCommentCommand;
+import post.command.EditPostCommand;
+import post.command.ReplyCommentCommand;
+import post.command.UpvoteCommentCommand;
+import post.command.VoteCommand;
 
 final class InteractionModule {
 

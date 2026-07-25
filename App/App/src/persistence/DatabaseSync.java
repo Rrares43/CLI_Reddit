@@ -1,6 +1,6 @@
 package persistence;
 
-import account_manager.Account;
+import account.Account;
 import community.Subreddit;
 import interaction.model.Comment;
 import interaction.model.Post;

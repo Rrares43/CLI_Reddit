@@ -1,19 +1,19 @@
 package bootstrap;
 
-import account_manager.AccountCreator;
-import account_manager.AccountInfo;
-import account_manager.AccountLogin;
-import account_manager.AccountLogout;
-import account_manager.AccountQuery;
-import account_manager.PasswordChanger;
-import account_manager.SessionService;
-import account_manager.account_commands.ChangePasswordCommand;
-import account_manager.account_commands.CheckCurrentUserCommand;
-import account_manager.account_commands.CreateAccountCommand;
-import account_manager.account_commands.LoginCommand;
-import account_manager.account_commands.LogoutCommand;
-import posting.OutputWriter;
-import posting.StringReader;
+import account.AccountCreator;
+import account.AccountInfo;
+import account.AccountLogin;
+import account.AccountLogout;
+import account.AccountQuery;
+import account.PasswordChanger;
+import account.SessionService;
+import account.command.ChangePasswordCommand;
+import account.command.CheckCurrentUserCommand;
+import account.command.CreateAccountCommand;
+import account.command.LoginCommand;
+import account.command.LogoutCommand;
+import util.OutputWriter;
+import util.StringReader;
 
 final class AccountModule {
     private AccountModule() {

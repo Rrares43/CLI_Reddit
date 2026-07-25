@@ -1,19 +1,19 @@
 package bootstrap;
 
-import account_manager.AccountQuery;
-import account_manager.SessionService;
+import account.AccountQuery;
+import account.SessionService;
 import community.SubredditQuery;
 import interaction.repository.InteractionQuery;
 import interaction.repository.PostRepo;
 import logger.LogLevel;
 import logger.Logger;
-import menu_commands.MenuDispatcher;
-import posting.ConsoleIO;
-import posting.IntReader;
-import posting.OutputWriter;
-import posting.PostView;
-import posting.StringReader;
-import posting.commands.CreatePostCommand;
+import menu.MenuDispatcher;
+import util.ConsoleIO;
+import util.IntReader;
+import util.OutputWriter;
+import post.PostView;
+import util.StringReader;
+import post.command.CreatePostCommand;
 
 public final class AppBootstrap {
 
