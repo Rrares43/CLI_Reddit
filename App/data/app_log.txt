@@ -343,3 +343,19 @@
 [2026-07-25 22:48:50] [ERROR] pandele has logged in.
 [2026-07-25 22:49:23] [INFO] User logged out of their account
 [2026-07-25 22:49:31] [ERROR] pandele has logged in.
+[2026-07-25 22:57:21] [INFO] Application Started
+[2026-07-25 22:57:30] [ERROR] pandele has logged in.
+[2026-07-25 22:58:22] [INFO] Application Started
+[2026-07-25 22:58:30] [ERROR] pandele has logged in.
+[2026-07-25 22:58:53] [INFO] User logged out of their account
+[2026-07-25 22:58:59] [ERROR] pandele has logged in.
+[2026-07-25 23:13:36] [INFO] Application Started
+[2026-07-25 23:13:53] [ERROR] pandele has logged in.
+[2026-07-25 23:15:16] [INFO] Application Started
+[2026-07-25 23:15:24] [ERROR] pandele has logged in.
+[2026-07-25 23:16:41] [INFO] Application Started
+[2026-07-25 23:17:13] [ERROR] Alex has logged in.
+[2026-07-25 23:18:59] [INFO] Application Started
+[2026-07-25 23:19:15] [ERROR] Alex has logged in.
+[2026-07-25 23:22:03] [INFO] Application Started
+[2026-07-25 23:22:21] [ERROR] pandele has logged in.

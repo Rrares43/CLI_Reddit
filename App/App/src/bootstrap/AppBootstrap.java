@@ -2,17 +2,14 @@ package bootstrap;
 
 import account.AccountMenu;
 import account.SessionService;
+import io.*;
 import subreddit.SubredditMenu;
 import post.repository.PostMenu;
 import post.repository.PostRepo;
 import logger.LogLevel;
 import logger.Logger;
 import menu.MenuDispatcher;
-import io.ConsoleIO;
-import io.IntReader;
-import io.OutputWriter;
 import post.PostView;
-import io.StringReader;
 import post.command.CreatePostCommand;
 
 public final class AppBootstrap {
@@ -21,7 +18,7 @@ public final class AppBootstrap {
         ConsoleIO console = new ConsoleIO();
         StringReader stringReader = console;
         IntReader intReader = console;
-        OutputWriter output = console;
+        OutputWriter output = new FormattedOutputWriter(console);
 
         Logger logger = Logger.getInstance();
         logger.log(LogLevel.INFO, "Application Started");

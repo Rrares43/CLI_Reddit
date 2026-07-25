@@ -38,8 +38,8 @@ public class AccountMenu {
         output.write("0. End Application");
         output.write("1. Create Account");
         output.write("2. Login");
-        System.out.println();
-        System.out.println(TextFormatter.separator(50));
+        output.write(TextFormatter.separator(50));
+        output.write("");
 
         choice = stringReader.readString("Select an option (0/1/2): ");
         if(choice.equals("1") || choice.equals("2")) {

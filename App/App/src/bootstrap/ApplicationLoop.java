@@ -33,8 +33,9 @@ public class ApplicationLoop {
             output.write("3. Interaction");
             output.write("4. Subreddit menu");
             output.write("5. Logger");
-            System.out.println(TextFormatter.separator(50));
-            System.out.println();
+            output.write(TextFormatter.separator(50));
+            output.write("");
+
 
             String choice = stringReader.readString("Select your choice (0/1/2/3/4/5): ");
             if ("0".equals(choice)) {

@@ -33,14 +33,14 @@ public class SubredditMenu {
         running = true;
         while (running){
             String choice;
-            System.out.println("--- SUBREDDIT MENU ---");
-            System.out.println("0. Exit");
-            System.out.println("1. Create Subreddit");
-            System.out.println("2. View Subreddit");
-            System.out.println("3. Edit Subreddit");
-            System.out.println("4. Delete Subreddit");
-            System.out.println(TextFormatter.separator(50));
-            System.out.println();
+            output.write("--- SUBREDDIT MENU ---");
+            output.write("0. Exit");
+            output.write("1. Create Subreddit");
+            output.write("2. View Subreddit");
+            output.write("3. Edit Subreddit");
+            output.write("4. Delete Subreddit");
+            output.write(TextFormatter.separator(50));
+            output.write("");
 
             choice = stringReader.readString("Select an option (0/1/2/3/4): ");
             if(choice.equals("0")){
