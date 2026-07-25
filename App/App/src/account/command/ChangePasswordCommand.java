@@ -1,6 +1,6 @@
 package account.command;
 
-import account.PasswordChanger;
+import account.operations.PasswordChanger;
 
 public class ChangePasswordCommand implements AccountCommand {
     private final PasswordChanger passwordChanger;

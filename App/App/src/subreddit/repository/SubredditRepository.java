@@ -73,4 +73,5 @@ public class SubredditRepository {
             Logger.getInstance().log(LogLevel.ERROR,"Error");
         }
     }
+
 }

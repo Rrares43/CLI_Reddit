@@ -1,6 +1,6 @@
 package account.command;
 
-import account.AccountCreator;
+import account.operations.AccountCreator;
 
 public class CreateAccountCommand implements AccountCommand {
     private final AccountCreator AccountCreator;

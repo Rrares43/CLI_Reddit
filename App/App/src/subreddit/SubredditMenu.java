@@ -37,12 +37,14 @@ public class SubredditMenu {
             System.out.println("1. Create Subreddit");
             System.out.println("2. View Subreddit");
             System.out.println("3. Edit Subreddit");
+            System.out.println("4. Delete Subreddit");
+            System.out.println("-----------------------");
 
-            choice = stringReader.readString("Select an option (0/1/2/3): ");
+            choice = stringReader.readString("Select an option (0/1/2/3/4): ");
             if(choice.equals("0")){
                 running = false;
             }
-            else if(!(choice.equals("1") ||choice.equals("2") || choice.equals("3"))){
+            else if(!(choice.equals("1") ||choice.equals("2") || choice.equals("3") || choice.equals("4"))){
                 output.write("Invalid option! Please try again.");
             }
             else{

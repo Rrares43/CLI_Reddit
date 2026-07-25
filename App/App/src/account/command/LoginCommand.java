@@ -1,6 +1,6 @@
 package account.command;
 
-import account.AccountLogin;
+import account.operations.AccountLogin;
 
 public class LoginCommand implements AccountCommand {
     private final AccountLogin AccountLogin;

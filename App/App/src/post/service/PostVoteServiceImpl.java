@@ -50,17 +50,20 @@ public class PostVoteServiceImpl implements PostVoteService {
                 // Utilizatorul a apăsat din nou pe același buton (Toggle OFF / Ștergere)
                 post.getVotes().remove(existingVote);
                 DatabaseSync.removePostVote(currentUsername, postId, isUpvote ? 1 : -1);
+                System.out.println("Vote removed for post " + postId);
                 logger.log(LogLevel.INFO, "Vote removed for post " + postId);
             } else {
                 // Utilizatorul a schimbat direcția votului (ex: din Downvote în Upvote)
                 existingVote.setUpvote(isUpvote);
                 DatabaseSync.upsertPostVote(currentUsername, postId, isUpvote ? 1 : -1);
+                System.out.println("Vote direction changed for post " + postId);
                 logger.log(LogLevel.INFO, "Vote direction changed for post " + postId);
             }
         } else {
             // Nu există un vot anterior - adăugăm unul nou
             post.getVotes().add(new PostVote(currentUsername, postId, isUpvote));
             DatabaseSync.upsertPostVote(currentUsername, postId, isUpvote ? 1 : -1);
+            System.out.println("New vote added for post " + postId);
             logger.log(LogLevel.INFO, "New vote added for post " + postId);
         }
 

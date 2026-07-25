@@ -1,5 +1,6 @@
-package account;
+package account.operations;
 
+import account.Account;
 import account.repository.AccountRepository;
 import account.verification.EmailVerification;
 import account.verification.PasswordVerification;

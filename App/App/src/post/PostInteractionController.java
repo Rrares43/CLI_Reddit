@@ -95,7 +95,7 @@ public class PostInteractionController {
             output.write("\nWhich subreddit would you like to browse?");
             output.write("Available subreddits:");
             for (Subreddit subreddit : subreddits) {
-                output.write("- " + subreddit.getName());
+                output.write("- " + subreddit.getName() + " (Owner: " + subreddit.getOwner() + ")" + " Number of posts: " + findNrOfPostsinSubreddit(subreddit.getName()));
             }
 
             String input = stringReader.readString("Enter subreddit name (or 0 to cancel): ");
@@ -170,5 +170,10 @@ public class PostInteractionController {
         } else {
             output.write("Invalid choice! Action cancelled.");
         }
+    }
+
+    private int findNrOfPostsinSubreddit(String subredditName){
+        List<Post> posts = postRepo.findPostsBySubreddit(subredditName);
+        return posts.size();
     }
 }
