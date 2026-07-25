@@ -21,9 +21,8 @@ class PostTest {
         assertTrue(post.getComments().isEmpty());
         assertEquals(0, post.getUpvotes());
         assertEquals(0, post.getDownvotes());
-        assertNotNull(post.getVoteTracker());
-        assertEquals(0, post.getVoteTracker().getUpvotes());
-        assertEquals(0, post.getVoteTracker().getDownvotes());
+        assertNotNull(post.getVotes());
+        assertTrue(post.getVotes().isEmpty());
     }
 
     @Test
@@ -78,18 +77,15 @@ class PostTest {
     }
 
     @Test
-    void shouldUpdateVotesThroughVoteTracker() {
+    void shouldUpdateVotesThroughPostVoteList() {
         Post post = new Post(1, "Title", "Content", "user", "subreddit");
-        assertNotNull(post.getVoteTracker());
 
-        post.getVoteTracker().addUpvotes();
-        post.getVoteTracker().addDownvotes();
+        post.getVotes().add(new PostVote("alice", 1, true));
+        post.getVotes().add(new PostVote("bob", 1, false));
 
-        // VoteTracker is independent; getUpvotes/getDownvotes count PostVote entries
-        assertEquals(1, post.getVoteTracker().getUpvotes());
-        assertEquals(1, post.getVoteTracker().getDownvotes());
-        assertEquals(0, post.getUpvotes());
-        assertEquals(0, post.getDownvotes());
+        assertEquals(1, post.getUpvotes());
+        assertEquals(1, post.getDownvotes());
+        assertEquals(2, post.getVotes().size());
     }
 
     @Test
@@ -105,5 +101,35 @@ class PostTest {
         assertTrue(post.getUserVote("alice").isPresent());
         assertTrue(post.getUserVote("alice").get().isUpvote());
         assertTrue(post.getUserVote("nobody").isEmpty());
+    }
+
+    @Test
+    void shouldToggleExistingPostVote() {
+        Post post = new Post(1, "Title", "Content", "user", "subreddit");
+        PostVote vote = new PostVote("alice", 1, true);
+        post.getVotes().add(vote);
+
+        assertEquals(1, post.getUpvotes());
+        assertEquals(0, post.getDownvotes());
+
+        vote.setUpvote(false);
+
+        assertEquals(0, post.getUpvotes());
+        assertEquals(1, post.getDownvotes());
+        assertFalse(post.getUserVote("alice").get().isUpvote());
+    }
+
+    @Test
+    void shouldRemovePostVote() {
+        Post post = new Post(1, "Title", "Content", "user", "subreddit");
+        post.getVotes().add(new PostVote("alice", 1, true));
+        post.getVotes().add(new PostVote("bob", 1, false));
+
+        post.getUserVote("alice").ifPresent(post.getVotes()::remove);
+
+        assertEquals(0, post.getUpvotes());
+        assertEquals(1, post.getDownvotes());
+        assertTrue(post.getUserVote("alice").isEmpty());
+        assertTrue(post.getUserVote("bob").isPresent());
     }
 }
