@@ -12,4 +12,5 @@ public interface PostRepository {
         String getCurrentUser();
         void saveToFile();
         void addPost(Post post);
+        boolean removePost(int postId);
     }

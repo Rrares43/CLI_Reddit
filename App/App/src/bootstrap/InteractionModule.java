@@ -6,6 +6,8 @@ import interaction.service.CommentService;
 import interaction.service.CommentServiceImpl;
 import interaction.service.CommentVoteService;
 import interaction.service.CommentVoteServiceImpl;
+import interaction.service.PostDeleteService;
+import interaction.service.PostDeleteServiceImpl;
 import interaction.service.PostEditServiceImpl;
 import interaction.service.PostVoteService;
 import interaction.service.PostVoteServiceImpl;
@@ -18,6 +20,7 @@ import posting.StringReader;
 import posting.commands.AddCommentCommand;
 import posting.commands.CommentActionCommand;
 import posting.commands.DeleteCommentCommand;
+import posting.commands.DeletePostCommand;
 import posting.commands.DownvoteCommentCommand;
 import posting.commands.EditCommentCommand;
 import posting.commands.EditPostCommand;
@@ -35,6 +38,7 @@ final class InteractionModule {
                                    Logger logger) {
         PostVoteService postVoteService = new PostVoteServiceImpl(postRepo, logger);
         PostEditServiceImpl postEditService = new PostEditServiceImpl(postRepo);
+        PostDeleteService postDeleteService = new PostDeleteServiceImpl(postRepo);
         CommentService commentService = new CommentServiceImpl(postRepo, logger);
         CommentVoteService commentVoteService = new CommentVoteServiceImpl(postRepo, logger);
 
@@ -49,7 +53,8 @@ final class InteractionModule {
         interactionController.registerPostCommand("2", new VoteCommand(postVoteService, intReader, output, false));
         interactionController.registerPostCommand("3", new AddCommentCommand(commentService, stringReader, output));
         interactionController.registerPostCommand("4", new EditPostCommand(stringReader, postEditService));
-        interactionController.registerPostCommand("5", interactionController::manageCommentInteraction);
+        interactionController.registerPostCommand("5", new DeletePostCommand(postDeleteService, output));
+        interactionController.registerPostCommand("6", interactionController::manageCommentInteraction);
 
         interactionController.registerCommentCommand("1", upvoteComm);
         interactionController.registerCommentCommand("2", downvoteComm);

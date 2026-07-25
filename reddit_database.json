@@ -85,13 +85,7 @@
       }
     ],
     "subredditName": "r/test",
-    "votes": [
-      {
-        "username": "pandele",
-        "postId": 2,
-        "isUpvote": true
-      }
-    ]
+    "votes": []
   },
   {
     "Id": 3,

@@ -120,6 +120,23 @@ public class PostRepo implements PostRepository {
         saveToFile();
     }
 
+    @Override
+    public boolean removePost(int postId) {
+        boolean removed = false;
+
+        for (int i = posts.size() - 1; i >= 0; i--) {
+            if (posts.get(i).getId() == postId) {
+                posts.remove(i);
+                removed = true;
+            }
+        }
+        if (removed) {
+            saveToFile();
+        }
+
+        return removed;
+    }
+
     public Comment findCommentById(int postId, int commentId) {
         Post post = findPostById(postId);
         if (post == null) {
