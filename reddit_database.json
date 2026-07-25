@@ -16,13 +16,9 @@
             "Id": 3,
             "text": "xxxxxxx",
             "author": "FlorinUser",
-            "replies": [],
-            "upvotes": 0,
-            "downvotes": 0
+            "replies": []
           }
         ],
-        "upvotes": 0,
-        "downvotes": 0,
         "votes": [
           {
             "usernamme": "test",
@@ -40,21 +36,15 @@
             "Id": 4,
             "text": "fffffff",
             "author": "FlorinUser",
-            "replies": [],
-            "upvotes": 0,
-            "downvotes": 0
+            "replies": []
           }
-        ],
-        "upvotes": 0,
-        "downvotes": 0
+        ]
       },
       {
         "Id": 6,
         "text": "like",
         "author": "pandele",
-        "replies": [],
-        "upvotes": 0,
-        "downvotes": 0
+        "replies": []
       }
     ],
     "subredditName": "r/test",
@@ -73,36 +63,48 @@
         "text": "test",
         "author": "FlorinUser",
         "replies": [],
-        "upvotes": 0,
-        "downvotes": 0,
-        "votes": [
-          {
-            "usernamme": "pandele",
-            "commentId": 2,
-            "isUpvote": false
-          }
-        ]
+        "votes": []
       },
       {
         "Id": 5,
         "text": "abcdefg",
         "author": "guest",
         "replies": [],
-        "upvotes": 0,
-        "downvotes": 0
+        "votes": [
+          {
+            "usernamme": "pandele",
+            "commentId": 5,
+            "isUpvote": false
+          }
+        ]
       },
       {
         "Id": 7,
         "text": "comment",
         "author": "pandele",
         "replies": [],
-        "upvotes": 0,
-        "downvotes": 0,
         "votes": []
+      },
+      {
+        "Id": 8,
+        "text": "testingzzzz",
+        "author": "pandele",
+        "replies": [],
+        "votes": [],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        }
       }
     ],
     "subredditName": "r/test",
-    "votes": []
+    "votes": [
+      {
+        "username": "pandele",
+        "postId": 2,
+        "isUpvote": false
+      }
+    ]
   },
   {
     "Id": 3,
@@ -146,9 +148,7 @@
         "Id": 2,
         "text": "comment normal",
         "author": "FlorinUser",
-        "replies": [],
-        "upvotes": 0,
-        "downvotes": 0
+        "replies": []
       }
     ],
     "subredditName": "0"

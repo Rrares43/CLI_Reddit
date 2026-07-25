@@ -9,9 +9,6 @@ public class Comment {
     private String text;
     private String author;
     private List<Comment> replies;
-    private int upvotes;
-    private int downvotes;
-
     private List<CommentVote> votes;
     private VoteTracker voteTracker;
 
@@ -20,13 +17,10 @@ public class Comment {
         this.text = text;
         this.author = author;
         this.replies = new ArrayList<>();
-        this.upvotes = 0;
-        this.downvotes = 0;
         this.votes = new ArrayList<>();
         this.voteTracker = new VoteTracker();
     }
 
-    //functie pentru editarea comenatriilor
     public void setText(String newText) {
         this.text = newText;
 
@@ -86,6 +80,11 @@ public class Comment {
             }
         }
         return Optional.empty();
+    }
+    @Override
+    public String toString() {
+        return "[ID: " + Id + "] " + author + ": " + text +
+                " (▲ " + getUpvotes() + " | ▼ " + getDownvotes() + ")";
     }
 }
 
