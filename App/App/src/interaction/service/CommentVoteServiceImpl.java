@@ -1,57 +1,69 @@
 package interaction.service;
 
 import interaction.model.Comment;
+import interaction.model.CommentVote;
 import interaction.repository.PostRepo;
 import logger.Logger;
 import logger.LogLevel;
 import persistence.DatabaseSync;
 
+import java.util.Optional;
+
 public class CommentVoteServiceImpl implements CommentVoteService {
-    private final PostRepo postRepository;
+    private final PostRepo postRepo;
     private final Logger logger;
 
-    public CommentVoteServiceImpl(PostRepo postRepository, Logger logger) {
-        this.postRepository = postRepository;
+    public CommentVoteServiceImpl(PostRepo postRepo, Logger logger) {
         this.logger = logger;
+        this.postRepo = postRepo;
     }
 
     @Override
-    public void upvoteComment(int postId, int commentId, int choice) {
-        Comment comment = postRepository.findCommentById(postId, commentId);
-        if (comment == null) {
-            logger.log(LogLevel.ERROR, "Comment not found");
-            throw new IllegalArgumentException("Comment not found");
-        }
-        if (choice == 1) {
-            comment.getVoteTracker().addUpvotes();
-            postRepository.saveToFile();
-            DatabaseSync.upsertCommentVote(postRepository.getCurrentUser(), commentId, 1);
-            logger.log(LogLevel.INFO, "Comment with id " + commentId + " has been upvoted");
-        } else if (choice == 2) {
-            comment.getVoteTracker().removeUpvotes();
-            postRepository.saveToFile();
-            DatabaseSync.removeCommentVote(postRepository.getCurrentUser(), commentId, 1);
-            logger.log(LogLevel.INFO, "Comment with id " + commentId + " upvote deleted");
-        }
+    public void upvoteComment(int postId, int commentId) {
+        handleVote(postId, commentId, true);
     }
 
     @Override
-    public void downvoteComment(int postId, int commentId, int choice) {
-        Comment comment = postRepository.findCommentById(postId, commentId);
+    public void downvoteComment(int postId, int commentId) {
+        handleVote(postId, commentId, false);
+    }
+
+    private void handleVote(int postId, int commentId, boolean isUpvote) {
+        Comment comment = postRepo.findCommentById(postId, commentId);
+
         if (comment == null) {
-            logger.log(LogLevel.ERROR, "Comment not found");
-            throw new IllegalArgumentException("Comment not found");
+            logger.log(LogLevel.ERROR, "Comment with id " + commentId + " does not exist in post " + postId);
+            throw new IllegalArgumentException("Comment does not exist");
         }
-        if (choice == 1) {
-            comment.getVoteTracker().addDownvotes();
-            postRepository.saveToFile();
-            DatabaseSync.upsertCommentVote(postRepository.getCurrentUser(), commentId, -1);
-            logger.log(LogLevel.INFO, "Comment with id " + commentId + " has been downvoted");
-        } else if (choice == 2) {
-            comment.getVoteTracker().removeDownvotes();
-            postRepository.saveToFile();
-            DatabaseSync.removeCommentVote(postRepository.getCurrentUser(), commentId, -1);
-            logger.log(LogLevel.INFO, "Comment with id " + commentId + " downvote deleted");
+
+        String currentUsername = postRepo.getCurrentUser();
+        if (currentUsername == null) {
+            logger.log(LogLevel.ERROR, "No user is currently logged in.");
+            return;
         }
+
+        Optional<CommentVote> existingVoteOpt = comment.getUserVote(currentUsername);
+
+        if (existingVoteOpt.isPresent()) {
+            CommentVote existingVote = existingVoteOpt.get();
+
+            if (existingVote.isUpvote() == isUpvote) {
+
+                comment.getVotes().remove(existingVote);
+                DatabaseSync.removeCommentVote(currentUsername, commentId, isUpvote ? 1 : -1);
+                logger.log(LogLevel.INFO, "Vote removed for comment " + commentId);
+            } else {
+
+                existingVote.setUpvote(isUpvote);
+                DatabaseSync.upsertCommentVote(currentUsername, commentId, isUpvote ? 1 : -1);
+                logger.log(LogLevel.INFO, "Vote direction changed for comment " + commentId);
+            }
+        } else {
+
+            comment.getVotes().add(new CommentVote(currentUsername, commentId, isUpvote));
+            DatabaseSync.upsertCommentVote(currentUsername, commentId, isUpvote ? 1 : -1);
+            logger.log(LogLevel.INFO, "New vote added for comment " + commentId);
+        }
+        postRepo.saveToFile();
     }
 }

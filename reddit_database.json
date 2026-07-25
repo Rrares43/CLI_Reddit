@@ -35,19 +35,11 @@
             "author": "FlorinUser",
             "replies": [],
             "upvotes": 0,
-            "downvotes": 0,
-            "voteTracker": {
-              "upvotes": 1,
-              "downvotes": 0
-            }
+            "downvotes": 0
           }
         ],
         "upvotes": 0,
-        "downvotes": 0,
-        "voteTracker": {
-          "upvotes": 1,
-          "downvotes": 0
-        }
+        "downvotes": 0
       },
       {
         "Id": 6,
@@ -55,18 +47,10 @@
         "author": "pandele",
         "replies": [],
         "upvotes": 0,
-        "downvotes": 0,
-        "voteTracker": {
-          "upvotes": 0,
-          "downvotes": 0
-        }
+        "downvotes": 0
       }
     ],
-    "subredditName": "r/test",
-    "voteTracker": {
-      "upvotes": 1,
-      "downvotes": 1
-    }
+    "subredditName": "r/test"
   },
   {
     "Id": 2,
@@ -83,10 +67,13 @@
         "replies": [],
         "upvotes": 0,
         "downvotes": 0,
-        "voteTracker": {
-          "upvotes": 0,
-          "downvotes": 0
-        }
+        "votes": [
+          {
+            "usernamme": "pandele",
+            "commentId": 2,
+            "isUpvote": false
+          }
+        ]
       },
       {
         "Id": 5,
@@ -94,18 +81,17 @@
         "author": "guest",
         "replies": [],
         "upvotes": 0,
-        "downvotes": 0,
-        "voteTracker": {
-          "upvotes": 0,
-          "downvotes": 1
-        }
+        "downvotes": 0
       }
     ],
     "subredditName": "r/test",
-    "voteTracker": {
-      "upvotes": 1,
-      "downvotes": 0
-    }
+    "votes": [
+      {
+        "username": "pandele",
+        "postId": 2,
+        "isUpvote": true
+      }
+    ]
   },
   {
     "Id": 3,
@@ -151,18 +137,10 @@
         "author": "FlorinUser",
         "replies": [],
         "upvotes": 0,
-        "downvotes": 0,
-        "voteTracker": {
-          "upvotes": 0,
-          "downvotes": 0
-        }
+        "downvotes": 0
       }
     ],
-    "subredditName": "0",
-    "voteTracker": {
-      "upvotes": 0,
-      "downvotes": 0
-    }
+    "subredditName": "0"
   },
   {
     "Id": 6,
@@ -182,11 +160,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "reddit",
-    "voteTracker": {
-      "upvotes": 0,
-      "downvotes": 0
-    }
+    "subredditName": "reddit"
   },
   {
     "Id": 8,
@@ -196,11 +170,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "json",
-    "voteTracker": {
-      "upvotes": 0,
-      "downvotes": 0
-    }
+    "subredditName": "json"
   },
   {
     "Id": 9,
@@ -210,10 +180,6 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "pandele",
-    "voteTracker": {
-      "upvotes": 0,
-      "downvotes": 0
-    }
+    "subredditName": "pandele"
   }
 ]

@@ -19,11 +19,12 @@ public class VoteCommand implements PostActionCommand {
 
     @Override
     public void execute(int postId) {
-        String type = isUpvote ? "Upvote" : "Downvote";
-        int voteChoice = intReader.readInt("Select: 1 for Add " + type + " | 2 for Remove " + type);
 
-        if (isUpvote) postVoteService.upvote(postId, voteChoice);
-        else postVoteService.downvote(postId, voteChoice);
+        if (isUpvote) {
+            postVoteService.upvote(postId);
+        } else {
+            postVoteService.downvote(postId);
+        }
 
         output.write("Vote updated successfully.");
     }

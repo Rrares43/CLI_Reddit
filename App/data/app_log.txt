@@ -278,3 +278,23 @@
 [2026-07-24 18:38:04] [INFO] Subreddit saved successfully!
 [2026-07-24 18:47:38] [INFO] Application Started
 [2026-07-24 18:47:52] [ERROR] pandele has logged in.
+[2026-07-25 14:36:11] [INFO] Application Started
+[2026-07-25 14:39:25] [ERROR] pandele has logged in.
+[2026-07-25 14:47:35] [INFO] Application Started
+[2026-07-25 14:47:48] [ERROR] pandele has logged in.
+[2026-07-25 14:48:27] [ERROR] Database dual-write failed for post_votes: The server requested SCRAM-based authentication, but no password was provided.
+[2026-07-25 14:48:27] [INFO] New vote added for post 2
+[2026-07-25 14:48:27] [ERROR] Database dual-write failed for posts: The server requested SCRAM-based authentication, but no password was provided.
+[2026-07-25 14:49:16] [ERROR] Database dual-write failed for posts: The server requested SCRAM-based authentication, but no password was provided.
+[2026-07-25 15:09:30] [INFO] Application Started
+[2026-07-25 15:09:42] [ERROR] pandele has logged in.
+[2026-07-25 15:09:55] [INFO] Vote removed for post 2
+[2026-07-25 15:10:10] [INFO] New vote added for post 2
+[2026-07-25 15:10:47] [INFO] Vote removed for post 2
+[2026-07-25 15:11:08] [INFO] New vote added for post 2
+[2026-07-25 15:11:29] [INFO] Vote direction changed for post 2
+[2026-07-25 15:12:07] [INFO] New vote added for comment 2
+[2026-07-25 15:12:49] [INFO] Vote direction changed for comment 2
+[2026-07-25 15:14:23] [INFO] Application Started
+[2026-07-25 15:14:32] [ERROR] pandele has logged in.
+[2026-07-25 15:15:01] [INFO] Vote direction changed for post 2

@@ -2,6 +2,7 @@ package interaction.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Comment {
     private int Id;
@@ -11,65 +12,78 @@ public class Comment {
     private int upvotes;
     private int downvotes;
 
-    private VoteTracker voteTracker;
+    private List<CommentVote> votes;
 
-    public Comment(int Id,String text,String author)
-    {
-        this.Id=Id;
-        this.text=text;
-        this.author=author;
-        this.replies=new ArrayList<>();
-        this.upvotes=0;
-        this.downvotes=0;
-        this.voteTracker=new VoteTracker();
+    public Comment(int Id, String text, String author) {
+        this.Id = Id;
+        this.text = text;
+        this.author = author;
+        this.replies = new ArrayList<>();
+        this.upvotes = 0;
+        this.downvotes = 0;
+        this.votes = new ArrayList<>();
     }
 
     //functie pentru editarea comenatriilor
-    public void setText(String newText){
+    public void setText(String newText) {
         this.text = newText;
 
     }
 
-    public int getId(){
+    public int getId() {
         return Id;
     }
 
-    public String getText(){
+    public String getText() {
         return text;
     }
 
-    public String getAuthor(){
+    public String getAuthor() {
         return author;
     }
 
-    public List<Comment> getReplies(){
+    public List<Comment> getReplies() {
         return replies;
     }
 
-    public void addreply(Comment reply){
+    public void addreply(Comment reply) {
         this.replies.add(reply);
     }
 
-    public int getUpvotes(){
-        if(voteTracker==null){
-            voteTracker=new VoteTracker();
+    public List<CommentVote> getVotes() {
+        if (votes == null) {
+            votes = new ArrayList<>();
         }
-        return voteTracker.getUpvotes();
-    }
-    public int getDownvotes(){
-        if(voteTracker==null){
-            voteTracker=new VoteTracker();
-        }
-        return voteTracker.getDownvotes();
-    }
-    public VoteTracker getVoteTracker() {
-        if (this.voteTracker == null) {
-            this.voteTracker = new VoteTracker();
-        }
-        return this.voteTracker;
+        return votes;
     }
 
+    public int getUpvotes() {
+        int count = 0;
+        for (CommentVote vote : getVotes()) {
+            if (vote.isUpvote()) {
+                count++;
+            }
+        }
+        return count;
+    }
 
+    public int getDownvotes() {
+        int count = 0;
+        for (CommentVote vote : getVotes()) {
+            if (!vote.isUpvote()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Optional<CommentVote> getUserVote(String username) {
+        for (CommentVote vote : getVotes()) {
+            if (vote.getUsername().equals(username)) {
+                return Optional.of(vote);
+            }
+        }
+        return Optional.empty();
+    }
 }
-
 
