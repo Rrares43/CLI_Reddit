@@ -17,15 +17,7 @@ public class UpvoteCommentCommand implements CommentActionCommand {
 
     @Override
     public void execute(int postId, int commentId) {
-        output.write("Select: 1 to ADD Upvote | 2 to REMOVE Upvote\n");
-        String choiceStr = stringReader.readString("Enter choice (1-2): ");
-        try {
-            int voteChoice = Integer.parseInt(choiceStr);
-            commentVoteService.upvoteComment(postId,commentId, voteChoice);
-            output.write("Upvote processed successfully\n");
-        }
-        catch (NumberFormatException e) {
-            output.write("Invalid choice");
-        }
+        commentVoteService.upvoteComment(postId, commentId);
+        output.write("Upvote processed successfully\n");
     }
 }

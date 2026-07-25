@@ -2,6 +2,7 @@ package interaction.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Post {
     private int Id;
@@ -12,6 +13,7 @@ public class Post {
     private int downvotes;
     private List<Comment> comments;
     private String subredditName;
+    private List<PostVote> votes;
 
     public Post(int Id,String title,String content,String author, String subredditName){
         this.Id = Id;
@@ -22,10 +24,8 @@ public class Post {
         this.upvotes = 0;
         this.downvotes = 0;
         this.comments = new ArrayList<>();
-        this.voteTracker = new VoteTracker();
+        this.votes = new ArrayList<>();
     }
-
-    private VoteTracker voteTracker;
 
     public int getId(){
         return Id;
@@ -43,26 +43,43 @@ public class Post {
         return author;
     }
 
-    public int getUpvotes() {
-        if(voteTracker==null){
-            voteTracker=new VoteTracker();
+    public List<PostVote> getVotes() {
+        if (this.votes == null) {
+            this.votes = new ArrayList<>();
         }
-        return voteTracker.getUpvotes();
+        return this.votes;
+    }
+
+    public int getUpvotes() {
+        int count = 0;
+        for (PostVote vote : getVotes()) {
+            if (vote.isUpvote()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public int getDownvotes() {
-        if(voteTracker==null){
-            voteTracker=new VoteTracker();
+        int count = 0;
+        for (PostVote vote : getVotes()) {
+            if (!vote.isUpvote()) {
+                count++;
+            }
         }
-        return voteTracker.getDownvotes();
+        return count;
     }
 
-    public VoteTracker getVoteTracker() {
-        if (this.voteTracker == null) {
-            this.voteTracker = new VoteTracker();
+    public Optional<PostVote> getUserVote(String username) {
+        for (PostVote vote : getVotes()) {
+            if (vote.getUsername().equals(username)) {
+                return Optional.of(vote);
+            }
         }
-        return this.voteTracker;
+        return Optional.empty();
     }
+
+
 
     public List<Comment> getComments(){
         return comments;
