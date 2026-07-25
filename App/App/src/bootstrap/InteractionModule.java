@@ -1,41 +1,41 @@
 package bootstrap;
 
-import interaction.repository.InteractionQuery;
-import interaction.repository.PostRepo;
-import interaction.service.CommentService;
-import interaction.service.CommentServiceImpl;
-import interaction.service.CommentVoteService;
-import interaction.service.CommentVoteServiceImpl;
-import interaction.service.PostDeleteService;
-import interaction.service.PostDeleteServiceImpl;
-import interaction.service.PostEditServiceImpl;
-import interaction.service.PostVoteService;
-import interaction.service.PostVoteServiceImpl;
+import post.repository.PostMenu;
+import post.repository.PostRepo;
+import post.service.CommentService;
+import post.service.CommentServiceImpl;
+import post.service.CommentVoteService;
+import post.service.CommentVoteServiceImpl;
+import post.service.PostDeleteService;
+import post.service.PostDeleteServiceImpl;
+import post.service.PostEditServiceImpl;
+import post.service.PostVoteService;
+import post.service.PostVoteServiceImpl;
 import logger.Logger;
-import posting.IntReader;
-import posting.OutputWriter;
-import posting.PostInteractionController;
-import posting.PostView;
-import posting.StringReader;
-import posting.commands.AddCommentCommand;
-import posting.commands.CommentActionCommand;
-import posting.commands.DeleteCommentCommand;
-import posting.commands.DeletePostCommand;
-import posting.commands.DownvoteCommentCommand;
-import posting.commands.EditCommentCommand;
-import posting.commands.EditPostCommand;
-import posting.commands.ReplyCommentCommand;
-import posting.commands.UpvoteCommentCommand;
-import posting.commands.VoteCommand;
+import io.IntReader;
+import io.OutputWriter;
+import post.PostInteractionController;
+import post.PostView;
+import io.StringReader;
+import post.command.AddCommentCommand;
+import post.command.CommentActionCommand;
+import post.command.DeleteCommentCommand;
+import post.command.DeletePostCommand;
+import post.command.DownvoteCommentCommand;
+import post.command.EditCommentCommand;
+import post.command.EditPostCommand;
+import post.command.ReplyCommentCommand;
+import post.command.UpvoteCommentCommand;
+import post.command.VoteCommand;
 
 final class InteractionModule {
 
-    static InteractionQuery create(StringReader stringReader,
-                                   IntReader intReader,
-                                   OutputWriter output,
-                                   PostView postView,
-                                   PostRepo postRepo,
-                                   Logger logger) {
+    static PostMenu create(StringReader stringReader,
+                           IntReader intReader,
+                           OutputWriter output,
+                           PostView postView,
+                           PostRepo postRepo,
+                           Logger logger) {
         PostVoteService postVoteService = new PostVoteServiceImpl(postRepo, logger);
         PostEditServiceImpl postEditService = new PostEditServiceImpl(postRepo);
         PostDeleteService postDeleteService = new PostDeleteServiceImpl(postRepo);
@@ -62,6 +62,6 @@ final class InteractionModule {
         interactionController.registerCommentCommand("4", new EditCommentCommand(commentService, stringReader, output));
         interactionController.registerCommentCommand("5", new DeleteCommentCommand(commentService, output));
 
-        return new InteractionQuery(interactionController);
+        return new PostMenu(interactionController);
     }
 }

@@ -1,19 +1,19 @@
 package bootstrap;
 
-import account_manager.AccountQuery;
-import account_manager.SessionService;
-import community.SubredditQuery;
-import interaction.repository.InteractionQuery;
-import interaction.repository.PostRepo;
+import account.AccountMenu;
+import account.SessionService;
+import subreddit.SubredditMenu;
+import post.repository.PostMenu;
+import post.repository.PostRepo;
 import logger.LogLevel;
 import logger.Logger;
-import menu_commands.MenuDispatcher;
-import posting.ConsoleIO;
-import posting.IntReader;
-import posting.OutputWriter;
-import posting.PostView;
-import posting.StringReader;
-import posting.commands.CreatePostCommand;
+import menu.MenuDispatcher;
+import io.ConsoleIO;
+import io.IntReader;
+import io.OutputWriter;
+import post.PostView;
+import io.StringReader;
+import post.command.CreatePostCommand;
 
 public final class AppBootstrap {
 
@@ -29,26 +29,26 @@ public final class AppBootstrap {
         SessionService sessionService = new SessionService();
         PostRepo postRepo = new PostRepo(sessionService);
 
-        AccountQuery accountQuery = AccountModule.create(stringReader, output, sessionService);
+        AccountMenu accountMenu = AccountModule.create(stringReader, output, sessionService);
         PostView postView = PostingModule.createPostView(stringReader, output);
         CreatePostCommand createPostCommand = PostingModule.createCreatePostCommand(
                 postView, postRepo, sessionService
         );
 
-        InteractionQuery interactionQuery = InteractionModule.create(
+        PostMenu postMenu = InteractionModule.create(
                 stringReader, intReader, output, postView, postRepo, logger
         );
 
-        SubredditQuery subredditQuery = SubredditModule.create(sessionService, stringReader, output);
+        SubredditMenu subredditMenu = SubredditModule.create(sessionService, stringReader, output);
 
         MenuDispatcher dispatcher = MenuModule.create(
                 output,
                 stringReader,
                 logger,
-                accountQuery,
+                accountMenu,
                 createPostCommand,
-                interactionQuery,
-                subredditQuery
+                postMenu,
+                subredditMenu
         );
 
         return new AppContext(sessionService, stringReader, output, dispatcher);

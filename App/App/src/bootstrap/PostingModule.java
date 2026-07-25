@@ -1,21 +1,21 @@
 package bootstrap;
 
-import account_manager.SessionService;
-import interaction.repository.PostRepo;
-import interaction.service.PostService;
-import interaction.service.PostServiceImpl;
-import posting.OutputWriter;
-import posting.PostView;
-import posting.StringReader;
-import posting.attachment_handlers.AttachmentHandler;
-import posting.attachment_handlers.LinkAttachmentHandler;
-import posting.attachment_handlers.NoAttachmentHandler;
-import posting.attachment_handlers.PhotoAttachmentHandler;
-import posting.commands.CreatePostCommand;
-import posting.post_validators.IsNotBlank;
-import posting.post_validators.IsValidLength;
-import posting.post_validators.IsValidLink;
-import posting.post_validators.Validator;
+import account.SessionService;
+import post.repository.PostRepo;
+import post.service.PostService;
+import post.service.PostServiceImpl;
+import io.OutputWriter;
+import post.PostView;
+import io.StringReader;
+import post.attachment.AttachmentHandler;
+import post.attachment.LinkAttachmentHandler;
+import post.attachment.NoAttachmentHandler;
+import post.attachment.PhotoAttachmentHandler;
+import post.command.CreatePostCommand;
+import post.validator.IsNotBlank;
+import post.validator.IsValidLength;
+import post.validator.IsValidLink;
+import post.validator.Validator;
 
 import java.util.HashMap;
 import java.util.Map;

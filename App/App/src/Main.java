@@ -13,7 +13,7 @@ public class Main {
         System.out.println(FigletFont.convertOneLine("Buggit"));
 
         // command for database migration, no longer needs to be called
-        //DataMigrator.runMigration();
+        //persistence.DataMigrator.runMigration();
 
         // Test for the database connection
         System.out.println("Starting Reddit CLI...");

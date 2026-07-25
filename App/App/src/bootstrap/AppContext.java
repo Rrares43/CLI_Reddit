@@ -1,9 +1,9 @@
 package bootstrap;
 
-import account_manager.SessionService;
-import menu_commands.MenuDispatcher;
-import posting.OutputWriter;
-import posting.StringReader;
+import account.SessionService;
+import menu.MenuDispatcher;
+import io.OutputWriter;
+import io.StringReader;
 
 public class AppContext {
     private final SessionService sessionService;
