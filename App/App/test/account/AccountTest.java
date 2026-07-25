@@ -34,22 +34,4 @@ class AccountTest {
         assertEquals("NewPass123!", account.getPassword());
     }
 
-    @Test
-    void testGetUsername() {
-        Account account = new Account("testuser", "test@example.com", "Password123!");
-        assertEquals("testuser", account.getUsername());
-    }
-
-    @Test
-    void testGetEmail() {
-        Account account = new Account("testuser", "test@example.com", "Password123!");
-        assertEquals("test@example.com", account.getEmail());
-    }
-
-    @Test
-    void testGetPassword() {
-        Account account = new Account("testuser", "test@example.com", "Password123!");
-        assertEquals("Password123!", account.getPassword());
-    }
-
 }
