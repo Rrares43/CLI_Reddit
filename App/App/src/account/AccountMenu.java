@@ -47,6 +47,9 @@ public class AccountMenu {
           if (command != null) {
             try {
               command.execute();
+              if(choice.equals("2")){
+                break;
+              }
             } catch (Exception e) {
               output.write("Error: " + e.getMessage());
             }
@@ -73,7 +76,6 @@ public class AccountMenu {
         output.write("5. Logout");
         output.write("6. Delete Account");
 
-        System.out.println();
         System.out.println(TextFormatter.separator(50));
 
         choice = stringReader.readString("Select an option (0/1/2/3/4/5/6): ");

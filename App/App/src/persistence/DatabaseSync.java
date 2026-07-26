@@ -172,7 +172,12 @@ public final class DatabaseSync {
                 statement.setString(2, post.getTitle());
                 statement.setString(3, post.getContent());
                 statement.setString(4, post.getAuthor());
-                statement.setString(5, post.getSubredditName());
+
+                String subredditName = post.getSubredditName();
+                if(subredditName != null && !subredditName.startsWith("r/")){
+                    subredditName = "r/" + subredditName;
+                }
+                statement.setString(5, subredditName);
                 statement.addBatch();
             }
             statement.executeBatch();

@@ -15,7 +15,7 @@ public class Main {
         System.out.println(TextFormatter.separator(50));
 
         // command for database migration, no longer needs to be called
-        //DataMigrator.runMigration();
+        // DataMigrator.runMigration();
 
         // Test for the database connection
         /*System.out.println("Starting Reddit CLI...");
