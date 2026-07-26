@@ -85,7 +85,7 @@ public class AccountRepository {
 
         for(Account acc : accounts){
             if(acc.getUsername().equals(account.getUsername()) && acc.getPassword().equals(account.getPassword())){
-                logger.log(LogLevel.ERROR, acc.getUsername() + " has logged in.");
+                logger.log(LogLevel.INFO, acc.getUsername() + " has logged in.");
                 return true;
             }
         }

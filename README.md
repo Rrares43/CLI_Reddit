@@ -12,7 +12,7 @@ Currently, the application runs entirely in the terminal and uses a local JSON f
 * **Interaction System:** Upvote or downvote posts to influence their ranking.
 * **Comment Trees:** Add comments to posts and reply to specific comments.
 * **Account Simulation:** Basic mock user session management.
-* **Data Persistence:** All posts, comments, and votes are saved locally in a `reddit_database.json` file.
+* **Data Persistence:** All posts, comments, and votes are saved locally in a `App/data/reddit_database.json` file.
 
 ---
 

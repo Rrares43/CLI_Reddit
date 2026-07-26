@@ -7,7 +7,6 @@ public class TextFormatter {
     public static final String GREEN = "\u001B[32m";
     public static final String YELLOW = "\u001B[33m";
     public static final String BLUE = "\u001B[34m";
-    public static final String CYAN = "\u001B[36m";
     public static final String BOLD = "\u001B[1m";
     public static final String UNDERLINE = "\u001B[4m";
 
@@ -29,10 +28,6 @@ public class TextFormatter {
 
     public static String warning(String text) {
         return YELLOW + text + RESET;
-    }
-
-    public static String info(String text) {
-        return CYAN + text + RESET;
     }
 
     public static String header(String text) {

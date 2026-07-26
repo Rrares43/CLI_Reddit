@@ -15,7 +15,7 @@ public class DataMigrator {
 
     private static final String ACCOUNTS_FILE_PATH = "App/data/accounts.json";
     private static final String SUBREDDITS_FILE_PATH = "App/data/subreddits.json";
-    private static final String POSTS_FILE_PATH = "reddit_database.json";
+    private static final String POSTS_FILE_PATH = "App/data/reddit_database.json";
 
     private static void cleanDatabase(Connection databaseConnection) throws Exception {
         System.out.println("Cleaning existing database tables...");

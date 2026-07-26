@@ -1,5 +1,6 @@
 package menu;
 
+import io.TextFormatter;
 import logger.Logger;
 import logger.command.BacktoMain;
 import logger.command.ShowLogOptions;
@@ -29,12 +30,13 @@ public class LoggerCommand implements MenuCommand {
         boolean stayInMenu = true;
 
         while (stayInMenu) {
-            output.write("\n--- LOGGER SETTINGS ---");
+            output.write(TextFormatter.header("\n--- LOGGER SETTINGS ---"));
 
             for (int i = 0; i < options.size(); i++) {
                 output.write((i + 1) + ". " + options.get(i).getNotificationText());
             }
-            output.write("-----------------------");
+            output.write(TextFormatter.separator(23));
+            output.write("");
 
             String choice = stringReader.readString("Select option: ");
 

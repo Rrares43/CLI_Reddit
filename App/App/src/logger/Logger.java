@@ -1,5 +1,7 @@
 package logger;
 
+import io.TextFormatter;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -39,7 +41,7 @@ public class Logger {
     public void printLogsToConsole() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
-            System.out.println("No logs available (log file does not exist).");
+            System.out.println(TextFormatter.warning("No logs available (log file does not exist)."));
             return;
         }
 
@@ -50,12 +52,12 @@ public class Logger {
                 allLogs.add(fileScanner.nextLine());
             }
         } catch (IOException e) {
-            System.out.println("Error: Could not read the log file.");
+            System.out.println(TextFormatter.error("Error: Could not read the log file."));
             return;
         }
 
         if (allLogs.isEmpty()) {
-            System.out.println("No logs available.");
+            System.out.println(TextFormatter.warning("No logs available."));
             return;
         }
         int startIndex = 0;
@@ -63,9 +65,16 @@ public class Logger {
             startIndex = allLogs.size() - 10;
         }
 
-        System.out.println(" DISPLAYING LAST 10 LOGS");
+        System.out.println(TextFormatter.header(" DISPLAYING LAST 10 LOGS"));
         for (int i = startIndex; i < allLogs.size(); i++) {
-            System.out.println(allLogs.get(i));
+            String logLine = allLogs.get(i);
+            if (logLine.contains("[ERROR]")) {
+                System.out.println(TextFormatter.error(logLine));
+            } else if (logLine.contains("[WARNING]")) {
+                System.out.println(TextFormatter.warning(logLine));
+            } else {
+                System.out.println(logLine);
+            }
         }
 
     }

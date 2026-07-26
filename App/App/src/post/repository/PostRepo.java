@@ -19,7 +19,7 @@ import java.util.List;
 
 public class PostRepo implements PostRepository {
     private final List<Post> posts;
-    private static final Path DB_FILE = Paths.get("reddit_database.json");
+    private static final Path DB_FILE = Paths.get("App/data/reddit_database.json");
     private final Gson gson;
     private final SessionService sessionService;
     private int nextCommentId = 1;

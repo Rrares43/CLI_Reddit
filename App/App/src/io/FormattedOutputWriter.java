@@ -19,7 +19,7 @@ public class FormattedOutputWriter implements OutputWriter {
             return TextFormatter.error("\n❌ " + message);
         } else if (lowerMessage.contains("success") || lowerMessage.contains("created") || message.contains("deleted")) {
             return TextFormatter.success("\n✓ " + message);
-        } else if (lowerMessage.contains("warning") || lowerMessage.contains("are you sure") || lowerMessage.contains("already")) {
+        } else if (lowerMessage.contains("warning") || lowerMessage.contains("are you sure") || lowerMessage.contains("already") || lowerMessage.contains("cancelled")) {
             return TextFormatter.warning("\n⚠ " + message);
         } else {
             return message;

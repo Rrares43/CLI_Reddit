@@ -34,12 +34,12 @@ public class AccountMenu {
     while (running) {
       String choice;
       if(!sessionService.isLoggedIn()){
-        output.write("\n--- ACCOUNT MENU ---");
+        output.write(TextFormatter.header("\n--- ACCOUNT MENU ---"));
         output.write("0. End Application");
         output.write("1. Create Account");
         output.write("2. Login");
-        output.write(TextFormatter.separator(50));
         output.write("");
+        output.write(TextFormatter.separator(42));
 
         choice = stringReader.readString("Select an option (0/1/2): ");
         if(choice.equals("1") || choice.equals("2")) {
@@ -67,7 +67,7 @@ public class AccountMenu {
         }
       }
       else {
-        output.write("\n--- ACCOUNT MENU ---");
+        output.write(TextFormatter.header("\n--- ACCOUNT MENU ---"));
         output.write("0. Back to Main Menu");
         output.write("1. Add account");
         output.write("2. Login into another account");
@@ -76,7 +76,7 @@ public class AccountMenu {
         output.write("5. Logout");
         output.write("6. Delete Account");
 
-        System.out.println(TextFormatter.separator(50));
+        System.out.println(TextFormatter.separator(42));
 
         choice = stringReader.readString("Select an option (0/1/2/3/4/5/6): ");
 

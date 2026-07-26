@@ -33,7 +33,7 @@ public class SubredditMenu {
         running = true;
         while (running){
             String choice;
-            output.write("--- SUBREDDIT MENU ---");
+            output.write(TextFormatter.header("\n--- SUBREDDIT MENU ---"));
             output.write("0. Exit");
             output.write("1. Create Subreddit");
             output.write("2. View Subreddit");

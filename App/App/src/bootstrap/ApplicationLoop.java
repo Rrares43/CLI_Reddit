@@ -26,16 +26,15 @@ public class ApplicationLoop {
                 continue;
             }
 
-            output.write("\n--- MAIN MENU ---");
+            output.write(TextFormatter.header("\n--- MAIN MENU ---"));
             output.write("0. Exit");
             output.write("1. Account menu");
             output.write("2. Post Options");
             output.write("3. Interaction");
             output.write("4. Subreddit menu");
             output.write("5. Logger");
-            output.write(TextFormatter.separator(50));
             output.write("");
-
+            output.write(TextFormatter.separator(50));
 
             String choice = stringReader.readString("Select your choice (0/1/2/3/4/5): ");
             if ("0".equals(choice)) {

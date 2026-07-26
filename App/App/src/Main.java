@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println(TextFormatter.color(FigletFont.convertOneLine("Buggit"), TextFormatter.GREEN));
-        System.out.println(TextFormatter.separator(50));
+        System.out.println(TextFormatter.separator(42));
 
         // command for database migration, no longer needs to be called
         // DataMigrator.runMigration();
