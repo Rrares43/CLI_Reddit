@@ -113,4 +113,10 @@ public class CommentServiceImpl implements CommentService {
         }
         return null;
     }
+    @Override
+    public void validateReply(int postId, Integer parentCommentId) {
+        if (parentCommentId == null || findCommentById(parentCommentId) == null) {
+            throw new IllegalArgumentException("Base comment not found.");
+        }
+    }
 }

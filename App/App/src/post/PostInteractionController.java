@@ -171,6 +171,11 @@ public class PostInteractionController {
             return;
         }
 
+        if (foundComment.getPostId() != postID) {
+            output.write("Error: Base comment not found!");
+            return;
+        }
+
         output.write("Selected comment by: " + foundComment.getAuthor());
 
         output.write("1. Upvote comment\n2. Downvote comment\n3. Reply to comment\n4. Edit comment\n5. Delete comment");
