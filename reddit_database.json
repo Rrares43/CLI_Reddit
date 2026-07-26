@@ -161,10 +161,12 @@
         "Id": 2,
         "text": "comment normal",
         "author": "FlorinUser",
-        "replies": []
+        "replies": [],
+        "votes": []
       }
     ],
-    "subredditName": "r/0"
+    "subredditName": "r/0",
+    "votes": []
   },
   {
     "Id": 6,
@@ -215,7 +217,13 @@
     "downvotes": 0,
     "comments": [],
     "subredditName": "r/subnou",
-    "votes": []
+    "votes": [
+      {
+        "username": "pandele",
+        "postId": 10,
+        "isUpvote": true
+      }
+    ]
   },
   {
     "Id": 11,

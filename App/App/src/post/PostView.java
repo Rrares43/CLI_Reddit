@@ -132,7 +132,7 @@ public class PostView {
     }
 
     private void displayCommentTree(Comment comment, String indent) {
-        output.write(indent + "↳ [ID: " + comment.getId() + "]" + comment.getAuthor() + ": " + comment.getText()+" downvotes:"+comment.getDownvotes()+" upvotes:"+comment.getUpvotes());
+        output.write(indent + "↳ " + comment.toString());
         for (Comment reply : comment.getReplies()) {
             displayCommentTree(reply, indent + "      ");
         }
