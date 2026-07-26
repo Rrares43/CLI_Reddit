@@ -36,7 +36,7 @@ public final class AppBootstrap {
                 stringReader, intReader, output, postView, postRepo, logger
         );
 
-        SubredditMenu subredditMenu = SubredditModule.create(sessionService, stringReader, output);
+        SubredditMenu subredditMenu = SubredditModule.create(sessionService, stringReader, output, postRepo, postView);
 
         MenuDispatcher dispatcher = MenuModule.create(
                 output,

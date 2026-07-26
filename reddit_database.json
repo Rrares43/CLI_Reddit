@@ -48,7 +48,13 @@
       }
     ],
     "subredditName": "r/test",
-    "votes": []
+    "votes": [
+      {
+        "username": "test",
+        "postId": 1,
+        "isUpvote": true
+      }
+    ]
   },
   {
     "Id": 2,
@@ -124,7 +130,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "incercare"
+    "subredditName": "r/incercare"
   },
   {
     "Id": 4,
@@ -134,7 +140,14 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "un subreddit"
+    "subredditName": "r/un subreddit",
+    "votes": [
+      {
+        "username": "test",
+        "postId": 4,
+        "isUpvote": true
+      }
+    ]
   },
   {
     "Id": 5,
@@ -151,7 +164,7 @@
         "replies": []
       }
     ],
-    "subredditName": "0"
+    "subredditName": "r/0"
   },
   {
     "Id": 6,
@@ -161,7 +174,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "as"
+    "subredditName": "r/as"
   },
   {
     "Id": 7,
@@ -171,7 +184,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "reddit"
+    "subredditName": "r/un subreddit"
   },
   {
     "Id": 8,
@@ -181,7 +194,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "json"
+    "subredditName": "r/json"
   },
   {
     "Id": 9,
@@ -191,7 +204,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "pandele"
+    "subredditName": "r/incercare"
   },
   {
     "Id": 10,
@@ -201,7 +214,7 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "R/TEST",
+    "subredditName": "r/subnou",
     "votes": []
   },
   {
@@ -212,7 +225,34 @@
     "upvotes": 0,
     "downvotes": 0,
     "comments": [],
-    "subredditName": "uuu, postul asta e pus pe un sub care nu exista uuu",
+    "subredditName": "r/0",
+    "votes": [],
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
+  },
+  {
+    "Id": 12,
+    "title": "Incercare",
+    "content": "am incercat sa pun un post",
+    "author": "test",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [
+      {
+        "Id": 9,
+        "text": "Comentariu de incercare ;)",
+        "author": "test",
+        "replies": [],
+        "votes": [],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        }
+      }
+    ],
+    "subredditName": "r/incercare",
     "votes": [],
     "voteTracker": {
       "upvotes": 0,
