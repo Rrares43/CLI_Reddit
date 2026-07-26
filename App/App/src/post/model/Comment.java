@@ -11,6 +11,7 @@ public class Comment {
     private List<Comment> replies;
     private List<CommentVote> votes;
     private VoteTracker voteTracker;
+    private int postId;
 
     public Comment(int Id, String text, String author) {
         this.Id = Id;
@@ -46,6 +47,9 @@ public class Comment {
         this.replies.add(reply);
     }
 
+    public int getPostId() {
+        return this.postId;
+    }
     public List<CommentVote> getVotes() {
         if (votes == null) {
             votes = new ArrayList<>();
