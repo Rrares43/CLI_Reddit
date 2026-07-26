@@ -1,4 +1,5 @@
 package post;
+import io.TextFormatter;
 import post.model.Comment;
 import post.model.Post;
 import post.attachment.AttachmentHandler;
@@ -115,12 +116,13 @@ public class PostView {
     }
 
     public void displayPost(Post post) {
-        output.write("[" + post.getSubredditName() + "] " + post.getTitle());
+        output.write(TextFormatter.header("[" + post.getSubredditName() + "] " + post.getTitle()));
         output.write("By: " + post.getAuthor() + " | ID: " + post.getId());
-        output.write("Upvotes: " + post.getUpvotes() +  " | Downvotes: " + post.getDownvotes());
-        output.write("------------------------------------------");
+        output.write(TextFormatter.success("▲ Upvotes: " + post.getUpvotes()) + " | " + TextFormatter.error("▼ Downvotes: " + post.getDownvotes()));
+        output.write(TextFormatter.separator(42));
         output.write(post.getContent());
-        output.write("COMMENTS:");
+        output.write(TextFormatter.separator(42));
+        output.write(TextFormatter.header("COMMENTS:"));
 
         if (post.getComments().isEmpty()) {
             output.write("No comments yet. Be the first to share your thoughts!");
