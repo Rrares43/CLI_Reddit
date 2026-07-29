@@ -34,7 +34,7 @@ public class DataMigrator {
             migrateSubreddits(databaseConnection);
             migratePostsAndComments(databaseConnection);
 
-            generateArtificialVotes(databaseConnection);
+            //generateArtificialVotes(databaseConnection);
 
             System.out.println("Migration completed successfully!");
         } catch (Exception exception) {
