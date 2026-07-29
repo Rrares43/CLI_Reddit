@@ -426,3 +426,10 @@
 [2026-07-29 13:37:22] [INFO] Password changed successfully!
 [2026-07-29 13:56:11] [INFO] Application Started
 [2026-07-29 13:56:18] [INFO] test has logged in.
+[2026-07-29 14:02:43] [INFO] Application Started
+[2026-07-29 14:02:48] [INFO] test has logged in.
+[2026-07-29 14:03:09] [WARNING] Password condition not respected
+[2026-07-29 14:03:58] [INFO] Application Started
+[2026-07-29 14:04:04] [INFO] test has logged in.
+[2026-07-29 14:11:25] [INFO] Application Started
+[2026-07-29 14:13:02] [INFO] Application Started

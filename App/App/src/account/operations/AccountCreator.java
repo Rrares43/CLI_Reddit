@@ -3,6 +3,7 @@ package account.operations;
 import account.Account;
 import account.repository.AccountRepository;
 import account.verification.EmailVerification;
+import account.verification.NameVerification;
 import account.verification.PasswordVerification;
 import io.OutputWriter;
 import io.StringReader;
@@ -24,9 +25,18 @@ public class AccountCreator {
                 return;
             }
 
-            String username = stringReader.readString("Enter username: (or 0 to cancel)");
-            if(username.equals("0")) {
-                return;
+            String username;
+            while (true) {
+                username = stringReader.readString("Enter username: (or 0 to cancel)");
+                if (username.equals("0")) {
+                    return;
+                }
+                if (NameVerification.verify(username)) {
+                    break;
+                }
+                else{
+                    output.write("Invalid username!");
+                }
             }
 
             String email;

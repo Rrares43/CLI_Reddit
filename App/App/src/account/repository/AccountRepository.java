@@ -23,7 +23,7 @@ public class AccountRepository {
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static List<Account> loadAccounts() {
+    public static List<Account> loadAccounts() {
         File file = new File(FILE_NAME);
         if(!file.exists()){
             return new ArrayList<>();
@@ -104,7 +104,6 @@ public class AccountRepository {
         }
 
         if(!PasswordVerification.verify(newPassword)){
-            System.out.println("Password condition not respected");
             logger.log(LogLevel.WARNING, "Password condition not respected");
             return;
         }
