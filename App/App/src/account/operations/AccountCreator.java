@@ -27,6 +27,7 @@ public class AccountCreator {
 
             String username;
             while (true) {
+                output.write("Username must be at least 3 characters long and be unique.");
                 username = stringReader.readString("Enter username: (or 0 to cancel)");
                 if (username.equals("0")) {
                     return;
@@ -57,8 +58,8 @@ public class AccountCreator {
         while (true) {
             output.write("Password must be at least 8 characters long and contain at least one number, one uppercase letter, one lowercase letter, and one special character.");
             password = stringReader.readString("Enter Password (or 0 to cancel): ");
-            if (password.equals("0")) return;
-
+            if (password.equals("0"))
+                return;
             if (PasswordVerification.verify(password)) {
                 break;
             } else {

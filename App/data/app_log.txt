@@ -433,3 +433,12 @@
 [2026-07-29 14:04:04] [INFO] test has logged in.
 [2026-07-29 14:11:25] [INFO] Application Started
 [2026-07-29 14:13:02] [INFO] Application Started
+[2026-07-29 14:25:24] [INFO] Application Started
+[2026-07-29 14:29:14] [INFO] Application Started
+[2026-07-29 14:37:16] [INFO] Application Started
+[2026-07-29 14:38:32] [INFO] Account saved successfully!
+[2026-07-29 14:38:42] [INFO] Synergy has logged in.
+[2026-07-29 14:38:58] [WARNING] Password condition not respected
+[2026-07-29 14:39:42] [INFO] User logged out of their account
+[2026-07-29 14:39:51] [INFO] Synergy has logged in.
+[2026-07-29 14:40:07] [INFO] User logged out of their account
