@@ -26,25 +26,36 @@ public class EditSubredditCommand implements SubredditCommand{
     }
 
     public void editSubreddit(){
-        List<Subreddit> subreddits = loadSubreddits();
-        String targetSub = chooseSubreddit();
+        List<Subreddit> subsMadeByUser = SubredditRepository.listSubsMadebyUser(sessionService.getCurrentUsername());
+        if(subsMadeByUser.isEmpty()){
+            System.out.println("No subreddits made by this user");
+            return;
+        }
         boolean found = false;
-        for(Subreddit sub : subreddits){
+        String targetSub = chooseSubreddit();
+        for(Subreddit sub : subsMadeByUser){
             if(sub.getName().equals(targetSub)){
-                String newTitle = stringReader.readString("Enter new title: ");
-                if(newTitle.startsWith("r/")){
-                    sub.setName(newTitle);
-                }
-                else{
-                    sub.setName("r/" + newTitle);
-                }
-                String newDesc = stringReader.readString("Enter new description: ");
-                sub.setDescription(newDesc);
                 found = true;
                 break;
             }
         }
+
         if(found){
+            List<Subreddit> subreddits = SubredditRepository.loadSubreddits();
+
+            for(Subreddit sub : subreddits){
+                if(sub.getName().equals(targetSub)){
+                    String newTitle = stringReader.readString("Enter new title: ");
+                    if(newTitle.startsWith("r/")){
+                        sub.setName(newTitle);
+                    }
+                    else{
+                        sub.setName("r/" + newTitle);
+                    }
+                    String newDesc = stringReader.readString("Enter new description: ");
+                    sub.setDescription(newDesc);
+                }
+            }
             SubredditRepository.writeSubreddits(subreddits);
             System.out.println("Subreddit edited successfully!");
         }
@@ -55,7 +66,14 @@ public class EditSubredditCommand implements SubredditCommand{
 
     public String chooseSubreddit(){
         System.out.println("Subreddits this user has made: ");
-        SubredditRepository.listSubsMadebyUser(sessionService.getCurrentUsername());
+        List<Subreddit> subsMadeByUser = SubredditRepository.listSubsMadebyUser(sessionService.getCurrentUsername());
+        if(subsMadeByUser.isEmpty()){
+            System.out.println("No subreddits made by this user");
+            return null;
+        }
+        for(Subreddit sub : subsMadeByUser){
+            System.out.println(sub.getName());
+        }
         return stringReader.readString("Choose subreddit to edit: ");
     }
 }

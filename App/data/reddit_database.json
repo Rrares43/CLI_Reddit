@@ -302,6 +302,43 @@
           "downvotes": 0
         },
         "postId": 0
+      },
+      {
+        "Id": 18,
+        "text": "ummm bugs?",
+        "author": "buggit",
+        "replies": [
+          {
+            "Id": 19,
+            "text": "ham ham im hungry",
+            "author": "buggit",
+            "replies": [],
+            "votes": [
+              {
+                "usernamme": "buggit",
+                "commentId": 19,
+                "isUpvote": true
+              }
+            ],
+            "voteTracker": {
+              "upvotes": 0,
+              "downvotes": 0
+            },
+            "postId": 9
+          }
+        ],
+        "votes": [
+          {
+            "usernamme": "buggit",
+            "commentId": 18,
+            "isUpvote": true
+          }
+        ],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 9
       }
     ],
     "subredditName": "r/incercare",
@@ -440,6 +477,49 @@
     "downvotes": 0,
     "comments": [],
     "subredditName": "r/test",
+    "votes": [],
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
+  },
+  {
+    "Id": 15,
+    "title": "Lays Chips",
+    "content": "Imi place lays cu sour cream",
+    "author": "chipsrau",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "r/incercare",
+    "votes": [],
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
+  },
+  {
+    "Id": 16,
+    "title": "Bug Snack",
+    "content": "I like snacks\n[Link: www.snack.com]",
+    "author": "buggit",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [
+      {
+        "Id": 17,
+        "text": "I like them too!?",
+        "author": "buggit",
+        "replies": [],
+        "votes": [],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 16
+      }
+    ],
+    "subredditName": "r/Snacks",
     "votes": [],
     "voteTracker": {
       "upvotes": 0,

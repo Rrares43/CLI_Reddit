@@ -24,19 +24,27 @@ public class DeleteSubredditCommand implements SubredditCommand{
     }
 
     private void deleteSubreddit(){
-        List<Subreddit> subreddits = SubredditRepository.loadSubreddits();
         String targetSub = chooseSubreddit();
+
+        if (targetSub == null) {
+            return;
+        }
+
+        List<Subreddit> subsMadebyUser = SubredditRepository.listSubsMadebyUser(sessionService.getCurrentUsername());
         boolean found = false;
-        for(Subreddit sub : subreddits){
+
+        for(Subreddit sub : subsMadebyUser){
             if(sub.getName().equals(targetSub)){
-                subreddits.remove(sub);
-                SubredditRepository.writeSubreddits(subreddits);
                 found = true;
                 break;
             }
         }
 
         if(found){
+            List<Subreddit> subreddits = SubredditRepository.loadSubreddits();
+
+            subreddits.removeIf(sub -> sub.getName().equals(targetSub));
+
             SubredditRepository.writeSubreddits(subreddits);
             System.out.println("Subreddit deleted successfully!");
         }
@@ -47,7 +55,15 @@ public class DeleteSubredditCommand implements SubredditCommand{
 
     public String chooseSubreddit(){
         System.out.println("Subreddits this user has made: ");
-        SubredditRepository.listSubsMadebyUser(sessionService.getCurrentUsername());
+        List<Subreddit> subsMadebyUser = SubredditRepository.listSubsMadebyUser(sessionService.getCurrentUsername());
+        if(subsMadebyUser.isEmpty()){
+            System.out.println("No subreddits made by this user");
+            return null;
+        }
+
+        for(Subreddit sub : subsMadebyUser){
+            System.out.println(sub.getName());
+        }
         return stringReader.readString("Choose subreddit to delete: ");
     }
 }

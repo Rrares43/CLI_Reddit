@@ -5,19 +5,14 @@
     "owner": "test"
   },
   {
-    "name": "r/stackOverflow",
-    "description": "Place to talk about coding",
+    "name": "r/OVEFLOWstack",
+    "description": "A sub about coding",
     "owner": "test"
   },
   {
     "name": "r/test",
     "description": "Test subreddit",
     "owner": "Admin"
-  },
-  {
-    "name": "r/incercare",
-    "description": "Subreddit de incercare",
-    "owner": "rares0208"
   },
   {
     "name": "r/un subreddit",
@@ -28,11 +23,6 @@
     "name": "r/as",
     "description": "Subreddit as",
     "owner": "rares0208"
-  },
-  {
-    "name": "r/editing",
-    "description": "talking about editing",
-    "owner": "test"
   },
   {
     "name": "r/json",
@@ -50,13 +40,18 @@
     "owner": "pandele"
   },
   {
-    "name": "r/0",
-    "description": "zerozero",
+    "name": "r/Snacks",
+    "description": "Sub about snacks",
     "owner": "Admin"
   },
   {
-    "name": "r/Snacks",
-    "description": "a subreddit about snacks",
+    "name": "r/",
+    "description": "0",
     "owner": "pufuleterau"
+  },
+  {
+    "name": "r/incercare",
+    "description": "Am incercat sa fac un subreddit",
+    "owner": "rares0208"
   }
 ]
