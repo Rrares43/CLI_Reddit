@@ -23,7 +23,7 @@ public class AccountRepository {
 
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    private static List<Account> loadAccounts() {
+    public static List<Account> loadAccounts() {
         File file = new File(FILE_NAME);
         if(!file.exists()){
             return new ArrayList<>();
@@ -97,6 +97,16 @@ public class AccountRepository {
         Logger logger = Logger.getInstance();
         List<Account> accounts = loadAccounts();
         boolean found = false;
+        if(newPassword.isBlank()){
+            System.out.println("Please fill in all fields");
+            logger.log(LogLevel.WARNING, "Please fill in all fields");
+            return;
+        }
+
+        if(!PasswordVerification.verify(newPassword)){
+            logger.log(LogLevel.WARNING, "Password condition not respected");
+            return;
+        }
 
         for(Account acc : accounts){
             if(acc.getEmail().equals(email)){

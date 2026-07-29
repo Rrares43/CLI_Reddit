@@ -243,8 +243,25 @@
             "usernamme": "test",
             "commentId": 14,
             "isUpvote": true
+          },
+          {
+            "usernamme": "pufuleterau",
+            "commentId": 14,
+            "isUpvote": false
           }
         ],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 8
+      },
+      {
+        "Id": 16,
+        "text": "no i\u0027m not a fan!",
+        "author": "pufuleterau",
+        "replies": [],
+        "votes": [],
         "voteTracker": {
           "upvotes": 0,
           "downvotes": 0
@@ -256,6 +273,11 @@
     "votes": [
       {
         "username": "test",
+        "postId": 8,
+        "isUpvote": true
+      },
+      {
+        "username": "pufuleterau",
         "postId": 8,
         "isUpvote": true
       }
@@ -404,6 +426,21 @@
         "isUpvote": true
       }
     ],
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
+  },
+  {
+    "Id": 14,
+    "title": "PufuleteRauisTHEbest!",
+    "content": "Yes i\u0027m agreeing with myself!\n[Image: Pufulete chio]",
+    "author": "pufuleterau",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "r/test",
+    "votes": [],
     "voteTracker": {
       "upvotes": 0,
       "downvotes": 0
