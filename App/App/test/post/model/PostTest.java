@@ -28,8 +28,8 @@ class PostTest {
     @Test
     void shouldAddAndMaintainMultipleComments() {
         Post post = new Post(1, "Title", "Content", "user", "subreddit");
-        Comment comment1 = new Comment(1, "Comment 1", "user1");
-        Comment comment2 = new Comment(2, "Comment 2", "user2");
+        Comment comment1 = new Comment(1, "Comment 1", "user1",62);
+        Comment comment2 = new Comment(2, "Comment 2", "user2",63);
 
         post.addComment(comment1);
         post.addComment(comment2);
@@ -43,9 +43,9 @@ class PostTest {
     @Test
     void shouldRemoveCommentByValidIndex() {
         Post post = new Post(1, "Title", "Content", "user", "subreddit");
-        Comment comment1 = new Comment(1, "Comment 1", "user1");
-        Comment comment2 = new Comment(2, "Comment 2", "user2");
-        Comment comment3 = new Comment(3, "Comment 3", "user3");
+        Comment comment1 = new Comment(1, "Comment 1", "user1",64);
+        Comment comment2 = new Comment(2, "Comment 2", "user2",65);
+        Comment comment3 = new Comment(3, "Comment 3", "user3",66);
 
         post.addComment(comment1);
         post.addComment(comment2);
@@ -62,7 +62,7 @@ class PostTest {
     @Test
     void shouldHandleInvalidIndexWhenRemovingComment() {
         Post post = new Post(1, "Title", "Content", "user", "subreddit");
-        Comment comment = new Comment(1, "Comment", "user");
+        Comment comment = new Comment(1, "Comment", "user",67);
         post.addComment(comment);
 
         post.removeComment(-1);

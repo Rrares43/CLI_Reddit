@@ -273,6 +273,11 @@
                 "usernamme": "test",
                 "commentId": 13,
                 "isUpvote": true
+              },
+              {
+                "usernamme": "pandele",
+                "commentId": 13,
+                "isUpvote": false
               }
             ],
             "voteTracker": {
@@ -282,7 +287,13 @@
             "postId": 10
           }
         ],
-        "votes": [],
+        "votes": [
+          {
+            "usernamme": "pandele",
+            "commentId": 12,
+            "isUpvote": false
+          }
+        ],
         "voteTracker": {
           "upvotes": 0,
           "downvotes": 0
@@ -295,7 +306,7 @@
       {
         "username": "pandele",
         "postId": 10,
-        "isUpvote": true
+        "isUpvote": false
       }
     ]
   },

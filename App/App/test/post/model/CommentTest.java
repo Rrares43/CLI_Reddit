@@ -10,7 +10,7 @@ class CommentTest {
 
     @Test
     void shouldCreateCommentWithInitialDefaults() {
-        Comment comment = new Comment(1, "Test comment", "testuser");
+        Comment comment = new Comment(1, "Test comment", "testuser",50);
 
         assertEquals(1, comment.getId());
         assertEquals("Test comment", comment.getText());
@@ -25,9 +25,9 @@ class CommentTest {
 
     @Test
     void shouldAddAndMaintainMultipleReplies() {
-        Comment parent = new Comment(1, "Parent comment", "testuser");
-        Comment reply1 = new Comment(2, "Reply 1", "user1");
-        Comment reply2 = new Comment(3, "Reply 2", "user2");
+        Comment parent = new Comment(1, "Parent comment", "testuser",51);
+        Comment reply1 = new Comment(2, "Reply 1", "user1",52);
+        Comment reply2 = new Comment(3, "Reply 2", "user2",53);
 
         parent.addreply(reply1);
         parent.addreply(reply2);
@@ -40,9 +40,9 @@ class CommentTest {
 
     @Test
     void shouldSupportNestedRepliesTree() {
-        Comment parent = new Comment(1, "Parent", "user1");
-        Comment reply = new Comment(2, "Reply", "user2");
-        Comment nestedReply = new Comment(3, "Nested", "user3");
+        Comment parent = new Comment(1, "Parent", "user1",54);
+        Comment reply = new Comment(2, "Reply", "user2",55);
+        Comment nestedReply = new Comment(3, "Nested", "user3",56);
 
         parent.addreply(reply);
         reply.addreply(nestedReply);
@@ -54,7 +54,7 @@ class CommentTest {
 
     @Test
     void shouldUpdateVotesThroughCommentVoteList() {
-        Comment comment = new Comment(1, "Test comment", "testuser");
+        Comment comment = new Comment(1, "Test comment", "testuser",57);
 
         comment.getVotes().add(new CommentVote("alice", 1, true));
         comment.getVotes().add(new CommentVote("bob", 1, false));
@@ -66,7 +66,7 @@ class CommentTest {
 
     @Test
     void shouldCountVotesFromCommentVoteList() {
-        Comment comment = new Comment(1, "Test comment", "testuser");
+        Comment comment = new Comment(1, "Test comment", "testuser",58);
 
         comment.getVotes().add(new CommentVote("alice", 1, true));
         comment.getVotes().add(new CommentVote("bob", 1, false));
@@ -81,7 +81,7 @@ class CommentTest {
 
     @Test
     void shouldToggleExistingCommentVote() {
-        Comment comment = new Comment(1, "Test comment", "testuser");
+        Comment comment = new Comment(1, "Test comment", "testuser",59);
         CommentVote vote = new CommentVote("alice", 1, true);
         comment.getVotes().add(vote);
 
@@ -97,7 +97,7 @@ class CommentTest {
 
     @Test
     void shouldRemoveCommentVote() {
-        Comment comment = new Comment(1, "Test comment", "testuser");
+        Comment comment = new Comment(1, "Test comment", "testuser",60);
         comment.getVotes().add(new CommentVote("alice", 1, true));
         comment.getVotes().add(new CommentVote("bob", 1, false));
 

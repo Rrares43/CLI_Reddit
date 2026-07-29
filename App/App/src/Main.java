@@ -19,7 +19,7 @@ public class Main {
         //DataMigrator.runMigration();
 
         // Test for the database connection
-        /*System.out.println("Starting Reddit CLI...");
+        System.out.println("Starting Reddit CLI...");
         try (Connection conn = DataBaseConnection.getConnection()) {
             if (conn != null && !conn.isClosed()) {
                 System.out.println("Database connection successful");
@@ -29,7 +29,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        */
+
 
         AppContext context = AppBootstrap.wire();
         new ApplicationLoop(context).run();
