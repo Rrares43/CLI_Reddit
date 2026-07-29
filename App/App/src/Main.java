@@ -4,6 +4,7 @@ import bootstrap.ApplicationLoop;
 import com.github.lalyos.jfiglet.FigletFont;
 import persistence.DataBaseConnection;
 import io.TextFormatter;
+import persistence.DataMigrator;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class Main {
         System.out.println(TextFormatter.separator(42));
 
         // command for database migration, no longer needs to be called
-        // DataMigrator.runMigration();
+        //DataMigrator.runMigration();
 
         // Test for the database connection
         /*System.out.println("Starting Reddit CLI...");

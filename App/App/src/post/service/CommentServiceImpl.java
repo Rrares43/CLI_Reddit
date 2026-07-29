@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
         }
 
         int commentId = postRepo.getNextCommentId();
-        Comment newComment = new Comment(commentId, text, postRepo.getCurrentUser());
+        Comment newComment = new Comment(commentId, text, postRepo.getCurrentUser(), postId);
         post.addComment(newComment);
         postRepo.saveToFile();
 
@@ -47,7 +47,7 @@ public class CommentServiceImpl implements CommentService {
         }
 
         int replyId = postRepo.getNextCommentId();
-        Comment reply = new Comment(replyId, text, postRepo.getCurrentUser());
+        Comment reply = new Comment(replyId, text, postRepo.getCurrentUser(), postId);
         parentComment.addreply(reply);
         postRepo.saveToFile();
 

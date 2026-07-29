@@ -16,7 +16,9 @@
             "Id": 3,
             "text": "xxxxxxx",
             "author": "FlorinUser",
-            "replies": []
+            "replies": [],
+            "votes": [],
+            "postId": 0
           }
         ],
         "votes": [
@@ -25,7 +27,8 @@
             "commentId": 1,
             "isUpvote": true
           }
-        ]
+        ],
+        "postId": 0
       },
       {
         "Id": 2,
@@ -36,15 +39,21 @@
             "Id": 4,
             "text": "fffffff",
             "author": "FlorinUser",
-            "replies": []
+            "replies": [],
+            "votes": [],
+            "postId": 0
           }
-        ]
+        ],
+        "votes": [],
+        "postId": 0
       },
       {
         "Id": 6,
         "text": "like",
         "author": "pandele",
-        "replies": []
+        "replies": [],
+        "votes": [],
+        "postId": 0
       }
     ],
     "subredditName": "r/test",
@@ -52,7 +61,7 @@
       {
         "username": "test",
         "postId": 1,
-        "isUpvote": true
+        "isUpvote": false
       }
     ]
   },
@@ -69,7 +78,8 @@
         "text": "test",
         "author": "FlorinUser",
         "replies": [],
-        "votes": []
+        "votes": [],
+        "postId": 0
       },
       {
         "Id": 5,
@@ -82,14 +92,16 @@
             "commentId": 5,
             "isUpvote": false
           }
-        ]
+        ],
+        "postId": 0
       },
       {
         "Id": 7,
         "text": "comment",
         "author": "pandele",
         "replies": [],
-        "votes": []
+        "votes": [],
+        "postId": 0
       },
       {
         "Id": 8,
@@ -100,7 +112,8 @@
         "voteTracker": {
           "upvotes": 0,
           "downvotes": 0
-        }
+        },
+        "postId": 0
       }
     ],
     "subredditName": "r/test",
@@ -162,7 +175,8 @@
         "text": "comment normal",
         "author": "FlorinUser",
         "replies": [],
-        "votes": []
+        "votes": [],
+        "postId": 0
       }
     ],
     "subredditName": "r/0",
@@ -175,8 +189,22 @@
     "author": "rares0208",
     "upvotes": 0,
     "downvotes": 0,
-    "comments": [],
-    "subredditName": "r/as"
+    "comments": [
+      {
+        "Id": 11,
+        "text": "My favorite card is the ace (or as in romainian)",
+        "author": "test",
+        "replies": [],
+        "votes": [],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 0
+      }
+    ],
+    "subredditName": "r/as",
+    "votes": []
   },
   {
     "Id": 7,
@@ -205,8 +233,22 @@
     "author": "pandele",
     "upvotes": 0,
     "downvotes": 0,
-    "comments": [],
-    "subredditName": "r/incercare"
+    "comments": [
+      {
+        "Id": 10,
+        "text": "the most commented comment",
+        "author": "test",
+        "replies": [],
+        "votes": [],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 0
+      }
+    ],
+    "subredditName": "r/incercare",
+    "votes": []
   },
   {
     "Id": 10,
@@ -215,7 +257,39 @@
     "author": "pandele",
     "upvotes": 0,
     "downvotes": 0,
-    "comments": [],
+    "comments": [
+      {
+        "Id": 12,
+        "text": "Buna marius",
+        "author": "test",
+        "replies": [
+          {
+            "Id": 13,
+            "text": "Buna prietene!",
+            "author": "test",
+            "replies": [],
+            "votes": [
+              {
+                "usernamme": "test",
+                "commentId": 13,
+                "isUpvote": true
+              }
+            ],
+            "voteTracker": {
+              "upvotes": 0,
+              "downvotes": 0
+            },
+            "postId": 10
+          }
+        ],
+        "votes": [],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 10
+      }
+    ],
     "subredditName": "r/subnou",
     "votes": [
       {
@@ -257,7 +331,8 @@
         "voteTracker": {
           "upvotes": 0,
           "downvotes": 0
-        }
+        },
+        "postId": 0
       }
     ],
     "subredditName": "r/incercare",

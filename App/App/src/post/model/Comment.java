@@ -13,10 +13,11 @@ public class Comment {
     private VoteTracker voteTracker;
     private int postId;
 
-    public Comment(int Id, String text, String author) {
+    public Comment(int Id, String text, String author, int postId) {
         this.Id = Id;
         this.text = text;
         this.author = author;
+        this.postId = postId;
         this.replies = new ArrayList<>();
         this.votes = new ArrayList<>();
         this.voteTracker = new VoteTracker();
