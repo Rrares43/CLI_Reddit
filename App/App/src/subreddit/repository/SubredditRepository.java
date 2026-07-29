@@ -38,13 +38,15 @@ public class SubredditRepository {
         }
     }
 
-    public static void listSubsMadebyUser(String user){
+    public static List<Subreddit> listSubsMadebyUser(String user){
         List<Subreddit> subreddits = loadSubreddits();
+        List<Subreddit> subsMadeByUser = new ArrayList<>();
         for(Subreddit sub : subreddits){
             if(sub.getOwner().equals(user)){
-                System.out.println(sub.getName());
+                subsMadeByUser.add(sub);
             }
         }
+        return subsMadeByUser;
     }
 
     public static void writeSubreddits(List<Subreddit> subreddits){

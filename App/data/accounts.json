@@ -25,11 +25,6 @@
     "password": "florinPassword1!"
   },
   {
-    "username": "Marcel2",
-    "email": "marcel@gmail.com",
-    "password": "Marcel123!"
-  },
-  {
     "username": "Alex",
     "email": "alex@gmail.com",
     "password": "Padurariulale3!"
@@ -50,18 +45,8 @@
     "password": "RAREScelmic20!"
   },
   {
-    "username": "pufuleterau",
-    "email": "pufuleterau@gmail.com",
-    "password": "23."
-  },
-  {
-    "username": "chipsrau",
-    "email": "chipsrau@gmail.com",
-    "password": "Chips\u0027777"
-  },
-  {
-    "username": "Synergy",
-    "email": "synergy@gmail.com",
-    "password": "Synergy23."
+    "username": "buggit",
+    "email": "buggit@gmail.com",
+    "password": "Buggit23."
   }
 ]
