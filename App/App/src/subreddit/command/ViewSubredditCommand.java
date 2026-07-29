@@ -30,6 +30,9 @@ public class ViewSubredditCommand implements SubredditCommand {
     public void execute(){
         System.out.println("Choose a subreddit to view:");
         List<Subreddit> subreddits = SubredditRepository.loadSubreddits();
+        for(Subreddit s : subreddits){
+            output.write(s.getName());
+        }
         String sub = stringReader.readString("Enter subreddit name: ");
         boolean found = false;
         if(!sub.startsWith("r/")){
