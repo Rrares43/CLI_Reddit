@@ -122,6 +122,11 @@
         "username": "pandele",
         "postId": 2,
         "isUpvote": false
+      },
+      {
+        "username": "test",
+        "postId": 2,
+        "isUpvote": true
       }
     ]
   },
@@ -132,18 +137,22 @@
     "author": "Admin",
     "upvotes": 0,
     "downvotes": 0,
-    "comments": [],
-    "subredditName": "r/test"
-  },
-  {
-    "Id": 1,
-    "title": "postare",
-    "content": "dadadadada",
-    "author": "rares0208",
-    "upvotes": 0,
-    "downvotes": 0,
-    "comments": [],
-    "subredditName": "r/incercare"
+    "comments": [
+      {
+        "Id": 15,
+        "text": "Ok sigur!",
+        "author": "test",
+        "replies": [],
+        "votes": [],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 3
+      }
+    ],
+    "subredditName": "r/test",
+    "votes": []
   },
   {
     "Id": 4,
@@ -223,8 +232,34 @@
     "author": "JSON",
     "upvotes": 0,
     "downvotes": 0,
-    "comments": [],
-    "subredditName": "r/json"
+    "comments": [
+      {
+        "Id": 14,
+        "text": "Yeah, you\u0027re right!",
+        "author": "test",
+        "replies": [],
+        "votes": [
+          {
+            "usernamme": "test",
+            "commentId": 14,
+            "isUpvote": true
+          }
+        ],
+        "voteTracker": {
+          "upvotes": 0,
+          "downvotes": 0
+        },
+        "postId": 8
+      }
+    ],
+    "subredditName": "r/json",
+    "votes": [
+      {
+        "username": "test",
+        "postId": 8,
+        "isUpvote": true
+      }
+    ]
   },
   {
     "Id": 9,
@@ -348,6 +383,27 @@
     ],
     "subredditName": "r/incercare",
     "votes": [],
+    "voteTracker": {
+      "upvotes": 0,
+      "downvotes": 0
+    }
+  },
+  {
+    "Id": 13,
+    "title": "Primavara",
+    "content": "spring \u003d primavara",
+    "author": "test",
+    "upvotes": 0,
+    "downvotes": 0,
+    "comments": [],
+    "subredditName": "r/test",
+    "votes": [
+      {
+        "username": "test",
+        "postId": 13,
+        "isUpvote": true
+      }
+    ],
     "voteTracker": {
       "upvotes": 0,
       "downvotes": 0
