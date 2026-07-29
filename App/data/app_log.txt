@@ -346,61 +346,24 @@
 [2026-07-26 11:57:53] [INFO] Application Started
 [2026-07-26 11:58:02] [ERROR] test has logged in.
 [2026-07-26 11:58:26] [INFO] New vote added for post 4
-[2026-07-26 12:09:06] [INFO] Application Started
-[2026-07-26 12:09:14] [ERROR] pandele has logged in.
-[2026-07-26 12:09:54] [INFO] New vote added for post 10
-[2026-07-26 12:10:43] [INFO] Application Started
-[2026-07-26 12:10:49] [ERROR] pandele has logged in.
-[2026-07-26 12:13:19] [INFO] New vote added for comment 2
-[2026-07-26 12:18:39] [INFO] Application Started
-[2026-07-26 12:18:45] [ERROR] pandele has logged in.
-[2026-07-26 12:21:27] [INFO] Application Started
-[2026-07-26 12:22:24] [ERROR] pandele has logged in.
-[2026-07-26 12:22:46] [INFO] Vote removed for comment 2
-[2026-07-26 13:35:14] [INFO] Application Started
-[2026-07-26 13:35:23] [ERROR] pandele has logged in.
-[2026-07-26 13:47:10] [INFO] Application Started
-[2026-07-26 13:47:17] [ERROR] pandele has logged in.
-[2026-07-26 13:49:42] [INFO] Application Started
-[2026-07-26 13:49:49] [ERROR] pandele has logged in.
-[2026-07-26 13:50:58] [INFO] Application Started
-[2026-07-26 13:51:07] [ERROR] pandele has logged in.
-[2026-07-26 13:52:17] [INFO] Application Started
-[2026-07-26 13:52:37] [ERROR] pandele has logged in.
-[2026-07-26 13:53:54] [INFO] Application Started
-[2026-07-26 13:54:02] [ERROR] pandele has logged in.
-[2026-07-26 13:56:31] [INFO] Application Started
-[2026-07-26 13:57:22] [INFO] Application Started
-[2026-07-26 13:58:08] [INFO] Application Started
-[2026-07-26 13:58:20] [ERROR] pandele has logged in.
-[2026-07-26 13:58:34] [INFO] Application Started
-[2026-07-26 13:58:40] [ERROR] pandele has logged in.
-[2026-07-26 14:00:14] [INFO] Application Started
-[2026-07-26 14:00:36] [INFO] Application Started
-[2026-07-26 14:00:44] [ERROR] pandele has logged in.
-[2026-07-26 14:02:11] [INFO] Application Started
-[2026-07-26 14:02:18] [ERROR] pandele has logged in.
-[2026-07-26 14:02:52] [INFO] Application Started
-[2026-07-26 14:03:03] [ERROR] pandele has logged in.
-[2026-07-26 14:04:26] [INFO] Application Started
-[2026-07-26 14:04:41] [ERROR] pandele has logged in.
-[2026-07-26 14:12:08] [INFO] Application Started
-[2026-07-26 14:12:17] [ERROR] pandele has logged in.
-[2026-07-26 14:15:10] [INFO] Application Started
-[2026-07-26 14:15:19] [INFO] pandele has logged in.
-[2026-07-26 14:15:51] [INFO] Application Started
-[2026-07-26 14:16:01] [INFO] pandele has logged in.
-[2026-07-26 14:18:55] [INFO] Application Started
-[2026-07-26 14:19:26] [INFO] pandele has logged in.
-[2026-07-26 14:22:47] [INFO] Application Started
-[2026-07-26 14:22:55] [INFO] pandele has logged in.
-[2026-07-26 14:23:51] [ERROR] Comment with id 1 does not exist in post 6
-[2026-07-26 14:24:13] [ERROR] Base comment not found: 1
-[2026-07-26 15:47:31] [INFO] Application Started
-[2026-07-26 15:47:57] [INFO] pandele has logged in.
-[2026-07-26 15:55:36] [INFO] Application Started
-[2026-07-26 15:55:50] [INFO] pandele has logged in.
-[2026-07-26 15:58:02] [INFO] Application Started
-[2026-07-26 15:58:09] [INFO] pandele has logged in.
-[2026-07-26 16:00:52] [INFO] Application Started
-[2026-07-26 16:01:00] [INFO] pandele has logged in.
+[2026-07-26 12:21:11] [INFO] Application Started
+[2026-07-26 12:21:16] [ERROR] test has logged in.
+[2026-07-27 09:55:57] [INFO] Application Started
+[2026-07-27 09:56:06] [INFO] test has logged in.
+[2026-07-27 13:56:05] [INFO] Application Started
+[2026-07-28 13:02:52] [INFO] Application Started
+[2026-07-28 13:03:07] [INFO] test has logged in.
+[2026-07-28 13:03:41] [INFO] Application Started
+[2026-07-28 13:04:26] [INFO] rares0208 has logged in.
+[2026-07-28 13:05:51] [INFO] Application Started
+[2026-07-28 13:06:20] [INFO] Admin has logged in.
+[2026-07-28 13:06:32] [INFO] Subreddit saved successfully!
+[2026-07-29 11:19:14] [INFO] Application Started
+[2026-07-29 11:19:22] [INFO] test has logged in.
+[2026-07-29 11:23:53] [INFO] Application Started
+[2026-07-29 11:23:58] [INFO] test has logged in.
+[2026-07-29 11:25:18] [INFO] Application Started
+[2026-07-29 11:25:24] [INFO] test has logged in.
+[2026-07-29 11:26:17] [INFO] Application Started
+[2026-07-29 11:26:22] [INFO] test has logged in.
+[2026-07-29 11:27:56] [INFO] Application Started

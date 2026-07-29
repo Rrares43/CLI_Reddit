@@ -25,11 +25,6 @@
     "owner": "rares0208"
   },
   {
-    "name": "r/0",
-    "description": "0",
-    "owner": "rares0208"
-  },
-  {
     "name": "r/as",
     "description": "Subreddit as",
     "owner": "rares0208"
@@ -53,5 +48,10 @@
     "name": "r/subnou",
     "description": "incercam",
     "owner": "pandele"
+  },
+  {
+    "name": "r/0",
+    "description": "zerozero",
+    "owner": "Admin"
   }
 ]
