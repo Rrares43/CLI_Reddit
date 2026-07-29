@@ -53,5 +53,10 @@
     "name": "r/0",
     "description": "zerozero",
     "owner": "Admin"
+  },
+  {
+    "name": "r/Snacks",
+    "description": "a subreddit about snacks",
+    "owner": "pufuleterau"
   }
 ]

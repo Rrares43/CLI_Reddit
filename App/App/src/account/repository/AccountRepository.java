@@ -97,6 +97,17 @@ public class AccountRepository {
         Logger logger = Logger.getInstance();
         List<Account> accounts = loadAccounts();
         boolean found = false;
+        if(newPassword.isBlank()){
+            System.out.println("Please fill in all fields");
+            logger.log(LogLevel.WARNING, "Please fill in all fields");
+            return;
+        }
+
+        if(!PasswordVerification.verify(newPassword)){
+            System.out.println("Password condition not respected");
+            logger.log(LogLevel.WARNING, "Password condition not respected");
+            return;
+        }
 
         for(Account acc : accounts){
             if(acc.getEmail().equals(email)){
